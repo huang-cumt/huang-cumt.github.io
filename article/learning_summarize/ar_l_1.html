@@ -9,23 +9,22 @@
 		<title>learning_summarize</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	</head>
 	<body class="single is-preload">
-
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Header -->
 				<header id="header">
-					<h1><a href="../index.html">Fish's blog</a></h1>
+					<h1><a href="../../index.html">Fish's blog</a></h1>
 					<nav class="links">
 						<ul>
-							<li><a href="./learning_summarize.html"> <b>学习笔记</b> </a></li>
-							<li><a href="./research.html">有关科研</a></li>
-							<li><a href="./thinks.html">杂感	</a></li>
-							<li><a href="./interest.html">其它	</a></li>
-							<li><a href="./aboutme.html">About me</a></li>
+							<li><a href="../../subpage/learning_summarize.html"> <b>学习笔记</b> </a></li>
+							<li><a href="../../subpage/research.html">有关科研</a></li>
+							<li><a href="../../subpage/thinks.html">杂感	</a></li>
+							<li><a href="../../subpage/other.html">其它	</a></li>
+							<li><a href="../../subpage/aboutme.html">About me</a></li>
 						</ul>
 					</nav>
 					<nav class="main">
@@ -42,10 +41,8 @@
 						</ul>
 					</nav>
 				</header>
-
 				<!-- Menu -->
 					<section id="menu">
-
 						<!-- Search -->
 							<section>
 								<form class="search" method="get" action="#">
@@ -56,20 +53,9 @@
 						<!-- Links -->
 						<section>
 							<ul class="links">
-								<li>
-									<a href="#">
-										<h3>学习笔记</h3>
-										<p>一些关于个人学习的记录</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<h3>有关科研</h3>
-										<p>科研心得、成果、Idea</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
+								<li><a href="#"><h3>学习笔记</h3><p>一些关于个人学习的记录</p></a></li>
+								<li><a href="#"><h3>有关科研</h3><p>科研心得、成果、Idea</p></a></li>
+								<li><a href="#">
 										<h3>杂感</h3>
 										<p>絮语</p>
 									</a>
@@ -97,12 +83,11 @@
                                 </div>
                                 <div class="meta">
                                     <time class="published" datetime="2015-11-01">November 1, 2015</time>
-                                    <a href="#" class="author"><span class="name">Jane Doe</span><img src="../images/avatar.jpg" alt="" /></a>
+                                    <a href="#" class="author"><span class="name">Jane Doe</span><img src="../../images/avatar.jpg" alt="" /></a>
                                 </div>
                             </header>
-                            <span class="image featured"><img src="../images/pic01.jpg" alt="" /></span>
-                            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-                            <p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
+                            <span class="image featured"><img src="../../images/pic01.jpg" alt="" /></span>
+                            <div id="content"></div>
                             <footer>
                                 <ul class="stats">
                                     <li><a href="#">General</a></li>
@@ -128,11 +113,13 @@
     </div>
 
 <!-- Scripts -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/browser.min.js"></script>
-    <script src="../assets/js/breakpoints.min.js"></script>
-    <script src="../assets/js/util.js"></script>
-    <script src="../assets/js/main.js"></script>
-
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+	
+	<script src="../../assets/js/showMarkdown.js"></script>
+	<script>showMarkdown('../other/papers_02.md');</script>
 </body>
 </html>
