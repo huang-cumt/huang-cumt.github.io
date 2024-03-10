@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>XinyuHuang</title>
   <subtitle>雷达、人工智能、个人学习与生活。</subtitle>
-  <updated>2024-03-10T18:58:30+08:00</updated>
+  <updated>2024-03-10T19:24:02+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -183,17 +183,8 @@ Headings
 
 
 H1 - heading
-
-H2 - heading
-
-H3 - heading
-
-H4 - heading
-
-
-Paragraph
-
-Quisque egestas convallis ipsum, ut sollicitudin risus tincidunt a. Maecenas interdum malesuada egestas. Duis consectetur porta risus, sit amet vulputate urna faci...
+path: /commons/devices-mockup.png
+  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8...
     </summary>
   
 
