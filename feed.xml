@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>XinyuHuang</title>
   <subtitle>雷达、人工智能、个人学习与生活。</subtitle>
-  <updated>2024-03-11T08:51:06+08:00</updated>
+  <updated>2024-03-11T09:06:52+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -35,6 +35,8 @@
   
     
     <category term="个人记录" />
+    
+    <category term="阅读" />
     
   
 
