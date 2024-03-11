@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>/</id>
+  <id>https://huang-cumt.github.io/</id>
   <title>XinyuHuang</title>
   <subtitle>雷达、人工智能、个人学习与生活。</subtitle>
-  <updated>2024-03-11T14:03:54+08:00</updated>
+  <updated>2024-03-11T20:01:56+08:00</updated>
   <author>
     <name>XinyuHuang</name>
-    <uri>/</uri>
+    <uri>https://huang-cumt.github.io/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="https://huang-cumt.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="/"/>
+    href="https://huang-cumt.github.io/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
   <rights> © 2024 XinyuHuang </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
@@ -20,14 +20,56 @@
 
   
   <entry>
+    <title>读书笔记-《长日将尽》 By 石黑一雄</title>
+    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读书笔记-《长日将尽》 By 石黑一雄" />
+    <published>2023-03-30T12:00:00+08:00</published>
+  
+    <updated>2023-03-30T12:00:00+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
+    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="个人记录" />
+    
+    <category term="阅读" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。
+
+这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关于伟大管家的定义，也是文中不断谈及的一点，他的心中对此有些见解并为之不断奋斗。
+
+可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。
+
+待到克林顿府的繁华散去，昔日忙碌不再，新任主人容许他有一个假期之时，他才在脑海中开始审视自己过去的每一个选择。他意识到自己的过...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Customize the Favicon</title>
-    <link href="/posts/customize-the-favicon/" rel="alternate" type="text/html" title="Customize the Favicon" />
+    <link href="https://huang-cumt.github.io/posts/customize-the-favicon/" rel="alternate" type="text/html" title="Customize the Favicon" />
     <published>2019-08-11T00:34:00+08:00</published>
   
     <updated>2024-03-02T01:28:45+08:00</updated>
   
-    <id>/posts/customize-the-favicon/</id>
-    <content src="/posts/customize-the-favicon/" />
+    <id>https://huang-cumt.github.io/posts/customize-the-favicon/</id>
+    <content src="https://huang-cumt.github.io/posts/customize-the-favicon/" />
     <author>
       <name>cotes</name>
     </author>
@@ -61,13 +103,13 @@ Prepare a square image (PNG, JPG, or SVG) with a size of 512x512 or more, and th
   
   <entry>
     <title>Getting Started</title>
-    <link href="/posts/getting-started/" rel="alternate" type="text/html" title="Getting Started" />
+    <link href="https://huang-cumt.github.io/posts/getting-started/" rel="alternate" type="text/html" title="Getting Started" />
     <published>2019-08-09T20:55:00+08:00</published>
   
     <updated>2024-01-23T15:23:53+08:00</updated>
   
-    <id>/posts/getting-started/</id>
-    <content src="/posts/getting-started/" />
+    <id>https://huang-cumt.github.io/posts/getting-started/</id>
+    <content src="https://huang-cumt.github.io/posts/getting-started/" />
     <author>
       <name>cotes</name>
     </author>
@@ -109,13 +151,13 @@ There are two ways to create a new repository for this theme:
   
   <entry>
     <title>Writing a New Post</title>
-    <link href="/posts/write-a-new-post/" rel="alternate" type="text/html" title="Writing a New Post" />
+    <link href="https://huang-cumt.github.io/posts/write-a-new-post/" rel="alternate" type="text/html" title="Writing a New Post" />
     <published>2019-08-08T14:10:00+08:00</published>
   
     <updated>2024-03-02T01:28:45+08:00</updated>
   
-    <id>/posts/write-a-new-post/</id>
-    <content src="/posts/write-a-new-post/" />
+    <id>https://huang-cumt.github.io/posts/write-a-new-post/</id>
+    <content src="https://huang-cumt.github.io/posts/write-a-new-post/" />
     <author>
       <name>cotes</name>
     </author>
@@ -149,13 +191,13 @@ Create a new file named YYYY-MM-DD-TITLE.EXTENSION and put it in the _posts of t
   
   <entry>
     <title>Text and Typography</title>
-    <link href="/posts/text-and-typography/" rel="alternate" type="text/html" title="Text and Typography" />
+    <link href="https://huang-cumt.github.io/posts/text-and-typography/" rel="alternate" type="text/html" title="Text and Typography" />
     <published>2019-08-08T11:33:00+08:00</published>
   
-    <updated>2024-03-02T01:28:45+08:00</updated>
+    <updated>2024-03-11T19:54:38+08:00</updated>
   
-    <id>/posts/text-and-typography/</id>
-    <content src="/posts/text-and-typography/" />
+    <id>https://huang-cumt.github.io/posts/text-and-typography/</id>
+    <content src="https://huang-cumt.github.io/posts/text-and-typography/" />
     <author>
       <name>cotes</name>
     </author>
@@ -184,16 +226,8 @@ Headings
 
 H1 - heading
 
-H2 - heading
-
-H3 - heading
-
-H4 - heading
-
-
-Paragraph
-
-Quisque egestas convallis ipsum, ut sollicitudin risus tincidunt a. Maecenas interdum malesuada egestas. Duis consectetur porta risus, sit amet vulputate urna faci...
+path: /commons/devices-mockup.png
+  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp...
     </summary>
   
 
