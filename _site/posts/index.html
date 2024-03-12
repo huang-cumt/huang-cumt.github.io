@@ -1,36 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的网页</title>
-</head>
-<body>
-    <!-- 这里是你的文章内容 -->
-    <div class="content">
-		<h2>测试h2</h2>
-		<h3>测试h3</h3>
-        <!-- ... -->
-    </div>
-
-    <!-- 这里是目录容器 -->
-    <nav id="toc"></nav>
-
-    <!-- 初始化 tocbot -->
-      <script src="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.js">
-        document.addEventListener('DOMContentLoaded', function () {
-          tocbot.init({
-            tocSelector: '#toc',
-            contentSelector: '.content',
-            ignoreSelector: '[data-toc-skip]',
-            headingSelector: 'h2, h3, h4',
-            orderedList: false,
-            scrollSmooth: false
-          });
-          tocbot.refresh();
-          tocbot.destroy();
-        });
-      </script>
-</body>
+<html lang="en-US">
+  <meta charset="utf-8">
+  <title>Redirecting&hellip;</title>
+  <link rel="canonical" href="https://huang-cumt.github.io/404.html">
+  <script>location="https://huang-cumt.github.io/404.html"</script>
+  <meta http-equiv="refresh" content="0; url=https://huang-cumt.github.io/404.html">
+  <meta name="robots" content="noindex">
+  <h1>Redirecting&hellip;</h1>
+  <a href="https://huang-cumt.github.io/404.html">Click here if you are not redirected.</a>
 </html>
-
