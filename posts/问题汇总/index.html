@@ -505,9 +505,6 @@
       </span>
 
       <!-- lastmod date -->
-      <div>Test: 2024-03-13 21:47:36 +0800
-</div>
-      <div>Test2: 2024-03-13 16:47:23 +0800</div>
       
         <span>
           Updated
@@ -577,7 +574,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="702 words"
+  title="703 words"
 >
   <em>3 min</em> read</span>
 
@@ -603,6 +600,7 @@
 </ul>
 
 <p>在<code class="language-plaintext highlighter-rouge">_layouts/default.html</code>中<code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>块末尾添加如下代码后功能正常。</p>
+
 <div class="language-javascript highlighter-rouge"><div class="code-header">
         <span data-label-text="JavaScript"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -639,21 +637,13 @@
 <p>解决方案：</p>
 
 <p>在<code class="language-plaintext filepath highlighter-rouge">_data/locales/lang.yml</code>文件中添加如下代码：</p>
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code fa-fw small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>  <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span></pre></td></tr></tbody></table></code></div></div>
+<pre><code class="language-mermaid">  &lt;p&gt;
+  &lt;/p&gt;
+</code></pre>
 <p>在<code class="language-plaintext highlighter-rouge">_include/footer.html</code>文件中添加如下代码：</p>
-<div class="language-javascript highlighter-rouge"><div class="code-header">
-        <span data-label-text="JavaScript"><i class="fas fa-code fa-fw small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>  <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span></pre></td></tr></tbody></table></code></div></div>
+<pre><code class="language-mermaid">  &lt;p&gt;
+  &lt;/p&gt;
+</code></pre>
 
 <h2 id="4-文档更新时间未显示"><span class="me-2">4. 文档更新时间未显示</span><a href="#4-文档更新时间未显示" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -663,7 +653,7 @@
 
 <p>查看<code class="language-plaintext highlighter-rouge">_plugins/posts-lastmod-hook.rb</code>文件，其代码如下：</p>
 
-<pre><code class="language-jekyll">Jekyll::Hooks.register :posts, :post_init do |post|
+<pre><code class="language-mermaid">Jekyll::Hooks.register :posts, :post_init do |post|
 
   commit_num = `git rev-list --count HEAD "#{ post.path }"`
 
@@ -675,9 +665,8 @@
 end
 </code></pre>
 
-<p>其中<code class="language-plaintext highlighter-rouge">commit_num</code>记录了git提交次数，其通过是否存在多次git提交来判断，但是本项目挂载在github上，测试发现即便多次修改提交文件，返回的该变量值仍为1，因此导致了仅在本地使用<code class="language-plaintext highlighter-rouge">jekyll serve</code>指令进行本地测试时该。</p>
+<p>其中<code class="language-plaintext highlighter-rouge">commit_num</code>记录了git提交次数，其通过是否存在多次git提交来判断，但是本项目挂载在github上，测试发现即便多次修改提交文件，返回的该变量值仍为1，因此导致了仅在本地使用<code class="language-plaintext highlighter-rouge">jekyll serve</code>指令进行本地测试时该参数将为1，因此不显示更新时间。</p>
 
-<p>问题原因在于当为fork</p>
 <h2 id="5-搜索功能以及侧边栏功能无法正常使用"><span class="me-2">5. 搜索功能以及侧边栏功能无法正常使用</span><a href="#5-搜索功能以及侧边栏功能无法正常使用" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
 <h2 id="6-其它"><span class="me-2">6. 其它</span><a href="#6-其它" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
@@ -1217,9 +1206,16 @@ end
 
   
 
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
 
 
 
@@ -1239,6 +1235,66 @@ end
 
 
 
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
 
     
 
