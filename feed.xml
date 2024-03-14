@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-03-13T22:21:04+08:00</updated>
+  <updated>2024-03-14T15:08:50+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="alternate" type="text/html" title="问题汇总" />
     <published>2024-03-13T16:47:23+08:00</published>
   
-    <updated>2024-03-13T21:47:36+08:00</updated>
+    <updated>2024-03-13T16:47:23+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</id>
     <content src="https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" />
@@ -46,7 +46,7 @@
 
       1. 目录未显示
 
-问题说明：Demo中可以正常显示，但是在项目地址Clone并在本地运行Jekyll serve指令后无法正常显示目录
+问题说明：Demo 中可以正常显示，但是在项目地址 Clone 并在本地运行 Jekyll serve 指令后无法正常显示目录
 
 解决方案：
 
@@ -66,11 +66,11 @@
 
 2. 修改左下角图标显示
 
-问题说明：左下角默认具有推特、feed等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
+问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
 
 解决方案：
 
-修改_data/co...
+修改_d...
     </summary>
   
 
@@ -82,7 +82,7 @@
     <link href="https://huang-cumt.github.io/posts/Test_document_1/" rel="alternate" type="text/html" title="Test_document_1" />
     <published>2023-03-30T12:00:00+08:00</published>
   
-    <updated>2024-03-13T21:47:36+08:00</updated>
+    <updated>2024-03-14T14:55:34+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/Test_document_1/</id>
     <content src="https://huang-cumt.github.io/posts/Test_document_1/" />
