@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-03-15T00:15:17+08:00</updated>
+  <updated>2024-03-16T21:55:12+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -20,14 +20,93 @@
 
   
   <entry>
-    <title>Jekyll-Theme-Chripy + Github</title>
-    <link href="https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="alternate" type="text/html" title="Jekyll-Theme-Chripy + Github" />
+    <title>学习记录 复数与矩阵</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" rel="alternate" type="text/html" title="学习记录 复数与矩阵" />
+    <published>2024-03-15T16:29:42+08:00</published>
+  
+    <updated>2024-03-15T16:29:42+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="学习记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      复数的矩阵表示
+
+构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，都有矩阵$M=\begin{bmatrix}a &amp;amp; -b\ b &amp;amp; a\end{bmatrix}$与之一一对应，
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</title>
+    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
+    <published>2024-03-15T14:50:16+08:00</published>
+  
+    <updated>2024-03-15T22:53:13+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/</id>
+    <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="科研记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations)
+期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
+发表时间：2023
+
+模型构建
+
+针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,\cdots,x_N]\in \mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted
+cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
+\(f(\boldsymbol{...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>博客搭建</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="alternate" type="text/html" title="博客搭建" />
     <published>2024-03-13T16:47:23+08:00</published>
   
-    <updated>2024-03-15T00:14:29+08:00</updated>
+    <updated>2024-03-13T16:47:23+08:00</updated>
   
-    <id>https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</id>
-    <content src="https://huang-cumt.github.io/posts/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" />
+    <id>https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" />
     <author>
       <name>xinyu</name>
     </author>
@@ -71,14 +150,14 @@
 
   
   <entry>
-    <title>Test_document_1</title>
-    <link href="https://huang-cumt.github.io/posts/Test_document_1/" rel="alternate" type="text/html" title="Test_document_1" />
+    <title>读后感-《长日将尽》</title>
+    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读后感-《长日将尽》" />
     <published>2023-03-30T12:00:00+08:00</published>
   
-    <updated>2024-03-15T00:14:29+08:00</updated>
+    <updated>2023-03-30T12:00:00+08:00</updated>
   
-    <id>https://huang-cumt.github.io/posts/Test_document_1/</id>
-    <content src="https://huang-cumt.github.io/posts/Test_document_1/" />
+    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
+    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
     <author>
       <name>xinyu</name>
     </author>
@@ -99,9 +178,7 @@
 
 
 
-      读后感-《长日将尽》
-
-作者简介
+      作者简介
 
 内容简析
 
@@ -113,7 +190,7 @@
 
 可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。
 
-待到克林顿府的繁华散去，昔日忙碌不再，新任主人容许他有一个假期之时，...
+待到克林顿府的繁华散去，昔日忙碌不再，新任主人容许他有一个假期之时，他才在脑海中开始审视自己...
     </summary>
   
 

@@ -30,23 +30,24 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Categories" />
+<meta property="og:title" content="学习记录 复数与矩阵" />
+<meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Test" />
-<meta property="og:description" content="Test" />
-<link rel="canonical" href="https://huang-cumt.github.io/categories/" />
-<meta property="og:url" content="https://huang-cumt.github.io/categories/" />
+<meta name="description" content="复数的矩阵表示" />
+<meta property="og:description" content="复数的矩阵表示" />
+<link rel="canonical" href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
+<meta property="og:url" content="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
 <meta property="og:site_name" content="Fish" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-03-16T21:55:12+08:00" />
+<meta property="article:published_time" content="2024-03-15T16:29:42+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Categories" />
+<meta property="twitter:title" content="学习记录 复数与矩阵" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-16T21:55:12+08:00","datePublished":"2024-03-16T21:55:12+08:00","description":"Test","headline":"Categories","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/categories/"},"url":"https://huang-cumt.github.io/categories/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-15T16:29:42+08:00","datePublished":"2024-03-15T16:29:42+08:00","description":"复数的矩阵表示","headline":"学习记录 复数与矩阵","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/"},"url":"https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Categories | Fish
+  <title>学习记录 复数与矩阵 | Fish
   </title>
 
   <!--
@@ -103,9 +104,16 @@
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
 
   
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
   
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+    <!-- Manific Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
   
 
   <!-- JavaScript -->
@@ -142,7 +150,7 @@
       </li>
       <!-- the real tabs -->
       
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="/categories/" class="nav-link">
             <i class="fa-fw fas fa-stream"></i>
             
@@ -281,8 +289,10 @@
           
         
           
+        
+          
             
-              <span>Categories</span>
+              <span>学习记录 复数与矩阵</span>
             
 
           
@@ -296,7 +306,7 @@
     </button>
 
     <div id="topbar-title">
-      Categories
+      Post
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link">
@@ -322,235 +332,272 @@
         <div class="row flex-grow-1">
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
             
-              
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
 
 
 
 <article class="px-1">
+  <header>
+    <h1 data-toc-skip>学习记录 复数与矩阵</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
   
-    
-    
-    <h1 class="dynamic-title">
-      Categories
-    </h1>
-    <div class="content">
+  data-ts="1710491382"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Mar 15, 2024
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
       
 
+      
 
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-    
-
-    
-
-    
-    
-
-    <div class="card categories">
-      <!-- top-category -->
-      <div
-        id="h_0"
-        class="card-header d-flex justify-content-between hide-border-bottom"
-      >
-        <span class="ms-2">
-          <i class="far fa-folder-open fa-fw"></i>
-
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
           
-          <a href="/categories/%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95/" class="mx-2">个人记录</a>
 
-          <!-- content count -->
-          
-          <span class="text-muted small font-weight-light">
+          By
+
+          <em>
             
-              1
               
-                category
-              ,
+                <a href="https://github.com/huang-cumt/">Xinyu Huang</a>
+                
+              
             
-
-            1
-
-            
-              post
-            
-          </span>
+          </em>
         </span>
 
-        <!-- arrow -->
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="54 words"
+>
+  <em>1 min</em> read</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <h2 id="复数的矩阵表示"><span class="me-2">复数的矩阵表示</span><a href="#复数的矩阵表示" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，都有矩阵$M=\begin{bmatrix}a &amp; -b\ b &amp; a\end{bmatrix}$与之一一对应，</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
         
           <a
-            href="#l_0"
-            data-bs-toggle="collapse"
-            aria-expanded="true"
-            aria-label="h_0-trigger"
-            class="category-trigger hide-border-bottom"
-          >
-            <i class="fas fa-fw fa-angle-down"></i>
-          </a>
+            href="/tags/%E6%95%B0%E5%AD%A6/"
+            class="post-tag no-text-decoration"
+          >数学</a>
         
       </div>
-      <!-- .card-header -->
-
-      <!-- Sub-categories -->
-      
-        <div id="l_0" class="collapse show" aria-expanded="true">
-          <ul class="list-group">
-            
-              <li class="list-group-item">
-                <i class="far fa-folder fa-fw"></i>
-
-                
-                <a href="/categories/%E9%98%85%E8%AF%BB/" class="mx-2">阅读</a>
-
-                
-                <span class="text-muted small font-weight-light">
-                  1
-
-                  
-                    post
-                  
-                </span>
-              </li>
-            
-          </ul>
-        </div>
-      
-    </div>
-    <!-- .card -->
-
-    
-  
-
-  
-  
-  
-
-  
     
 
-    
-
-    
-    
-
-    <div class="card categories">
-      <!-- top-category -->
-      <div
-        id="h_1"
-        class="card-header d-flex justify-content-between hide-border-bottom"
-      >
-        <span class="ms-2">
-          <i class="far fa-folder fa-fw"></i>
-
-          
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="mx-2">学习记录</a>
-
-          <!-- content count -->
-          
-          <span class="text-muted small font-weight-light">
-            
-
-            1
-
-            
-              post
-            
-          </span>
-        </span>
-
-        <!-- arrow -->
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
         
-          <span data-bs-toggle="collapse" class="category-trigger hide-border-bottom disabled">
-            <i class="fas fa-fw fa-angle-right"></i>
-          </span>
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
         
       </div>
-      <!-- .card-header -->
 
-      <!-- Sub-categories -->
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
       
-    </div>
-    <!-- .card -->
 
-    
-  
-
-  
-  
-  
-
-  
+      <a href="http://service.weibo.com/share/share.php?title=%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%20%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5%20-%20Fish&url=https%3A%2F%2Fhuang-cumt.github.io%2Fposts%2F%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25AE%25B0%25E5%25BD%2595-%25E5%25A4%258D%25E6%2595%25B0%25E4%25B8%258E%25E7%259F%25A9%25E9%2598%25B5%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Weibo" aria-label="Weibo">
+        <i class="fa-fw fab fa-weibo"></i>
+      </a>
     
 
-    
-
-    
-    
-
-    <div class="card categories">
-      <!-- top-category -->
-      <div
-        id="h_2"
-        class="card-header d-flex justify-content-between hide-border-bottom"
-      >
-        <span class="ms-2">
-          <i class="far fa-folder fa-fw"></i>
-
-          
-          <a href="/categories/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/" class="mx-2">科研记录</a>
-
-          <!-- content count -->
-          
-          <span class="text-muted small font-weight-light">
-            
-
-            1
-
-            
-              post
-            
-          </span>
-        </span>
-
-        <!-- arrow -->
-        
-          <span data-bs-toggle="collapse" class="category-trigger hide-border-bottom disabled">
-            <i class="fas fa-fw fa-angle-right"></i>
-          </span>
-        
-      </div>
-      <!-- .card-header -->
-
-      <!-- Sub-categories -->
       
-    </div>
-    <!-- .card -->
 
+      <a href="https://www.zhihu.com/" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="zhihu" aria-label="zhihu">
+        <i class="fa-fw fa-brands fa-zhihu"></i>
+      </a>
     
-  
 
-  
-  
-  
-
-  
-
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
 
     </div>
-  
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
 </article>
+
 
             
           </main>
@@ -696,12 +743,94 @@
             </div>
 
             
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</p>
+    </a>
+  
+
+  
+    <div class="btn btn-outline-primary disabled" aria-label="Newer">
+      <p>-</p>
+    </div>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+
             
 
             <!-- The Footer -->
@@ -883,6 +1012,13 @@
 
 
 
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
 
 
 
@@ -918,20 +1054,80 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/categories.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 
 <!-- Pageviews -->
+
+  
+
+  
 
 
 
