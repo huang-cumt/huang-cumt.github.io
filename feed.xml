@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-03-16T21:55:12+08:00</updated>
+  <updated>2024-03-17T17:00:31+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -83,15 +83,17 @@
 
 
 
-      论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations)
+      论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties
+
 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
+
 发表时间：2023
 
 模型构建
 
 针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,\cdots,x_N]\in \mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted
 cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
-\(f(\boldsymbol{...
+\(f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol{x} ...
     </summary>
   
 

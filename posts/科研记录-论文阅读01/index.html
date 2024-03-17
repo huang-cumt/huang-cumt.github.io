@@ -33,8 +33,8 @@
 <meta property="og:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
 <meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations) 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY 发表时间：2023" />
-<meta property="og:description" content="论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations) 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY 发表时间：2023" />
+<meta name="description" content="论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties" />
+<meta property="og:description" content="论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties" />
 <link rel="canonical" href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
 <meta property="og:url" content="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
 <meta property="og:site_name" content="Fish" />
@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-15T22:53:13+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations) 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY 发表时间：2023","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-15T22:53:13+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="715 words"
+  title="716 words"
 >
   <em>3 min</em> read</span>
 
@@ -562,9 +562,11 @@
   </header>
 
   <div class="content">
-    <p>论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties(https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations)
-期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
-发表时间：2023</p>
+    <p>论文地址：<a href="https://ieeexplore.ieee.org/abstract/document/10004749/citations?tabFilter=papers#citations">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties</a></p>
+
+<p>期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY</p>
+
+<p>发表时间：2023</p>
 
 <h2 id="模型构建"><span class="me-2">模型构建</span><a href="#模型构建" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -572,16 +574,22 @@
 cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 \(f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
 \right|}^2\)
-其中$\boldsymbol{F}<em>N$为N阶傅里叶变换矩阵，$\varGamma</em>{\alpha,f}$为循环谱计算矩阵。
-除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：
-\({\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\)
-其中$\boldsymbol{c}$即为预设的参考信号，$\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。
-考虑复矩阵/向量的实数表示为$\boldsymbol{x}_r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsymbol{x}_r=[\Re(\boldsymbol{c})^T</del>\Im(\boldsymbol{c})^T]^T$，
-\(\boldsymbol{F}_{N,r} = \left[\begin{matrix}
+其中
+$\varGamma_{\alpha,f}$为$N$循环谱计算矩阵。
+(\boldsymbol{F_{N}}) 为阶傅里叶变换矩阵。
+除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：</p>
+
+\[{\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\]
+
+<p>其中(\boldsymbol{c})即为预设的参考信号，$\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。
+考虑复矩阵/向量的实数表示为
+$\boldsymbol{x}_r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsymbol{x}_r=[\Re(\boldsymbol{c})^T</del>\Im(\boldsymbol{c})^T]^T$，</p>
+
+\[\boldsymbol{F}_{N,r} = \left[\begin{matrix}
 \Re (\boldsymbol{F}_N) &amp; -\Im (\boldsymbol{F}_N) \\
 \Im (\boldsymbol{F}_N) &amp; \Re (\boldsymbol{F}_N) \\
 \end{matrix}
-\right]\)</p>
+\right]\]
 
 <p>相似性度量可以等价表示为：
 \({\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)} \leq \vartheta\)
