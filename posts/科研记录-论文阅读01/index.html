@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="716 words"
+  title="717 words"
 >
   <em>3 min</em> read</span>
 
@@ -577,25 +577,20 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 其中
 $\varGamma_{\alpha,f}$为$N$循环谱计算矩阵。
 (\boldsymbol{F_{N}}) 为阶傅里叶变换矩阵。
-除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：</p>
-
-\[{\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\]
-
-<p>其中(\boldsymbol{c})即为预设的参考信号，$\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。
+除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：
+\({\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\)
+其中$\boldsymbol{c}$即为预设的参考信号，$\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。
 考虑复矩阵/向量的实数表示为
-$\boldsymbol{x}_r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsymbol{x}_r=[\Re(\boldsymbol{c})^T</del>\Im(\boldsymbol{c})^T]^T$，</p>
-
-\[\boldsymbol{F}_{N,r} = \left[\begin{matrix}
+$\boldsymbol{x}<em>r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsymbol{x}_r=[\Re(\boldsymbol{c})^T</del>\Im(\boldsymbol{c})^T]^T$，
+\(\boldsymbol{F}_{N,r} = \left[\begin{matrix}
 \Re (\boldsymbol{F}_N) &amp; -\Im (\boldsymbol{F}_N) \\
 \Im (\boldsymbol{F}_N) &amp; \Re (\boldsymbol{F}_N) \\
 \end{matrix}
-\right]\]
-
-<p>相似性度量可以等价表示为：
+\right]\)
+相似性度量可以等价表示为：
 \({\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)} \leq \vartheta\)
-其中</p>
-
-<p>\(\chi_n (i,j) = \left\{\begin{aligned}
+其中
+\(\chi_n (i,j) = \left\{\begin{aligned}
 &amp;1 \quad i=j=n,n\in \left\{1,2,\cdots,N\right\} \\
 &amp;0 \quad otherwise
 \end{aligned}
@@ -604,9 +599,8 @@ $\boldsymbol{x}_r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsym
 \Re (\chi_{n}) &amp; -\Im (\chi_{n}) \\
 \Im (\chi_{n}) &amp; \Re (\chi_{n}) \\
 \end{matrix}
-\right]\)</p>
-
-<p>即对于任意$n\in \left{ 1,2,\cdots,N \right}$均有$x_{r,n}-c_{r,n} &lt; \vartheta$成立。</p>
+\right]\)
+即对于任意$n\in \left{ 1,2,\cdots,N \right}$均有$x</em>{r,n}-c_{r,n} &lt; \vartheta$成立。</p>
 
 <p>相应的，目标函数可写为
 \(f(\boldsymbol{x}_r) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \left[
@@ -624,8 +618,14 @@ $\boldsymbol{x}_r=[\Re(\boldsymbol{x})^T<del>\Im(\boldsymbol{x})^T]^T$,$\boldsym
 \Im (\varGamma_{\alpha,f}) &amp; -\Re(\varGamma_{\alpha,f}) \\
 \Re (\varGamma_{\alpha,f}) &amp; \Im (\varGamma_{\alpha,f}) \\
 \end{matrix}
-\right]\)
-在这里，由于本来$\boldsymbol{x}$的实数表示应该为$\begin{bmatrix} \Re{\left(\boldsymbol{x}\right)} &amp; -\Im{\left(\boldsymbol{x}\right)} \ \Im{\left(\boldsymbol{x}\right)} &amp; \Re{\left(\boldsymbol{x}\right)}\end{bmatrix}$，为便于处理，令$\boldsymbol{x}<em>r=\begin{bmatrix} \Re{\left(\boldsymbol{x}\right)} \ \Im{\left(\boldsymbol{x}\right)} \end{bmatrix}$，因此有${\left( \boldsymbol{F}</em>{N,r}\boldsymbol{x}<em>r \right)}^T \varGamma</em>{\alpha,f}^1 {\left( \boldsymbol{F}_{N,r}\boldsymbol{x}_r \right)}$</p>
+\right]\)</p>
+
+<p>在这里，由于本来$\boldsymbol{x}$的实数表示应该为
+$\begin{bmatrix} \Re{\left(\boldsymbol{x}\right)} &amp; -\Im{\left(\boldsymbol{x}\right)} \ \Im{\left(\boldsymbol{x}\right)} &amp; \Re{\left(\boldsymbol{x}\right)}\end{bmatrix}$，
+为便于处理，令
+$\boldsymbol{x}<em>r=\begin{bmatrix} \Re{\left(\boldsymbol{x}\right)} \ \Im{\left(\boldsymbol{x}\right)} \end{bmatrix}$
+，因此有
+${\left( \boldsymbol{F}</em>{N,r}\boldsymbol{x}<em>r \right)}^T \varGamma</em>{\alpha,f}^1 {\left( \boldsymbol{F}_{N,r}\boldsymbol{x}_r \right)}$</p>
 
 <p>同时考虑到式$f(\boldsymbol{x}_r)$中虽然作为一个二次规划问题，但是其中间矩阵并不为正定导致难以处理。因此在这里可以引入一个辅助变量并令$\boldsymbol{b}_r-\boldsymbol{x}_r=\boldsymbol{0}$，因此
 总结来说，对于该模型约束主要分为三个方面：</p>
@@ -775,6 +775,13 @@ s.t.&amp;\quad \begin{matrix}
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/">读后感-《被伤害与侮辱的人们》</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</a>
         </li>
       
@@ -825,6 +832,16 @@ s.t.&amp;\quad \begin{matrix}
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -835,23 +852,9 @@ s.t.&amp;\quad \begin{matrix}
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -875,13 +878,13 @@ s.t.&amp;\quad \begin{matrix}
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
     </div>
   </section>
@@ -1045,6 +1048,16 @@ s.t.&amp;\quad \begin{matrix}
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1055,23 +1068,9 @@ s.t.&amp;\quad \begin{matrix}
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1095,13 +1094,13 @@ s.t.&amp;\quad \begin{matrix}
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
     </div>
   </section>
