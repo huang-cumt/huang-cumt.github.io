@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-03-20T13:28:24+08:00</updated>
+  <updated>2024-03-20T17:42:47+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -17,6 +17,43 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Lasso问题</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Lasso问题" />
+    <published>2024-03-20T16:42:06+08:00</published>
+  
+    <updated>2024-03-20T16:42:06+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="学习记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      背景知识
+
+(Least Absolute Shrinkage and Selection Operator, LASSO)
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -83,7 +120,11 @@
 
       复数的矩阵表示
 
-构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，都有矩阵$M=\begin{bmatrix}a &amp;amp; -b\ b &amp;amp; a\end{bmatrix}$与之一一对应，
+构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，有一映射$\varphi \left( z \right)$为满射。有：
+
+\[M=\varphi \left( z \right)=\begin{bmatrix}a &amp;amp; -b\\ b &amp;amp; a\end{bmatrix}\]
+
+事实上，这一映射针对于任意维度的复数矩阵均成立，即对于任意维复数矩阵$C \in \mathbb{C}^{M\times N}$，均有$A \in \mathbb{R}^{2M\times 2N}$与其一一对应。
 
     </summary>
   
@@ -181,50 +222,6 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。
 
 添加自定...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>读后感-《长日将尽》</title>
-    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读后感-《长日将尽》" />
-    <published>2023-03-30T12:00:00+08:00</published>
-  
-    <updated>2023-03-30T12:00:00+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
-    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="个人记录" />
-    
-    <category term="阅读" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      读后感
-
-我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。
-
-这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关于伟大管家的定义，也是文中不断谈及的一点，他的心中对此有些见解并为之不断奋斗。
-
-可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。
-
-待到克林顿府的繁华散去，昔日忙碌不再，新任主人容许他有一个假期之时，他才在脑海中开始审视自己过去的每一个选择。他意识...
     </summary>
   
 

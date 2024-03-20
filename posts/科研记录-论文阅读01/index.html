@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="924 words"
+  title="962 words"
 >
   <em>5 min</em> read</span>
 
@@ -699,7 +699,8 @@ h \leq 0\\
 \end{array}
 \label{larfun_1}\]
 
-<p>其中，$\left{ \rho_n \vert n=0,1,\cdots,N \right}$为先验参数，用于控制算法收敛的进度。</p>
+<p>其中，$\lbrace \rho_n \vert n=0,1,\cdots,N \rbrace$为先验参数，用于控制算法收敛的进度。</p>
+
 <h2 id="算法详解"><span class="me-2">算法详解</span><a href="#算法详解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
 <p>采用ADMM算法求解式$\eqref{larfun_1}$。</p>
@@ -708,60 +709,74 @@ h \leq 0\\
   <li>
     <p>Step 1：求解$\boldsymbol{x}_r^{k+1}$</p>
 
-    <p>确定$\boldsymbol{b}<em>r^{k},\boldsymbol{u}^{k},\left{v_n^k \right}</em>{n=1}^N,h^k$。此时仅仅只有$\boldsymbol{s}_r$变量，此时目标函数如下：
-$$
-\begin{array}{ll}</p>
+    <p>确定$\boldsymbol{b}<em>r^{k},\boldsymbol{u}^{k},\left{v_n^k \right}</em>{n=1}^N,h^k$。此时仅仅只有$\boldsymbol{s}_r$变量，此时拉格朗日函数如下：</p>
+  </li>
+</ul>
 
-    <p>\min\limits_{\boldsymbol{x}_r} &amp; \mathcal{L}\left( \boldsymbol{x}_r\right)  <br />
-s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
-\end{array}
-$$</p>
-
-    <p>因此目标函数我们可以写为：</p>
-
-\[\mathcal{L}\left( \boldsymbol{x}_r\right)=\boldsymbol{x}_r^T 		 
+\[\mathcal{L}_1\left( \boldsymbol{x}_r\right)=\boldsymbol{x}_r^T
 \boldsymbol{A}\boldsymbol{x}_r+\boldsymbol{B}\boldsymbol{x}_r+\boldsymbol{C}\]
 
-    <p>其中有：</p>
+<p>其中$\boldsymbol{C}$为常数项，因此可以舍弃，故有：</p>
+
+\[\begin{array}{ll}
+\\
+s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
+\end{array}\]
+
+<p>其中有：</p>
 
 \[\begin{array}{l}
-\boldsymbol{A}
-=&amp;
-\sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
+\boldsymbol{A}=&amp;
+\sum_{\alpha}\sum_{f}{\omega_{\alpha}}
 \left[
-\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{1,T} 
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{1,T}
 \left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
-{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T 
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T
 \varGamma_{\alpha,f}^1 {\boldsymbol{F}_{N,r}}
 \right. \\
 &amp;+
 \left.
-\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{2,T} 
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{2,T}
 \left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
-{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T 
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T
 \varGamma_{\alpha,f}^2 {\boldsymbol{F}_{N,r}}\right]\\
 &amp;+
 \sum\limits_{n=1}^{N}\frac{\rho_n}{2}{\chi_{n,r} \left(\boldsymbol{b}_r-
 \boldsymbol{c}_r\right) \left(\boldsymbol{b}_r-
 \boldsymbol{c}_r\right)^T\chi_{n,r}^T}+\frac{\rho_0}
 {2}\boldsymbol{I}\\
- \end{array}\]
+\end{array}\]
 
 \[\begin{array}{l}
-\boldsymbol{B}=
-&amp;
-\boldsymbol{u}^T-\rho_0\boldsymbol{b}_r+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
-&amp;+
-\end{array}\]
-  </li>
+  \boldsymbol{B}=
+  &amp;
+  \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
+  &amp;+
+  \end{array}\]
+
+\[\begin{array}{l}
+  \boldsymbol{C}=
+  \end{array}\]
+
+<p>此时可以写出该问题的KKT条件为：</p>
+
+\[\begin{array}{l}
+  &amp; {\left( 2\boldsymbol{A}+2\boldsymbol{I} \right)} \boldsymbol{x}_r^*+\boldsymbol{B}=0
+  \\
+  &amp; {\left( \boldsymbol{x}_r^{*} \right)}^T\boldsymbol{x}_r^{*}=1
+  \end{array}\]
+
+<p>此时可以求得</p>
+
+<ul>
   <li>
-    <p>Step 2：求解$\boldsymbol{b}_r^{k+1}$</p>
+    <p>Step 2： 求解$\boldsymbol{b}_r^{k+1}$</p>
   </li>
   <li>
     <p>Step 3：求解$h^{k+1}$</p>
   </li>
   <li>
-    <p>Step 4：求解$\boldsymbol{u},\left{v_n \right}_{n=1}^N$</p>
+    <p>Step 4：求解$\boldsymbol{u},{\lbrace v_n \rbrace}_{n=1}^N$</p>
   </li>
 </ul>
 
@@ -887,6 +902,13 @@ $$</p>
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/">Lasso问题</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
         </li>
       
@@ -909,13 +931,6 @@ $$</p>
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/">读后感-《被伤害与侮辱的人们》</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/">读后感-《长日将尽》</a>
         </li>
       
     </ul>
@@ -949,6 +964,27 @@ $$</p>
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -973,6 +1009,11 @@ $$</p>
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -990,10 +1031,13 @@ $$</p>
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/">优化理论</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
@@ -1165,6 +1209,27 @@ $$</p>
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1189,6 +1254,11 @@ $$</p>
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -1206,10 +1276,13 @@ $$</p>
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/">优化理论</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
