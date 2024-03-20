@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-19T13:44:10+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-19T22:05:53+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -496,7 +496,7 @@
 
 <time
   
-  data-ts="1710827050"
+  data-ts="1710857153"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="909 words"
+  title="924 words"
 >
   <em>5 min</em> read</span>
 
@@ -672,7 +672,7 @@ $\boldsymbol{F_{N}}$为阶傅里叶变换矩阵。
 \right|}^2
  \right] \\
 s.t.&amp;\quad \begin{array}{l}
-{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}- \vartheta-h=0 \quad n\in [1,2,\cdots,N] \\
+{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h=0 \quad n\in [1,2,\cdots,N] \\
 {\boldsymbol{x}_r}^T{\boldsymbol{x}_r}=1 \\
 \boldsymbol{x}_r-\boldsymbol{b}_r=\boldsymbol{0} \\
 h \leq 0\\
@@ -691,10 +691,11 @@ h \leq 0\\
 <p>因此，我们可以写出拉格朗日函数为：</p>
 
 \[\begin{array}{l}
-\mathcal{L}\left( \boldsymbol{s}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{v_n \right\}_{n=1}^N,h \right)=
+\mathcal{L}\left( \boldsymbol{x}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{v_n \right\}_{n=1}^N,h \right)=
 &amp;\varrho(\boldsymbol{b}_r,\boldsymbol{x}_r)+\boldsymbol{u}^T\left(\boldsymbol{x}_r-\boldsymbol{b}_r \right)+\frac{\rho_0}{2}{\Vert \boldsymbol{x}_r-\boldsymbol{b}_r \Vert}^2\\
-&amp;+\sum_{n=1}^{N} v_n \left({\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}- \vartheta-h\right)\\
-&amp;+\sum_{n=1}^{N} \frac{\rho_n}{2} {\Vert{\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}- \vartheta-h\Vert}^2
+&amp;+\sum_{n=1}^{N} v_n \left({\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T
+\chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\right)\\
+&amp;+\sum_{n=1}^{N} \frac{\rho_n}{2} {\Vert{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\Vert}^2
 \end{array}
 \label{larfun_1}\]
 
@@ -705,39 +706,59 @@ h \leq 0\\
 
 <ul>
   <li>
-    <p>Step 1：求解$\boldsymbol{s}_r^{k+1}$</p>
+    <p>Step 1：求解$\boldsymbol{x}_r^{k+1}$</p>
 
     <p>确定$\boldsymbol{b}<em>r^{k},\boldsymbol{u}^{k},\left{v_n^k \right}</em>{n=1}^N,h^k$。此时仅仅只有$\boldsymbol{s}_r$变量，此时目标函数如下：
 $$
 \begin{array}{ll}</p>
 
-    <p>\min\limits_{\boldsymbol{s}<em>r} &amp; \mathcal{L}\left( \boldsymbol{s}_r,\boldsymbol{b}_r,\boldsymbol{u},\left{v_n \right}</em>{n=1}^N,h \right)  <br />
-s.t. &amp; \boldsymbol{s}_r^T\boldsymbol{s}_r=1
+    <p>\min\limits_{\boldsymbol{x}_r} &amp; \mathcal{L}\left( \boldsymbol{x}_r\right)  <br />
+s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 \end{array}
 $$</p>
 
     <p>因此目标函数我们可以写为：</p>
 
+\[\mathcal{L}\left( \boldsymbol{x}_r\right)=\boldsymbol{x}_r^T 		 
+\boldsymbol{A}\boldsymbol{x}_r+\boldsymbol{B}\boldsymbol{x}_r+\boldsymbol{C}\]
+
+    <p>其中有：</p>
+
 \[\begin{array}{l}
-\mathcal{L}\left( \boldsymbol{s}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{v_n \right\}_{n=1}^N,h \right)
+\boldsymbol{A}
 =&amp;
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \left[
-\boldsymbol{x}_{r}^T \boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{1,T} \left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
-{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T \varGamma_{\alpha,f}^1 {\boldsymbol{F}_{N,r}\boldsymbol{x}_r}
-+ \right. \\
-&amp;
-\left[
-\boldsymbol{x}_{r}^T \boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{2,T} \left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
-{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T \varGamma_{\alpha,f}^2 {\left( \boldsymbol{F}_{N,r}\boldsymbol{x}_r \right)}\right]+
-  
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{1,T} 
+\left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T 
+\varGamma_{\alpha,f}^1 {\boldsymbol{F}_{N,r}}
+\right. \\
+&amp;+
+\left.
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{2,T} 
+\left( \boldsymbol{F}_{N,r} \boldsymbol{b}_r \right)
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T 
+\varGamma_{\alpha,f}^2 {\boldsymbol{F}_{N,r}}\right]\\
+&amp;+
+\sum\limits_{n=1}^{N}\frac{\rho_n}{2}{\chi_{n,r} \left(\boldsymbol{b}_r-
+\boldsymbol{c}_r\right) \left(\boldsymbol{b}_r-
+\boldsymbol{c}_r\right)^T\chi_{n,r}^T}+\frac{\rho_0}
+{2}\boldsymbol{I}\\
  \end{array}\]
+
+\[\begin{array}{l}
+\boldsymbol{B}=
+&amp;
+\boldsymbol{u}^T-\rho_0\boldsymbol{b}_r+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
+&amp;+
+\end{array}\]
   </li>
   <li>
     <p>Step 2：求解$\boldsymbol{b}_r^{k+1}$</p>
   </li>
   <li>
-    <p>+Step 3：求解$h^{k+1}$</p>
+    <p>Step 3：求解$h^{k+1}$</p>
   </li>
   <li>
     <p>Step 4：求解$\boldsymbol{u},\left{v_n \right}_{n=1}^N$</p>
@@ -866,6 +887,13 @@ $$</p>
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</a>
         </li>
       
@@ -881,13 +909,6 @@ $$</p>
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/">读后感-《被伤害与侮辱的人们》</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
         </li>
       
         

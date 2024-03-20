@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="博客搭建" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-13T16:47:23+08:00","datePublished":"2024-03-13T16:47:23+08:00","description":"配置说明","headline":"博客搭建","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"},"url":"https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-19T22:05:53+08:00","datePublished":"2024-03-13T16:47:23+08:00","description":"配置说明","headline":"博客搭建","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"},"url":"https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -505,6 +505,29 @@
 
       <!-- lastmod date -->
       
+        <span>
+          Updated
+          <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1710857153"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Mar 19, 2024
+</time>
+
+        </span>
+      
 
       
 
@@ -550,7 +573,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="541 words"
+  title="700 words"
 >
   <em>3 min</em> read</span>
 
@@ -638,6 +661,30 @@ end
 <p>其中<code class="language-plaintext highlighter-rouge">commit_num</code>记录了 git 提交次数，其通过是否存在多次 git 提交来判断，但是本项目挂载在 github 上，测试发现即便多次修改提交文件，返回的该变量值仍为 1，因此导致了仅在本地使用<code class="language-plaintext highlighter-rouge">jekyll serve</code>指令进行本地测试时该参数将为 1，因此不显示更新时间。</p>
 
 <h2 id="自定义修改"><span class="me-2">自定义修改</span><a href="#自定义修改" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>问题说明：在使用非LQIP图像时，网页所使用默认格式会加载使用<code class="language-plaintext highlighter-rouge">shimmer</code>特效，个人并不喜欢这一特效，希望关闭。</p>
+
+<p>解决方案：
+查看<code class="language-plaintext highlighter-rouge">_include/refactor-content.html</code>文件，其中代码如下：</p>
+<div class="language-liquid highlighter-rouge"><div class="code-header">
+        <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>    
+      
+    
+
+    &lt;!-- lazy-load images --&gt;
+</pre></td></tr></tbody></table></code></div></div>
+<p>其通过代码判断图像的<code class="language-plaintext highlighter-rouge">_lqip</code>属性来给<code class="language-plaintext highlighter-rouge">_class</code>分配值，若为真则分配为<code class="language-plaintext highlighter-rouge">blur</code>，若为假则分配为<code class="language-plaintext highlighter-rouge">shimmer</code>，其中若分配为<code class="language-plaintext highlighter-rouge">shimmer</code>则会使得在显示时呈现闪光特效。因此我们在最后添加一行代码，无论合适都给<code class="language-plaintext highlighter-rouge">_class</code>分配为<code class="language-plaintext highlighter-rouge">null</code>。</p>
+<div class="language-liquid highlighter-rouge"><div class="code-header">
+        <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>    
+</pre></td></tr></tbody></table></code></div></div>
 
 <ul>
   <li>免费图标素材网站</li>
@@ -745,6 +792,13 @@ end
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</a>
         </li>
       
@@ -760,13 +814,6 @@ end
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/">读后感-《被伤害与侮辱的人们》</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
         </li>
       
         
