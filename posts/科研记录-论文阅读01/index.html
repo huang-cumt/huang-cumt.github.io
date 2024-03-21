@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="962 words"
+  title="996 words"
 >
   <em>5 min</em> read</span>
 
@@ -714,7 +714,7 @@ h \leq 0\\
 </ul>
 
 \[\mathcal{L}_1\left( \boldsymbol{x}_r\right)=\boldsymbol{x}_r^T
-\boldsymbol{A}\boldsymbol{x}_r+\boldsymbol{B}\boldsymbol{x}_r+\boldsymbol{C}\]
+\boldsymbol{A}\boldsymbol{x}_r+\boldsymbol{B}^T\boldsymbol{x}_r+\boldsymbol{C}\]
 
 <p>其中$\boldsymbol{C}$为常数项，因此可以舍弃，故有：</p>
 
@@ -750,12 +750,12 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 \[\begin{array}{l}
   \boldsymbol{B}=
   &amp;
-  \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
+  \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r^T+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
   &amp;+
   \end{array}\]
 
 \[\begin{array}{l}
-  \boldsymbol{C}=
+  \boldsymbol{C}=\boldsymbol{b}_r^T\boldsymbol{b}_r  -\boldsymbol{u}^T\boldsymbol{b}_r 
   \end{array}\]
 
 <p>此时可以写出该问题的KKT条件为：</p>
@@ -764,9 +764,11 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   &amp; {\left( 2\boldsymbol{A}+2\boldsymbol{I} \right)} \boldsymbol{x}_r^*+\boldsymbol{B}=0
   \\
   &amp; {\left( \boldsymbol{x}_r^{*} \right)}^T\boldsymbol{x}_r^{*}=1
+  \\
+  &amp; r^{*} \geqslant 0
   \end{array}\]
 
-<p>此时可以求得</p>
+<p>若$\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。因此</p>
 
 <ul>
   <li>
