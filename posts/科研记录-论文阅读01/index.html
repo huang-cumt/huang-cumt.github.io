@@ -552,9 +552,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="996 words"
+  title="1180 words"
 >
-  <em>5 min</em> read</span>
+  <em>6 min</em> read</span>
 
         </div>
       </div>
@@ -690,26 +690,28 @@ h \leq 0\\
 
 <p>因此，我们可以写出拉格朗日函数为：</p>
 
-\[\begin{array}{l}
+\[\tag{1}\label{larfun}
+\begin{equation}
+\begin{array}{l}
 \mathcal{L}\left( \boldsymbol{x}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{v_n \right\}_{n=1}^N,h \right)=
 &amp;\varrho(\boldsymbol{b}_r,\boldsymbol{x}_r)+\boldsymbol{u}^T\left(\boldsymbol{x}_r-\boldsymbol{b}_r \right)+\frac{\rho_0}{2}{\Vert \boldsymbol{x}_r-\boldsymbol{b}_r \Vert}^2\\
 &amp;+\sum_{n=1}^{N} v_n \left({\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T
 \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\right)\\
 &amp;+\sum_{n=1}^{N} \frac{\rho_n}{2} {\Vert{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\Vert}^2
 \end{array}
-\label{larfun_1}\]
+\end{equation}\]
 
 <p>其中，$\lbrace \rho_n \vert n=0,1,\cdots,N \rbrace$为先验参数，用于控制算法收敛的进度。</p>
 
 <h2 id="算法详解"><span class="me-2">算法详解</span><a href="#算法详解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>采用ADMM算法求解式$\eqref{larfun_1}$。</p>
+<p>采用ADMM算法求解式$\eqref{larfun}$。</p>
 
 <ul>
   <li>
     <p>Step 1：求解$\boldsymbol{x}_r^{k+1}$</p>
 
-    <p>确定$\boldsymbol{b}<em>r^{k},\boldsymbol{u}^{k},\left{v_n^k \right}</em>{n=1}^N,h^k$。此时仅仅只有$\boldsymbol{s}_r$变量，此时拉格朗日函数如下：</p>
+    <p>确定$\boldsymbol{b}<em>r^{k},\boldsymbol{u}^{k},\left{v_n^k \right}</em>{n=1}^N,h^k$。此时仅仅只有$\boldsymbol{x}_r$变量，此时拉格朗日函数如下：</p>
   </li>
 </ul>
 
@@ -719,7 +721,8 @@ h \leq 0\\
 <p>其中$\boldsymbol{C}$为常数项，因此可以舍弃，故有：</p>
 
 \[\begin{array}{ll}
-\\
+\min\limits_{\boldsymbol{x}_r} &amp;\mathcal{L}_1\left( \boldsymbol{x}_r\right)=\boldsymbol{x}_r^T
+\boldsymbol{A}\boldsymbol{x}_r+\boldsymbol{B}^T\boldsymbol{x}_r\\
 s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 \end{array}\]
 
@@ -741,45 +744,87 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 {\left( \boldsymbol{F}_{N,r}\boldsymbol{b}_r \right)}^T
 \varGamma_{\alpha,f}^2 {\boldsymbol{F}_{N,r}}\right]\\
 &amp;+
-\sum\limits_{n=1}^{N}\frac{\rho_n}{2}{\chi_{n,r} \left(\boldsymbol{b}_r-
+\sum\limits_{n=1}^{N}\frac{\rho_n}{2}{\chi_{n,r}^T \left(\boldsymbol{b}_r-
 \boldsymbol{c}_r\right) \left(\boldsymbol{b}_r-
-\boldsymbol{c}_r\right)^T\chi_{n,r}^T}+\frac{\rho_0}
+\boldsymbol{c}_r\right)^T\chi_{n,r}}+\frac{\rho_0}
 {2}\boldsymbol{I}\\
 \end{array}\]
 
 \[\begin{array}{l}
-  \boldsymbol{B}=
+  \boldsymbol{B}^T=
   &amp;
-  \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r^T+\sum\limits_{n=1}^{N}v_n \chi_{n,r} \left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) \\
-  &amp;+
-  \end{array}\]
+  \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r^T+\sum\limits_{n=1}^{N}v_n {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r}  \\
+  &amp;+\sum\limits_{n=1}^N{\rho_n \boldsymbol{c}_r \chi_{n,r}^T\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}}
+\end{array}\]
 
 \[\begin{array}{l}
-  \boldsymbol{C}=\boldsymbol{b}_r^T\boldsymbol{b}_r  -\boldsymbol{u}^T\boldsymbol{b}_r 
-  \end{array}\]
+  \boldsymbol{C}=
+  &amp;
+  \boldsymbol{b}_r^T\boldsymbol{b}_r  -\boldsymbol{u}^T\boldsymbol{b}_r - \sum\limits_{n=1}^{N}{v_n{\left( {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r+\vartheta + h\right)}}+ \sum\limits_{n=1}^{N}{\frac{\rho_n}{2}}{\left( \vartheta+h \right)}^2 \\
+  &amp;+\sum\limits_{n=1}^{N}{\frac{\rho_n}{2}\left( {\left( \vartheta + h \right)}^2  + \boldsymbol{c}_r^T \chi_{n,r}^T\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r\right)}
+\end{array}\]
 
-<p>此时可以写出该问题的KKT条件为：</p>
+<p>显然,，其中$\boldsymbol{A}$为一个对称矩阵。此时可以写出该问题的KKT条件为：</p>
 
 \[\begin{array}{l}
   &amp; {\left( 2\boldsymbol{A}+2\boldsymbol{I} \right)} \boldsymbol{x}_r^*+\boldsymbol{B}=0
   \\
   &amp; {\left( \boldsymbol{x}_r^{*} \right)}^T\boldsymbol{x}_r^{*}=1
-  \\
-  &amp; r^{*} \geqslant 0
   \end{array}\]
 
-<p>若$\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。因此</p>
+<p>因此可以求得$\boldsymbol{x}_r^*=-\left( 2\boldsymbol{A}+2\boldsymbol{I} \right)^{\dagger}\boldsymbol{B}$。其中${\left( \cdot \right)}^{\dagger}$为矩阵的伪逆。</p>
+
+<p>若$\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。</p>
 
 <ul>
-  <li>
-    <p>Step 2： 求解$\boldsymbol{b}_r^{k+1}$</p>
-  </li>
-  <li>
-    <p>Step 3：求解$h^{k+1}$</p>
-  </li>
-  <li>
-    <p>Step 4：求解$\boldsymbol{u},{\lbrace v_n \rbrace}_{n=1}^N$</p>
-  </li>
+  <li>Step 2： 求解$\boldsymbol{b}_r^{k+1}$</li>
+</ul>
+
+<p>此时目标问题为一个无约束二次规划问题。由$\eqref{larfun}$有：</p>
+
+\[\mathcal{L}_2 \left( \boldsymbol{b}_r \right) = \boldsymbol{b}_r^T \boldsymbol{A}_2 \boldsymbol{b}_r + \boldsymbol{B}_2^T\boldsymbol{b}_r+ \boldsymbol{C}_2\]
+
+<p>其中有：</p>
+
+\[\begin{array}{l}
+\boldsymbol{A}_2=&amp;
+\sum_{\alpha}\sum_{f}{\omega_{\alpha}}
+\left[
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{1,T}
+\left( \boldsymbol{F}_{N,r} \boldsymbol{x}_r \right)
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{x}_r \right)}^T
+\varGamma_{\alpha,f}^1 {\boldsymbol{F}_{N,r}}
+\right. +
+\left.
+\boldsymbol{F}_{N,r}^T \varGamma_{\alpha,f}^{2,T}
+\left( \boldsymbol{F}_{N,r} \boldsymbol{x}_r \right)
+{\left( \boldsymbol{F}_{N,r}\boldsymbol{x}_r \right)}^T
+\varGamma_{\alpha,f}^2 {\boldsymbol{F}_{N,r}}\right]\\
+&amp;+
+\sum\limits_{n=1}^{N}\frac{\rho_n}{2}{\chi_{n,r}^T \left(\boldsymbol{x}_r-
+\boldsymbol{c}_r\right) \left(\boldsymbol{x}_r-
+\boldsymbol{c}_r\right)^T\chi_{n,r}}+\frac{\rho_0}
+{2}\boldsymbol{I}\\
+\end{array}\]
+
+\[\boldsymbol{B}_2^T=
+  \boldsymbol{u}^T-\rho_0\boldsymbol{x}_r^T+\sum\limits_{n=1}^{N}v_n {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r}+\sum\limits_{n=1}^N{\rho_n \boldsymbol{c}_r \chi_{n,r}^T\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}}\]
+
+\[\begin{array}{l}
+  \boldsymbol{C}_2=
+  &amp;
+  \boldsymbol{x}_r^T\boldsymbol{x}_r  -\boldsymbol{u}^T\boldsymbol{x}_r - \sum\limits_{n=1}^{N}{v_n{\left( {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r+\vartheta + h\right)}}+ \sum\limits_{n=1}^{N}{\frac{\rho_n}{2}}{\left( \vartheta+h \right)}^2 \\
+  &amp;+\sum\limits_{n=1}^{N}{\frac{\rho_n}{2}\left( {\left( \vartheta + h \right)}^2  + \boldsymbol{c}_r^T \chi_{n,r}^T\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r\right)}
+\end{array}\]
+
+<ul>
+  <li>Step 3：求解$h^{k+1}$</li>
+</ul>
+
+<p>此时</p>
+
+<ul>
+  <li>Step 4：求解$\boldsymbol{u},{\lbrace v_n \rbrace}_{n=1}^N$</li>
 </ul>
 
 <h2 id="仿真复现"><span class="me-2">仿真复现</span><a href="#仿真复现" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
