@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-23T23:41:19+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-25T13:36:18+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -496,13 +496,13 @@
 
 <time
   
-  data-ts="1711208479"
+  data-ts="1711344978"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Mar 23, 2024
+  Mar 25, 2024
 </time>
 
         </span>
@@ -552,9 +552,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="1198 words"
+  title="1304 words"
 >
-  <em>6 min</em> read</span>
+  <em>7 min</em> read</span>
 
         </div>
       </div>
@@ -754,7 +754,7 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   \boldsymbol{B}^T=
   &amp;
   \boldsymbol{u}^T-\rho_0\boldsymbol{b}_r^T+\sum\limits_{n=1}^{N}v_n {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r}  \\
-  &amp;+\sum\limits_{n=1}^N{\rho_n \boldsymbol{c}_r \chi_{n,r}^T\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}}
+  &amp;+\sum\limits_{n=1}^N{\rho_n \boldsymbol{c}_r^T \chi_{n,r}\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}^T}
 \end{array}\]
 
 \[\begin{array}{l}
@@ -772,7 +772,9 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   &amp; {\left( \boldsymbol{x}_r^{*} \right)}^T\boldsymbol{x}_r^{*}=1
   \end{array}\]
 
-<p>因此可以求得$\boldsymbol{x}_r^*=-\left( 2\boldsymbol{A}+2\boldsymbol{I} \right)^{\dagger}\boldsymbol{B}$。其中${\left( \cdot \right)}^{\dagger}$为矩阵的伪逆。–这里并不一定为恒模的，应该如何处理？</p>
+<p class="prompt-tip">注意：在这里$\boldsymbol{B}^T\boldsymbol{x}$为标量，其对于$\boldsymbol{x}$求导并不等于$\boldsymbol{B}^T$，而是$\boldsymbol{B}$。</p>
+
+<p>因此可以求得$\boldsymbol{x}^{*}_r =- \left( 2\boldsymbol{A}+2\boldsymbol{I} \right)^{\dagger}\boldsymbol{B}$。其中 ${\left( \cdot \right)}^{\dagger}$为矩阵的伪逆。–这里并不一定为恒模的，应该如何处理？</p>
 
 <p>若$\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。</p>
 
@@ -816,6 +818,14 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   \boldsymbol{x}_r^T\boldsymbol{x}_r  -\boldsymbol{u}^T\boldsymbol{x}_r - \sum\limits_{n=1}^{N}{v_n{\left( {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r+\vartheta + h\right)}}+ \sum\limits_{n=1}^{N}{\frac{\rho_n}{2}}{\left( \vartheta+h \right)}^2 \\
   &amp;+\sum\limits_{n=1}^{N}{\frac{\rho_n}{2}\left( {\left( \vartheta + h \right)}^2  + \boldsymbol{c}_r^T \chi_{n,r}^T\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right){\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T\chi_{n,r}\boldsymbol{c}_r\right)}
 \end{array}\]
+
+<p>对于无约束二次规划问题，对于$\boldsymbol{A}_2$的不同情况处理方式也不同。</p>
+
+<p>当$\boldsymbol{A}_2 \succeq 0$时，该问题为严格凸问题。</p>
+
+<p>当$\boldsymbol{A}_2 \succ 0$时，该问题为凸问题。</p>
+
+<p>当$\boldsymbol{A}_2 \prec 0$或为不定矩阵时，该问题为非凸问题。</p>
 
 <ul>
   <li>Step 3：求解$h^{k+1}$</li>
@@ -949,13 +959,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/">读后感-《长日将尽》</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</a>
         </li>
       
@@ -964,6 +967,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/">学习记录 复数与矩阵</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/">读后感-《长日将尽》</a>
         </li>
       
         
