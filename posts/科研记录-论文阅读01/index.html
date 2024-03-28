@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-25T14:14:49+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-25T14:23:16+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -496,7 +496,7 @@
 
 <time
   
-  data-ts="1711347289"
+  data-ts="1711347796"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -552,9 +552,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="1310 words"
+  title="1994 words"
 >
-  <em>7 min</em> read</span>
+  <em>11 min</em> read</span>
 
         </div>
       </div>
@@ -576,12 +576,10 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：</p>
 \[f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
 \right|}^2\]
 
-<p>其中
-$\varGamma_{\alpha,f}$为$N$循环谱计算矩阵。
+<p>其中$\varGamma_{\alpha,f}$为$N$循环谱计算矩阵。
 $\boldsymbol{F_{N}}$为阶傅里叶变换矩阵。
-除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：</p>
-
-\[{\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\]
+除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下：
+\({\Vert \boldsymbol{x}-\boldsymbol{c} \Vert}_{\infty} \leq \vartheta\)</p>
 
 <p>其中\(\boldsymbol{c}\)即为预设的参考信号，$\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。
 考虑复矩阵/向量的实数表示为
@@ -672,7 +670,7 @@ $\boldsymbol{F_{N}}$为阶傅里叶变换矩阵。
 \right|}^2
  \right] \\
 s.t.&amp;\quad \begin{array}{l}
-{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h=0 \quad n\in [1,2,\cdots,N] \\
+{\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}^H \chi_{n,r} {\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}- \vartheta-h=0 \quad n\in [1,2,\cdots,N] \\
 {\boldsymbol{x}_r}^T{\boldsymbol{x}_r}=1 \\
 \boldsymbol{x}_r-\boldsymbol{b}_r=\boldsymbol{0} \\
 h \leq 0\\
@@ -691,17 +689,17 @@ h \leq 0\\
 <p>因此，我们可以写出拉格朗日函数为：</p>
 
 \[\tag{1}\label{larfun}
-\begin{equation}
 \begin{array}{l}
-\mathcal{L}\left( \boldsymbol{x}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{v_n \right\}_{n=1}^N,h \right)=
-&amp;\varrho(\boldsymbol{b}_r,\boldsymbol{x}_r)+\boldsymbol{u}^T\left(\boldsymbol{x}_r-\boldsymbol{b}_r \right)+\frac{\rho_0}{2}{\Vert \boldsymbol{x}_r-\boldsymbol{b}_r \Vert}^2\\
-&amp;+\sum_{n=1}^{N} v_n \left({\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T
-\chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\right)\\
-&amp;+\sum_{n=1}^{N} \frac{\rho_n}{2} {\Vert{\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right)}^T \chi_{n,r} {\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right)}- \vartheta-h\Vert}^2
-\end{array}
-\end{equation}\]
+	\mathcal{L} \left( \boldsymbol{x}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{ v_n \right\} _{n=1}^{N},h \right) =&amp;		\varrho (\boldsymbol{b}_r,\boldsymbol{x}_r)+{\boldsymbol{\lambda }_0}^T\left( \boldsymbol{x}_r-\boldsymbol{b}_r \right) +\frac{\rho _0}{2}\Vert\boldsymbol{x}_r-\boldsymbol{b}_r\Vert^2\\
+	&amp;		+\sum_{n=1}^N{\lambda _{n}}\left( \left( \boldsymbol{x}_r-\boldsymbol{c}_r \right) ^T\chi _{n,r}\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) -\vartheta -h \right)\\
+	&amp;		+\sum_{n=1}^N{\frac{\rho _{n}}{2}}\Vert\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right) ^T\chi _{n,r}\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) -\vartheta -h\Vert^2\\
+\end{array}\]
 
-<p>其中，$\lbrace \rho_n \vert n=0,1,\cdots,N \rbrace$为先验参数，用于控制算法收敛的进度。</p>
+<blockquote>
+  <p class="prompt-tip">注意，这里所写的是增广拉格朗日函数。</p>
+</blockquote>
+
+<p>其中，$\boldsymbol{\lambda}<em>0\in \mathbb{R}^{N\times 1},{\lambda}</em>{n}\in \mathbb{R},n=1,2,\cdots,N$为拉格朗日乘子参数；$\rho_0,\rho_1,\cdots,\rho_{n+1},\cdots,\rho_{N+1}$为罚函数参数项，用于控制算法收敛的进度。</p>
 
 <h2 id="算法详解"><span class="me-2">算法详解</span><a href="#算法详解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -821,10 +819,12 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 
 <p>对于无约束二次规划问题，对于$\boldsymbol{A}_2$的不同情况处理方式也不同。</p>
 
-<blockquote class="prompt-tip">
-  <p>当$\boldsymbol{A}_2 \succeq 0$时，该问题为严格凸问题。
-当$\boldsymbol{A}_2 \succ 0$时，该问题为凸问题。
-当$\boldsymbol{A}_2 \prec 0$或为不定矩阵时，该问题为非凸问题。</p>
+<blockquote>
+  <p>当$\boldsymbol{A}_2 \succeq 0$时，该问题为严格凸问题。</p>
+
+  <p>当$\boldsymbol{A}_2 \succ 0$时，该问题为凸问题。</p>
+
+  <p class="prompt-tip">当$\boldsymbol{A}_2 \prec 0$或为不定矩阵时，该问题为非凸问题。</p>
 </blockquote>
 
 <p>在这里$$矩阵</p>
@@ -840,6 +840,237 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 </ul>
 
 <h2 id="仿真复现"><span class="me-2">仿真复现</span><a href="#仿真复现" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>使用MATLAB对于该论文算法进行复现，其中完整代码可见该<a href="https://">仓库</a></p>
+<div class="language-matlab highlighter-rouge"><div class="code-header">
+        <span data-label-text="Matlab"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+</pre></td><td class="rouge-code"><pre><span class="c1">% Example:</span>
+<span class="c1">% :param :</span>
+<span class="c1">% :return :</span>
+<span class="c1">% detailed description: 并行化优化低截获雷达波形程序</span>
+<span class="c1">%------------------------------------------------------------------------------</span>
+<span class="c1">% Created by: Xinyu Huang.</span>
+<span class="c1">% On: 26/03/2024.</span>
+<span class="c1">% Copyright (C) 2024 Xinyu Huang (learning_huang@163.com).</span>
+<span class="c1">% All Rights Reserved.</span>
+<span class="c1">% Unauthorized copying of this file, via any medium is strictly prohibited.</span>
+<span class="c1">% Proprietary and confidential.</span>
+<span class="c1">%------------------------------------------------------------------------------</span>
+
+<span class="c1">% % 并行功能初始化</span>
+<span class="c1">% NumCores =  feature('numcores'); % 获取当前CPU内核数</span>
+<span class="c1">% delete(gcp('nocreate')); % 关闭已有的并行化资源池</span>
+<span class="c1">% parpool(NumCores); % 开启并行化计算资源池</span>
+
+
+<span class="c1">% % 数据初始化</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span> <span class="c1">% 信号长度</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span> <span class="c1">% 窗长</span>
+<span class="c1">% 目标信号，随机初始化</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="nb">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>  
+<span class="n">xr</span> <span class="o">=</span> <span class="p">[</span><span class="nb">real</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="nb">imag</span><span class="p">(</span><span class="n">x</span><span class="p">)];</span> 
+<span class="c1">% 辅助变量</span>
+<span class="n">br</span> <span class="o">=</span> <span class="n">xr</span><span class="p">;</span> 
+<span class="c1">% 离散傅里叶变换矩阵</span>
+<span class="n">FN</span> <span class="o">=</span> <span class="n">dftmtx</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> 
+<span class="n">FNr</span> <span class="o">=</span> <span class="n">complex2real</span><span class="p">(</span><span class="n">FN</span><span class="p">);</span>
+<span class="c1">% cr 参考信号生成</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">128</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">;</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mf">1e6</span><span class="p">;</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="mf">1e5</span><span class="p">;</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mf">2e5</span><span class="p">;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">generator_LFM</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">T</span><span class="p">);</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="p">[</span><span class="nb">real</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="nb">imag</span><span class="p">(</span><span class="n">c</span><span class="p">)];</span>
+<span class="n">vartheta</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="c1">% 参考信号相关度阈值</span>
+<span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">;</span> <span class="c1">% 相似度约束辅助变量</span>
+<span class="c1">% 相似性约束矩阵</span>
+<span class="n">chi</span> <span class="o">=</span> <span class="nb">cell</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i_temp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+    <span class="n">matrix_temp</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">matrix_temp</span><span class="p">(</span><span class="n">i_temp</span><span class="p">,</span><span class="n">i_temp</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">}</span> <span class="o">=</span> <span class="n">complex2real</span><span class="p">(</span><span class="n">matrix_temp</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="c1">% 循环谱计算矩阵</span>
+<span class="nb">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">;</span>
+<span class="n">cf</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">;</span>
+<span class="n">Taf_1</span> <span class="o">=</span> <span class="nb">cell</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">);</span>
+<span class="n">Taf_2</span> <span class="o">=</span> <span class="nb">cell</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i_alpha</span> <span class="o">=</span> <span class="nb">alpha</span>
+    <span class="k">for</span> <span class="n">i_cf</span> <span class="o">=</span> <span class="n">cf</span>
+        <span class="n">temp_taf</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+        <span class="n">temp_taf</span><span class="p">(</span><span class="n">i_cf</span><span class="p">:</span><span class="n">i_cf</span><span class="o">+</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i_alpha</span><span class="p">:</span><span class="n">i_alpha</span><span class="o">+</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="nb">diag</span><span class="p">(</span><span class="nb">ones</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+        <span class="n">Taf_1</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span> <span class="o">=</span> <span class="p">[</span><span class="nb">real</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">),</span><span class="o">-</span><span class="nb">imag</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">);</span><span class="nb">imag</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">),</span><span class="nb">real</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">)];</span>
+        <span class="n">Taf_2</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span> <span class="o">=</span> <span class="p">[</span><span class="nb">imag</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">),</span><span class="o">-</span><span class="nb">real</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">);</span><span class="nb">real</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">),</span><span class="nb">imag</span><span class="p">(</span><span class="n">temp_taf</span><span class="p">)];</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">% 循环谱加权向量</span>
+<span class="n">omega_alpha</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">omega_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">40</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">omega_alpha</span><span class="p">(</span><span class="mi">41</span><span class="p">:</span><span class="k">end</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="c1">% % ADMM参数初始化</span>
+<span class="c1">% 拉格朗日乘子系数</span>
+<span class="n">u</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> 
+<span class="n">vn</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="c1">% 罚函数项系数</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="nb">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="c1">% 最大迭代次数</span>
+<span class="n">maxnum</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> 
+<span class="n">t</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+<span class="c1">% % ADMM 求解</span>
+<span class="k">for</span> <span class="n">i_maxnum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">maxnum</span>
+    <span class="c1">% Step 1 , Solving the x_r. % Step 2 , Solving the b_r</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">BT1</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">BT2</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">i_alpha</span> <span class="o">=</span> <span class="nb">alpha</span>
+
+        <span class="k">for</span> <span class="n">i_cf</span> <span class="o">=</span> <span class="n">cf</span>
+            <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">omega_alpha</span><span class="p">(</span><span class="n">i_alpha</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">FNr</span><span class="s1">'*Taf_1{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_1</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span> <span class="o">+</span>  <span class="k">...</span>
+                <span class="n">FNr</span><span class="s1">'*Taf_2{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_2</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span><span class="p">);</span>
+            <span class="n">A2</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">+</span> <span class="n">omega_alpha</span><span class="p">(</span><span class="n">i_alpha</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">FNr</span><span class="s1">'*Taf_1{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">xr</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">xr</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_1</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span> <span class="o">+</span>  <span class="k">...</span>
+                <span class="n">FNr</span><span class="s1">'*Taf_2{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">xr</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">xr</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_2</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span><span class="p">);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="k">for</span> <span class="n">i_temp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+        <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">i_temp</span><span class="p">)/</span><span class="mi">2</span><span class="o">*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">}</span><span class="s1">'*(br-cr)*(br-cr)'</span><span class="o">*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">};</span>
+        <span class="n">BT1</span> <span class="o">=</span> <span class="n">BT1</span> <span class="o">+</span> <span class="n">vn</span><span class="p">(</span><span class="n">i_temp</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">br</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="s1">'*chi{i_temp} + rho(1+i_temp)*cr'</span><span class="o">*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">}</span><span class="s1">'*(br-cr)*(br-cr)'</span><span class="o">*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">};</span>
+        <span class="n">BT2</span> <span class="o">=</span> <span class="n">BT2</span> <span class="o">+</span> <span class="n">vn</span><span class="p">(</span><span class="n">i_temp</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xr</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="s1">'*chi{i_temp} + rho(1+i_temp)*cr'</span><span class="o">*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_temp</span><span class="p">}</span><span class="o">*</span><span class="p">(</span><span class="n">xr</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xr</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="s1">'*chi{i_temp}'</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="mi">1</span><span class="p">)/</span><span class="mi">2</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">BT1</span> <span class="o">=</span> <span class="n">BT1</span> <span class="o">+</span> <span class="n">u</span><span class="s1">'-rho(1)*br'</span><span class="p">;</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="mi">1</span><span class="p">)/</span><span class="mi">2</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">BT2</span> <span class="o">=</span> <span class="n">BT2</span> <span class="o">+</span> <span class="n">u</span><span class="s1">'-rho(1)*br'</span><span class="p">;</span>
+    <span class="c1">% % Updating the x_r and b_r</span>
+    <span class="n">xr</span> <span class="o">=</span> <span class="o">-</span><span class="nb">inv</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A1</span><span class="p">)))</span><span class="o">*</span><span class="n">BT1</span><span class="o">'</span><span class="p">;</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="o">-</span><span class="nb">inv</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A2</span><span class="p">)</span><span class="o">*</span><span class="n">BT2</span><span class="o">'</span><span class="p">;</span>
+    
+    <span class="c1">% Step 3 , Solving the h</span>
+
+    <span class="c1">% Step 4 , Solving the u, v_n</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xr</span><span class="o">-</span><span class="n">br</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">i_n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+        <span class="n">vn</span><span class="p">(</span><span class="n">i_n</span><span class="p">)</span> <span class="o">=</span> <span class="n">vn</span><span class="p">(</span><span class="n">i_n</span><span class="p">)</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="n">i_n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="n">xr</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="o">'*</span><span class="n">chi</span><span class="p">{</span><span class="n">i_n</span><span class="p">}</span><span class="o">*</span><span class="p">(</span><span class="n">br</span><span class="o">-</span><span class="n">cr</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="o">-</span><span class="n">vartheta</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="总结分析"><span class="me-2">总结分析</span><a href="#总结分析" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
@@ -961,6 +1192,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/">MATLAB并行计算中parfor的使用</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</a>
         </li>
       
@@ -983,13 +1221,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/">Lasso问题</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
         </li>
       
     </ul>
@@ -1023,27 +1254,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1058,6 +1268,42 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1073,6 +1319,64 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1096,7 +1400,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/">优化理论</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
@@ -1268,27 +1578,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1303,6 +1592,42 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1318,6 +1643,64 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1341,7 +1724,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/">优化理论</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>

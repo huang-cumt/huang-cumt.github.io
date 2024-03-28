@@ -30,24 +30,24 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="学习记录 复数与矩阵" />
+<meta property="og:title" content="MATLAB并行计算中parfor的使用" />
 <meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="复数的矩阵表示" />
-<meta property="og:description" content="复数的矩阵表示" />
-<link rel="canonical" href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
-<meta property="og:url" content="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
+<meta name="description" content="前言" />
+<meta property="og:description" content="前言" />
+<link rel="canonical" href="https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" />
+<meta property="og:url" content="https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" />
 <meta property="og:site_name" content="Fish" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-03-15T16:29:42+08:00" />
+<meta property="article:published_time" content="2024-03-26T09:46:32+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="学习记录 复数与矩阵" />
+<meta property="twitter:title" content="MATLAB并行计算中parfor的使用" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-25T13:36:18+08:00","datePublished":"2024-03-15T16:29:42+08:00","description":"复数的矩阵表示","headline":"学习记录 复数与矩阵","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/"},"url":"https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-26T09:46:32+08:00","datePublished":"2024-03-26T09:46:32+08:00","description":"前言","headline":"MATLAB并行计算中parfor的使用","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/"},"url":"https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>学习记录 复数与矩阵 | Fish
+  <title>MATLAB并行计算中parfor的使用 | Fish
   </title>
 
   <!--
@@ -292,7 +292,7 @@
         
           
             
-              <span>学习记录 复数与矩阵</span>
+              <span>MATLAB并行计算中parfor的使用</span>
             
 
           
@@ -393,6 +393,28 @@
 
       
     
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
 
     
   
@@ -400,6 +422,27 @@
   
   
 
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
   
 
   
@@ -422,7 +465,7 @@
 
 <article class="px-1">
   <header>
-    <h1 data-toc-skip>学习记录 复数与矩阵</h1>
+    <h1 data-toc-skip>MATLAB并行计算中parfor的使用</h1>
 
     <div class="post-meta text-muted">
       <!-- published date -->
@@ -438,41 +481,18 @@
 
 <time
   
-  data-ts="1710491382"
+  data-ts="1711417592"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Mar 15, 2024
+  Mar 26, 2024
 </time>
 
       </span>
 
       <!-- lastmod date -->
-      
-        <span>
-          Updated
-          <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1711344978"
-  data-df="ll"
-  
-    data-bs-toggle="tooltip" data-bs-placement="bottom"
-  
->
-  Mar 25, 2024
-</time>
-
-        </span>
       
 
       
@@ -519,9 +539,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="111 words"
+  title="542 words"
 >
-  <em>1 min</em> read</span>
+  <em>3 min</em> read</span>
 
         </div>
       </div>
@@ -529,13 +549,79 @@
   </header>
 
   <div class="content">
-    <h2 id="复数的矩阵表示"><span class="me-2">复数的矩阵表示</span><a href="#复数的矩阵表示" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+    <h2 id="前言"><span class="me-2">前言</span><a href="#前言" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，有一映射$\varphi \left( z \right)$为满射。有：</p>
+<p>MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现，当我们使用多核处理器/GPU/计算集群时可以利用该工具箱实现并行计算，以充分利用资源。
+在这里仅阐述对于多核CPU的并行化计算功能，并行化计算功能只能对于<code class="language-plaintext highlighter-rouge">for</code>循环结构使用，且有一定限制。当我们使用多核CPU时，通常的MATLAB程序将只会调度其中一个核，
+可以使用<code class="language-plaintext highlighter-rouge">parfor</code>替换程序中的<code class="language-plaintext highlighter-rouge">for</code>循环结构来实现并行化。</p>
 
-\[M=\varphi \left( z \right)=\begin{bmatrix}a &amp; -b\\ b &amp; a\end{bmatrix}\]
+<p>示例程序如下，两种写法均可以，其中<code class="language-plaintext highlighter-rouge">M</code>表示给当前<code class="language-plaintext highlighter-rouge">parfor</code>分配的线程数，若不指定则默认分配当前最大线程数。</p>
+<pre><code class="language-MATLAB">% Example 1
+parfor loopvar = initval:endval
+    statements;
+end
+% Example 2
+parfor (loopvar = initval:endval, M)
+    statements;
+end
+</code></pre>
 
-<p>事实上，这一映射针对于任意维度的复数矩阵均成立，即对于任意维复数矩阵$C \in \mathbb{C}^{M\times N}$，均有$A \in \mathbb{R}^{2M\times 2N}$与其一一对应。</p>
+<h3 id="使用并行计算parfor指令的前提"><span class="me-2">使用并行计算parfor指令的前提</span><a href="#使用并行计算parfor指令的前提" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>首先需要明确一点并不是任何程序使用<code class="language-plaintext highlighter-rouge">parfor</code>指令都能够带来处理增益，也并不是所有程序都可以使用<code class="language-plaintext highlighter-rouge">parfor</code>指令。</p>
+
+<p>什么情况下使用<code class="language-plaintext highlighter-rouge">parfor</code>指令可以给程序带来增益。</p>
+
+<ol>
+  <li>for循环中的计算量很大</li>
+</ol>
+
+<p>使用<code class="language-plaintext highlighter-rouge">parfor</code>指令的限制</p>
+
+<ol>
+  <li>对于loopvar的要求
+在<code class="language-plaintext highlighter-rouge">parfor</code>中，循环变量<code class="language-plaintext highlighter-rouge">loopvar</code>必须是<strong>连续</strong>的、<strong>递增</strong>的<strong>正整数</strong>，其它形式都是不被允许的，如<code class="language-plaintext highlighter-rouge">loopvar = 0:0.1:1</code>此类。</li>
+  <li>对于statements的要求
+对于循环中的结构必须是每次独立的，即第i次循环的结果与任意一次其它循环的结果都应无关，其中i为第任意次循环的下标。</li>
+  <li><code class="language-plaintext highlighter-rouge">parfor</code>指令外围最好不要有其它的循环</li>
+</ol>
+
+<h2 id="parfor-详解"><span class="me-2">parfor 详解</span><a href="#parfor-详解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>在<code class="language-plaintext highlighter-rouge">parfor</code>结构中有以下几种变量。</p>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>Loop Variables</td>
+      <td>Loop indices</td>
+    </tr>
+    <tr>
+      <td>Sliced Variables</td>
+      <td>Arrays whose segments are operated on by different iterations of the loop</td>
+    </tr>
+    <tr>
+      <td>Broadcast Variables</td>
+      <td>Variables defined before the loop whose value is required inside the loop, but never assigned inside the loop</td>
+    </tr>
+    <tr>
+      <td>Reduction Variables</td>
+      <td>Variables that accumulates a value across iterations of the loop, regardless of iteration order</td>
+    </tr>
+    <tr>
+      <td>Temporary Variables</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="其它"><span class="me-2">其它</span><a href="#其它" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>设备一：
+|CPU||
+|内存||
+|操作系统||
+|MATLAB版本||</p>
 
   </div>
 
@@ -555,9 +641,9 @@
         <i class="fa fa-tags fa-fw me-1"></i>
         
           <a
-            href="/tags/%E6%95%B0%E5%AD%A6/"
+            href="/tags/matlab/"
             class="post-tag no-text-decoration"
-          >数学</a>
+          >MATLAB</a>
         
       </div>
     
@@ -593,7 +679,7 @@
 
       
 
-      <a href="http://service.weibo.com/share/share.php?title=%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%20%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5%20-%20Fish&url=https%3A%2F%2Fhuang-cumt.github.io%2Fposts%2F%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25AE%25B0%25E5%25BD%2595-%25E5%25A4%258D%25E6%2595%25B0%25E4%25B8%258E%25E7%259F%25A9%25E9%2598%25B5%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Weibo" aria-label="Weibo">
+      <a href="http://service.weibo.com/share/share.php?title=MATLAB%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E4%B8%ADparfor%E7%9A%84%E4%BD%BF%E7%94%A8%20-%20Fish&url=https%3A%2F%2Fhuang-cumt.github.io%2Fposts%2FMATLAB%25E5%25B9%25B6%25E8%25A1%258C%25E5%258C%2596%25E8%25AE%25A1%25E7%25AE%2597%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Weibo" aria-label="Weibo">
         <i class="fa-fw fab fa-weibo"></i>
       </a>
     
@@ -927,31 +1013,31 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -977,45 +1063,6 @@
   <aside id="related-posts" aria-labelledby="related-label">
     <h3 class="mb-4" id="related-label">Further Reading</h3>
     <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
-      
-        <article class="col">
-          <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" class="post-preview card h-100">
-            <div class="card-body">
-              <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1710924126"
-  data-df="ll"
-  
->
-  Mar 20, 2024
-</time>
-
-              <h4 class="pt-0 my-2">Lasso问题</h4>
-              <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  背景知识
-
-(Least Absolute Shrinkage and Selection Operator, LASSO)
-
-                </p>
-              </div>
-            </div>
-          </a>
-        </article>
       
         <article class="col">
           <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-preview card h-100">
@@ -1066,7 +1113,7 @@
         </article>
       
         <article class="col">
-          <a href="/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" class="post-preview card h-100">
+          <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" class="post-preview card h-100">
             <div class="card-body">
               <!--
   Date format snippet
@@ -1078,14 +1125,14 @@
 
 <time
   
-  data-ts="1711417592"
+  data-ts="1710491382"
   data-df="ll"
   
 >
-  Mar 26, 2024
+  Mar 15, 2024
 </time>
 
-              <h4 class="pt-0 my-2">MATLAB并行计算中parfor的使用</h4>
+              <h4 class="pt-0 my-2">学习记录 复数与矩阵</h4>
               <div class="text-muted">
                 <p>
                   
@@ -1094,11 +1141,52 @@
 
 
 
-                  前言
+                  复数的矩阵表示
 
-MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现，当我们使用多核处理器/GPU/计算集群时可以利用该工具箱实现并行计算，以充分利用资源。
-在这里仅阐述对于多核CPU的并行化计算功能，并行化计算功能只能对于for循环结构使用，且有一定限制。当我们使用多核CPU时，通常的MATLAB程序将只会调度其中一个核，
-可以使用parfor替换程序中...
+构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，有一映射$\varphi \left( z \right)$为满射。有：
+
+[M=\varphi \left( z \right)=\begin{bmatrix}a &amp;amp; -b\ b &amp;amp; a\end{bmatrix}]
+
+事实上，这一映射针对...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1710924126"
+  data-df="ll"
+  
+>
+  Mar 20, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Lasso问题</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  背景知识
+
+(Least Absolute Shrinkage and Selection Operator, LASSO)
+
                 </p>
               </div>
             </div>
@@ -1120,22 +1208,18 @@ MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现
 
   
     <a
-      href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"
+      href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/"
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</p>
+      <p>Lasso问题</p>
     </a>
   
 
   
-    <a
-      href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/"
-      class="btn btn-outline-primary"
-      aria-label="Newer"
-    >
-      <p>读后感-《被伤害与侮辱的人们》</p>
-    </a>
+    <div class="btn btn-outline-primary disabled" aria-label="Newer">
+      <p>-</p>
+    </div>
   
 </nav>
 
@@ -1527,9 +1611,16 @@ MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现
 
   
 
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js,npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
 
 
 
@@ -1538,29 +1629,6 @@ MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现
 
 <script defer src="/assets/js/dist/post.min.js"></script>
 
-
-  <!-- MathJax -->
-  <script>
-    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
-    MathJax = {
-      tex: {
-        /* start/end delimiter pairs for in-line math */
-        inlineMath: [
-          ['$', '$'],
-          ['\\(', '\\)']
-        ],
-        /* start/end delimiter pairs for display math */
-        displayMath: [
-          ['$$', '$$'],
-          ['\\[', '\\]']
-        ],
-        /* equation numbering */
-        tags: 'ams'
-      }
-    };
-  </script>
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 
 
 <!-- Pageviews -->
@@ -1572,6 +1640,66 @@ MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现
 
 
 
+
+    
+      <!-- mermaid-js loader -->
+<script type="text/javascript">
+  (function () {
+    function updateMermaid(event) {
+      if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+        const mode = event.data.message;
+
+        if (typeof mermaid === 'undefined') {
+          return;
+        }
+
+        let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
+        let config = { theme: expectedTheme };
+
+        /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $('.mermaid').each(function () {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr('data-processed');
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, '.mermaid');
+      }
+    }
+
+    let initTheme = 'default';
+    const html = document.documentElement;
+
+    if (
+      (html.hasAttribute('data-mode') && html.getAttribute('data-mode') === 'dark') ||
+      (!html.hasAttribute('data-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      initTheme = 'dark';
+    }
+
+    let mermaidConf = {
+      theme: initTheme /* <default|dark|forest|neutral> */
+    };
+
+    /* Create mermaid tag */
+    document.querySelectorAll('pre>code.language-mermaid').forEach((elem) => {
+      const svgCode = elem.textContent;
+      const backup = elem.parentElement;
+      backup.classList.add('unloaded');
+      /* create mermaid node */
+      let mermaid = document.createElement('pre');
+      mermaid.classList.add('mermaid');
+      const text = document.createTextNode(svgCode);
+      mermaid.appendChild(text);
+      backup.after(mermaid);
+    });
+
+    mermaid.initialize(mermaidConf);
+
+    window.addEventListener('message', updateMermaid);
+  })();
+</script>
 
     
 
