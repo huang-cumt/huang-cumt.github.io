@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-03-29T06:03:10+08:00</updated>
+  <updated>2024-04-02T14:14:58+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -20,172 +20,11 @@
 
   
   <entry>
-    <title>MATLAB并行计算中parfor的使用</title>
-    <link href="https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" rel="alternate" type="text/html" title="MATLAB并行计算中parfor的使用" />
-    <published>2024-03-26T09:46:32+08:00</published>
-  
-    <updated>2024-03-26T09:46:32+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/</id>
-    <content src="https://huang-cumt.github.io/posts/MATLAB%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="学习记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      前言
-
-MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现，当我们使用多核处理器/GPU/计算集群时可以利用该工具箱实现并行计算，以充分利用资源。
-在这里仅阐述对于多核CPU的并行化计算功能，并行化计算功能只能对于for循环结构使用，且有一定限制。当我们使用多核CPU时，通常的MATLAB程序将只会调度其中一个核，
-可以使用parfor替换程序中的for循环结构来实现并行化。
-
-示例程序如下，两种写法均可以，其中M表示给当前parfor分配的线程数，若不指定则默认分配当前最大线程数。
-% Example 1
-parfor loopvar = initval:endval
-    statements;
-end
-% Example 2
-parfor (loopvar = initval:endval, M)
-    statements;
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Lasso问题</title>
-    <link href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Lasso问题" />
-    <published>2024-03-20T16:42:06+08:00</published>
-  
-    <updated>2024-03-20T16:42:06+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/</id>
-    <content src="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-LASSO%E9%97%AE%E9%A2%98/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="学习记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      背景知识
-
-(Least Absolute Shrinkage and Selection Operator, LASSO)
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>读后感-《被伤害与侮辱的人们》</title>
-    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/" rel="alternate" type="text/html" title="读后感-《被伤害与侮辱的人们》" />
-    <published>2024-03-17T19:21:32+08:00</published>
-  
-    <updated>2024-03-17T19:21:32+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/</id>
-    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E8%A2%AB%E4%BC%A4%E5%AE%B3%E4%B8%8E%E4%BE%AE%E8%BE%B1%E7%9A%84%E4%BA%BA%E4%BB%AC/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="个人记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      读了陀斯陀耶夫斯基的书后，才感受到
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>学习记录 复数与矩阵</title>
-    <link href="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" rel="alternate" type="text/html" title="学习记录 复数与矩阵" />
-    <published>2024-03-15T16:29:42+08:00</published>
-  
-    <updated>2024-03-25T13:36:18+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/</id>
-    <content src="https://huang-cumt.github.io/posts/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%A4%8D%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="学习记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      复数的矩阵表示
-
-构建一个从复数集合$\mathbb{C}$到特定矩阵集合$\mathbb{M}$的映射，对于任意的复数$z=a+bi$，有一映射$\varphi \left( z \right)$为满射。有：
-
-\[M=\varphi \left( z \right)=\begin{bmatrix}a &amp;amp; -b\\ b &amp;amp; a\end{bmatrix}\]
-
-事实上，这一映射针对于任意维度的复数矩阵均成立，即对于任意维复数矩阵$C \in \mathbb{C}^{M\times N}$，均有$A \in \mathbb{R}^{2M\times 2N}$与其一一对应。
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读</title>
-    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties论文阅读" />
+    <title><LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties> 论文阅读</title>
+    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="&amp;lt;LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties&amp;gt; 论文阅读" />
     <published>2024-03-15T14:50:16+08:00</published>
   
-    <updated>2024-03-25T14:23:16+08:00</updated>
+    <updated>2024-03-29T06:03:29+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
@@ -219,6 +58,151 @@ parfor (loopvar = initval:endval, M)
 cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 
 \[f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol{x}...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>博客搭建</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="alternate" type="text/html" title="博客搭建" />
+    <published>2024-03-13T16:47:23+08:00</published>
+  
+    <updated>2024-03-29T06:03:29+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="学习记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      配置说明
+
+修改左下角图标显示
+
+问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
+
+解决方案：
+
+修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。
+
+- type: email
+  icon: "fas fa-envelope"
+  noblank: true # open link in current tab
+  url: # Fill with your homepage
+
+
+对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome(https://fontawesome.com/)网站。
+其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。
+
+添加自定...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title><A Coordinate Descent Framework to Design Low PSL ISL Sequences> 论文阅读</title>
+    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" rel="alternate" type="text/html" title="&amp;lt;A Coordinate Descent Framework to Design Low PSL ISL Sequences&amp;gt; 论文阅读" />
+    <published>2023-06-21T13:56:37+08:00</published>
+  
+    <updated>2023-06-21T13:56:37+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/</id>
+    <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="科研记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
+
+期刊/会议：IEEE TRANSACTIONS ON Signal Processing
+
+发表时间：2017
+
+1. 问题建模
+
+在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目标的旁瓣所遮蔽；同时，为了减轻相近目标的分布式杂波的回波的影响，我们需要信号具有低的积分旁瓣电平（Integrated Sidelobe Level, ISL）。考虑一个相位编码序列$\boldsymbol{x}=[x_1,x_2,…,x_N]^T\in \mathbb{C} ^N$，其自相关函数$r_k$、PSL、ISL的定义如下。
+
+\[r_k=\sum_{i=1}^{N-1}{x_{i}^{...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>读后感-《长日将尽》</title>
+    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读后感-《长日将尽》" />
+    <published>2023-03-30T12:00:00+08:00</published>
+  
+    <updated>2024-03-29T06:03:29+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
+    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="个人记录" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      读后感
+
+作品简介
+
+长日将尽(The Remains  of the Day)是
+
+阅读感悟
+
+我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。
+
+这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关于伟大管家的定义，也是文中不断谈及的一点，他的心中对此有些见解并为之不断奋斗。
+
+可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。
+
+待到克林顿府的繁华散去，昔日...
     </summary>
   
 
