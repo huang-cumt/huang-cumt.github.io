@@ -539,9 +539,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="878 words"
+  title="1284 words"
 >
-  <em>4 min</em> read</span>
+  <em>7 min</em> read</span>
 
         </div>
       </div>
@@ -710,7 +710,7 @@
 
 <h2 id="并行计算parfor的使用"><span class="me-2">并行计算parfor的使用</span><a href="#并行计算parfor的使用" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>MATLAB并行化计算功能通常使用Parallel Computing Toolbox工具箱实现，当我们使用多核处理器/GPU/计算集群时可以利用该工具箱实现并行计算，以充分利用资源。
+<p>MATLAB并行化计算功能依赖于Parallel Computing Toolbox工具箱实现，当我们使用多核处理器/GPU/计算集群时可以利用该工具箱实现并行计算，以充分利用资源。
 在这里仅阐述对于多核CPU的并行化计算功能，并行化计算功能只能对于<code class="language-plaintext highlighter-rouge">for</code>循环结构使用，且有一定限制。当我们使用多核CPU时，通常的MATLAB程序将只会调度其中一个核，
 可以使用<code class="language-plaintext highlighter-rouge">parfor</code>替换程序中的<code class="language-plaintext highlighter-rouge">for</code>循环结构来实现并行化。</p>
 
@@ -727,23 +727,48 @@ end
 
 <h3 id="使用并行计算parfor指令的前提"><span class="me-2">使用并行计算parfor指令的前提</span><a href="#使用并行计算parfor指令的前提" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
-<p>首先需要明确一点并不是任何程序使用<code class="language-plaintext highlighter-rouge">parfor</code>指令都能够带来处理增益，也并不是所有程序都可以使用<code class="language-plaintext highlighter-rouge">parfor</code>指令。</p>
+<p>首先需要明确一点并不是所有程序都可以使用<code class="language-plaintext highlighter-rouge">parfor</code>指令，程序使用<code class="language-plaintext highlighter-rouge">parfor</code>指令不一定会带来处理增益。</p>
 
-<p>什么情况下使用<code class="language-plaintext highlighter-rouge">parfor</code>指令可以给程序带来增益。</p>
+<p>该指令事实上是将循环分组并置于不同的进程中进行同时处理，最后再进行合并。不同进程之间的通信消耗、启动服务所需要消耗的时间资源并不少，因此仅只有当循环中的计算量很大时使用<code class="language-plaintext highlighter-rouge">parfor</code>指令可以给程序带来增益，因为此时程序运行时间主要由循环内部计算时间控制；如果循环中代码时间复杂度并不高，不同进程处理带来的通信消耗可能会使得运行时间甚至变长。详情可参见该文档<a href="https://ww2.mathworks.cn/help/parallel-computing/decide-when-to-use-parfor.html#bvi2qb4">Decide When to Use parfor</a>。</p>
 
-<ol>
-  <li>for循环中的计算量很大</li>
-</ol>
+<p>了解了<code class="language-plaintext highlighter-rouge">parfor</code>的执行原理后，我们就知道使用<code class="language-plaintext highlighter-rouge">parfor</code>应该有哪些要求，由于其本质是将循环分组进行同时处理，此时如果第i次循环依赖于i次前/后的计算结果，此时不能使用<code class="language-plaintext highlighter-rouge">parfor</code>指令进行计算，因为此时有可能其依赖的那次计算结果尚未进行计算。</p>
 
-<p>使用<code class="language-plaintext highlighter-rouge">parfor</code>指令的限制</p>
+<p>此外MATLAB关于<code class="language-plaintext highlighter-rouge">parfor</code>有详细的介绍，参照该<a href="https://ww2.mathworks.cn/help/parallel-computing/parfor.html">网页</a>。在<code class="language-plaintext highlighter-rouge">parfor</code>结构中有以下几种变量。</p>
 
-<ol>
-  <li>对于loopvar的要求
-在<code class="language-plaintext highlighter-rouge">parfor</code>中，</li>
-  <li>对于statements的要求
-对于循环中的结构必须是每次独立的，即第i次循环的结果与任意一次其它循环的结果都应无关，其中i为第任意次循环的下标。</li>
-  <li></li>
-</ol>
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>Loop Variables</td>
+      <td>Loop indices</td>
+    </tr>
+    <tr>
+      <td>Sliced Variables</td>
+      <td>Arrays whose segments are operated on by different iterations of the loop</td>
+    </tr>
+    <tr>
+      <td>Broadcast Variables</td>
+      <td>Variables defined before the loop whose value is required inside the loop, but never assigned inside the loop</td>
+    </tr>
+    <tr>
+      <td>Reduction Variables</td>
+      <td>Variables that accumulates a value across iterations of the loop, regardless of iteration order</td>
+    </tr>
+    <tr>
+      <td>Temporary Variables</td>
+      <td>Variables created inside the loop, and not accessed outside the loop</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><code class="language-plaintext highlighter-rouge">Loop Variables</code>即在每次for循环中迭代的变量，循环变量<code class="language-plaintext highlighter-rouge">loopvar</code>必须是<strong>连续</strong>的、<strong>递增</strong>的<strong>正整数</strong>，其它形式都是不被允许的。
+<code class="language-plaintext highlighter-rouge">Sliced Variables</code>是切片向量，是每次在循环中所使用的矩阵/向量的部分元素。
+<code class="language-plaintext highlighter-rouge">Broadcast Variables</code></p>
+
+<p>因此我们可以总结一些使用<code class="language-plaintext highlighter-rouge">parfor</code>指令的前提和要求。</p>
+<ul>
+  <li>循环内部计算耗时是运行时间长的主要来源。</li>
+  <li>每次循环运算相互独立，可以进行单独计算。</li>
+</ul>
 
   </div>
 
