@@ -14,7 +14,7 @@
 
 
 <!-- `site.alt_lang` can specify a language different from the UI -->
-<html lang="en" data-mode="light">
+<html lang="en" >
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
@@ -30,22 +30,23 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Fish" />
+<meta property="og:title" content="Chirpy" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Test" />
-<meta property="og:description" content="Test" />
-<link rel="canonical" href="https://huang-cumt.github.io/" />
-<meta property="og:url" content="https://huang-cumt.github.io/" />
-<meta property="og:site_name" content="Fish" />
+<meta name="description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
+<meta property="og:description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="Chirpy" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Fish" />
+<meta property="twitter:title" content="Chirpy" />
+<meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Test","headline":"Fish","name":"XinyuHuang","sameAs":["https://github.com/huang-cumt","https://twitter.com/username"],"url":"https://huang-cumt.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"A minimal, responsive and feature-rich Jekyll theme for technical writing.","headline":"Chirpy","name":"your_full_name","sameAs":["https://twitter.com/username","https://github.com/username"],"url":"/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Fish
+  <title>Chirpy
   </title>
 
   <!--
@@ -62,8 +63,8 @@
   <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 
 <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Fish">
-<meta name="application-name" content="Fish">
+<meta name="apple-mobile-web-app-title" content="Chirpy">
+<meta name="application-name" content="Chirpy">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -112,6 +113,151 @@
   <!-- JavaScript -->
 
   
+    <!-- Switch the mode between dark and light. -->
+
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() {
+      return 'mode';
+    }
+    static get MODE_ATTR() {
+      return 'data-mode';
+    }
+    static get DARK_MODE() {
+      return 'dark';
+    }
+    static get LIGHT_MODE() {
+      return 'light';
+    }
+    static get ID() {
+      return 'mode-toggle';
+    }
+
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+
+      let self = this;
+
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addEventListener('change', () => {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+
+          self.clearMode();
+        }
+
+        self.notify();
+      });
+    } /* constructor() */
+
+    get sysDarkPrefers() {
+      return window.matchMedia('(prefers-color-scheme: dark)');
+    }
+
+    get isSysDarkPrefer() {
+      return this.sysDarkPrefers.matches;
+    }
+
+    get isDarkMode() {
+      return this.mode === ModeToggle.DARK_MODE;
+    }
+
+    get isLightMode() {
+      return this.mode === ModeToggle.LIGHT_MODE;
+    }
+
+    get hasMode() {
+      return this.mode != null;
+    }
+
+    get mode() {
+      return sessionStorage.getItem(ModeToggle.MODE_KEY);
+    }
+
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+
+    setDark() {
+      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+
+    setLight() {
+      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+
+    clearMode() {
+      document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+
+    /* Notify another plugins that the theme mode has changed */
+    notify() {
+      window.postMessage(
+        {
+          direction: ModeToggle.ID,
+          message: this.modeStatus
+        },
+        '*'
+      );
+    }
+
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+
+      this.notify();
+    } /* flipMode() */
+  } /* ModeToggle */
+
+  const modeToggle = new ModeToggle();
+</script>
+
+  
 
   <!-- A placeholder to allow defining custom metadata -->
 
@@ -123,12 +269,12 @@
 
 <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
   <header class="profile-wrapper">
-    <a href="/" id="avatar" class="rounded-circle"><img src="/assets/img/picture/avatar.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a>
+    <a href="/" id="avatar" class="rounded-circle"></a>
 
     <h1 class="site-title">
-      <a href="/">Fish</a>
+      <a href="/">Chirpy</a>
     </h1>
-    <p class="site-subtitle fst-italic mb-0">Radar, Math, Optimization and life</p>
+    <p class="site-subtitle fst-italic mb-0">A text-focused Jekyll theme</p>
   </header>
   <!-- .profile-wrapper -->
 
@@ -188,13 +334,21 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
+      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      
+        <span class="icon-border"></span>
+      
+    
 
     
       
 
       
         <a
-          href="https://github.com/huang-cumt"
+          href="https://github.com/github_username"
           aria-label="github"
           
 
@@ -217,7 +371,30 @@
 
       
         <a
-          href="javascript:location.href = 'mailto:' + ['learning_huang','163.com'].join('@')"
+          href="https://twitter.com/twitter_username"
+          aria-label="twitter"
+          
+
+          
+            target="_blank"
+            
+          
+
+          
+
+          
+            rel="noopener noreferrer"
+          
+        >
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      
+    
+      
+
+      
+        <a
+          href="javascript:location.href = 'mailto:' + ['example','domain.com'].join('@')"
           aria-label="email"
           
 
@@ -235,22 +412,17 @@
 
       
         <a
-          href="http://test"
-          aria-label="bilibili"
-          
-
-          
-            target="_blank"
-            
+          href="/feed.xml"
+          aria-label="rss"
           
 
           
 
           
-            rel="noopener noreferrer"
+
           
         >
-          <i class="fa-brands fa-bilibili"></i>
+          <i class="fas fa-rss"></i>
         </a>
       
     
@@ -285,7 +457,7 @@
     </button>
 
     <div id="topbar-title">
-      Fish
+      Chirpy
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link">
@@ -338,76 +510,6 @@
 
 
 
-
-  
-  
-
-  
-    
-      
-      
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
-
-      
-      
-      
-
-      
-    
-      
-
-      
-      
-      
-
-      
-    
-
-    <!-- take out classes -->
-    
-
-    
-    
-
-    
-
-    
-      
-    
-
-    
-    <!-- lazy-load images -->
-    
-
-    
-      <!-- create the image wrapper -->
-      
-
-      
-      
-
-    
-
-    <!-- combine -->
-    
-  
-
-  
 
 
 <!-- Add header for code snippets -->
@@ -473,374 +575,6 @@
 
 <div id="post-list" class="flex-grow-1 px-xl-1">
   
-    <article class="card-wrapper card">
-      <a href="/posts/MATLAB/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Matlab</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                在MATLAB创建循环进度条
-
-事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
-
-关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
-% Example 
-% Include...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1712712970"
-  data-df="ll"
-  
->
-  Apr 10, 2024
-</time>
-
-
-                <!-- categories -->
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties
-
-期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
-
-发表时间：2023
-
-模型构建
-
-针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,\cd...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1710485416"
-  data-df="ll"
-  
->
-  Mar 15, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      科研记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">博客搭建</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                配置说明
-
-修改左下角图标显示
-
-问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
-
-解决方案：
-
-修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。
-
-- type: email
-  icon: &quot;fas fa-envelope&quot;
-  noblank: true # open lin...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1710319643"
-  data-df="ll"
-  
->
-  Mar 13, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      学习记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
-
-期刊/会议：IEEE TRANSACTIONS ON Signal Processing
-
-发表时间：2017
-
-1. 问题建模
-
-在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1687326997"
-  data-df="ll"
-  
->
-  Jun 21, 2023
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      科研记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-          
-          
-
-          
-
-          
-
-          
-
-          <div class="col-md-5">
-            <div class="preview-img "><img src="/assets/img/picture/wallpaper_1.jpg" alt="Preview Image"  loading="lazy"></div>
-          </div>
-
-          
-        
-
-        <div class="col-md-7">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">读后感-《长日将尽》</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                读后感
-
-作品简介
-
-长日将尽(The Remains  of the Day)是
-
-阅读感悟
-
-我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。
-
-这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1680148800"
-  data-df="ll"
-  
->
-  Mar 30, 2023
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      个人记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
 </div>
 <!-- #post-list -->
 
@@ -868,49 +602,6 @@
 
 
 
-  <section id="access-lastmod">
-    <h2 class="panel-heading">Recently Updated</h2>
-    <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">Matlab</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/">读后感-《长日将尽》</a>
-        </li>
-      
-    </ul>
-  </section>
-  <!-- #access-lastmod -->
-
 
               <!-- The trending tags list -->
 
@@ -928,67 +619,7 @@
 
 
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-
-
-  <section>
-    <h2 class="panel-heading">Trending Tags</h2>
-    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-      
-    </div>
-  </section>
 
 
             </div>
@@ -1015,7 +646,7 @@
     <time>2024</time>
 
     
-      <a href="https://github.com/huang-cumt">XinyuHuang</a>.
+      <a href="https://twitter.com/username">your_full_name</a>.
     
 
     
@@ -1025,9 +656,6 @@
         title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author."
       >Some rights reserved.</span>
     
-  </p>
-
-  <p>Some images sourced from <a href="https://unsplash.com" target="_blank" rel="noopener">unsplash</a>
   </p>
 
   <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
@@ -1058,67 +686,7 @@
 
 
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-
-
-  <section>
-    <h2 class="panel-heading">Trending Tags</h2>
-    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-      
-    </div>
-  </section>
 
 
     </div>
@@ -1166,6 +734,7 @@
     
 
     <!-- JavaScripts -->
+
     <!-- JS selector for site. -->
 
 <!-- commons -->
@@ -1264,9 +833,6 @@
 
 
 
-<!-- Pageviews -->
-
-
 
 
 
@@ -1288,7 +854,7 @@
     resultsContainer: document.getElementById('search-results'),
     json: '/assets/js/data/search.json',
     searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{snippet}</p>  </article>',
-    noResultsText: '<p class="mt-5">Oops! No results found.</p>',
+    noResultsText: '<p class="mt-5"></p>',
     templateMiddleware: function(prop, value, template) {
       if (prop === 'categories') {
         if (value === '') {
