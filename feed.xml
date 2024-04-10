@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-04-09T10:04:19+08:00</updated>
+  <updated>2024-04-10T09:55:29+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -17,6 +17,54 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Matlab</title>
+    <link href="https://huang-cumt.github.io/posts/MATLAB/" rel="alternate" type="text/html" title="Matlab" />
+    <published>2024-04-10T09:36:10+08:00</published>
+  
+    <updated>2024-04-10T09:36:10+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/MATLAB/</id>
+    <content src="https://huang-cumt.github.io/posts/MATLAB/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      在MATLAB创建循环进度条
+
+事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
+
+关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
+% Example 
+% Include forWaitbar.m
+N = 1000;
+mywaitbar = forWaitbar(N);
+for i = 1:N
+    pause(0.1);
+    mywaitbar.show_bar;
+end
+
+其中所需要的forWaitbar.m文件定义如下。我们使用了一个结构体来实现这一功能。
+classdef forWaitbar &amp;lt; handle
+    properties (...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>

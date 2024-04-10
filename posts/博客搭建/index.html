@@ -666,6 +666,7 @@ end
 
 <p>解决方案：
 查看<code class="language-plaintext highlighter-rouge">_include/refactor-content.html</code>文件，其中代码如下：</p>
+
 <div class="language-liquid highlighter-rouge"><div class="code-header">
         <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -679,7 +680,9 @@ end
 
     &lt;!-- lazy-load images --&gt;
 </pre></td></tr></tbody></table></code></div></div>
+
 <p>其通过代码判断图像的<code class="language-plaintext highlighter-rouge">_lqip</code>属性来给<code class="language-plaintext highlighter-rouge">_class</code>分配值，若为真则分配为<code class="language-plaintext highlighter-rouge">blur</code>，若为假则分配为<code class="language-plaintext highlighter-rouge">shimmer</code>，其中若分配为<code class="language-plaintext highlighter-rouge">shimmer</code>则会使得在显示时呈现闪光特效。因此我们在最后添加一行代码，无论合适都给<code class="language-plaintext highlighter-rouge">_class</code>分配为<code class="language-plaintext highlighter-rouge">null</code>。</p>
+
 <div class="language-liquid highlighter-rouge"><div class="code-header">
         <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -803,6 +806,13 @@ end
   <section id="access-lastmod">
     <h2 class="panel-heading">Recently Updated</h2>
     <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/MATLAB/">Matlab</a>
+        </li>
       
         
         

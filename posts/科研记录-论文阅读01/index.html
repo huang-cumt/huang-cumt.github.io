@@ -552,7 +552,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="2001 words"
+  title="1995 words"
 >
   <em>11 min</em> read</span>
 
@@ -688,8 +688,7 @@ h \leq 0\\
 
 <p>因此，我们可以写出拉格朗日函数为：</p>
 
-\[\tag{1}\label{larfun}
-\begin{array}{l}
+\[\begin{array}{l}
     \mathcal{L} \left( \boldsymbol{x}_r,\boldsymbol{b}_r,\boldsymbol{u},\left\{ v_n \right\} _{n=1}^{N},h \right) =&amp;        \varrho (\boldsymbol{b}_r,\boldsymbol{x}_r)+{\boldsymbol{\lambda }_0}^T\left( \boldsymbol{x}_r-\boldsymbol{b}_r \right) +\frac{\rho _0}{2}\Vert\boldsymbol{x}_r-\boldsymbol{b}_r\Vert^2\\
     &amp;        +\sum_{n=1}^N{\lambda _{n}}\left( \left( \boldsymbol{x}_r-\boldsymbol{c}_r \right) ^T\chi _{n,r}\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) -\vartheta -h \right)\\
     &amp;        +\sum_{n=1}^N{\frac{\rho _{n}}{2}}\Vert\left( \boldsymbol{x}_r-\boldsymbol{c}_r \right) ^T\chi _{n,r}\left( \boldsymbol{b}_r-\boldsymbol{c}_r \right) -\vartheta -h\Vert^2\\
@@ -703,7 +702,7 @@ h \leq 0\\
 
 <h2 id="算法详解"><span class="me-2">算法详解</span><a href="#算法详解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>采用ADMM算法求解式$\eqref{larfun}$。</p>
+<p>采用ADMM算法求解。</p>
 
 <ul>
   <li>
@@ -776,8 +775,8 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 
 <p>因此可以求得$\boldsymbol{x}^{*}_r =- \left( 2\boldsymbol{A}+2\boldsymbol{I} \right)^{\dagger}\boldsymbol{B}$。</p>
 
-<blockquote class="prompt-warning">
-  <p>其中${\left( \cdot \right)}^{\dagger}$为矩阵的伪逆。这里并不一定为恒模的，应该如何处理？</p>
+<blockquote>
+  <p class="prompt-warning">其中${\left( \cdot \right)}^{\dagger}$为矩阵的伪逆。这里并不一定为恒模的，应该如何处理？</p>
 </blockquote>
 
 <p>若$\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。</p>
@@ -848,6 +847,7 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 <h2 id="仿真复现"><span class="me-2">仿真复现</span><a href="#仿真复现" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
 <p>使用MATLAB对于该论文算法进行复现，其中完整代码可见该<a href="https://">仓库</a></p>
+
 <div class="language-matlab highlighter-rouge"><div class="code-header">
         <span data-label-text="Matlab"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -960,10 +960,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 108
 109
 110
-111
-112
-113
-114
 </pre></td><td class="rouge-code"><pre><span class="c1">% Example:</span>
 <span class="c1">% :param :</span>
 <span class="c1">% :return :</span>
@@ -976,8 +972,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
 <span class="c1">% Unauthorized copying of this file, via any medium is strictly prohibited.</span>
 <span class="c1">% Proprietary and confidential.</span>
 <span class="c1">%---------------------------------------------------------------------------</span>
-<span class="o">---</span>
-
 <span class="c1">% % 并行功能初始化</span>
 <span class="c1">% NumCores =  feature('numcores'); % 获取当前CPU内核数</span>
 <span class="c1">% delete(gcp('nocreate')); % 关闭已有的并行化资源池</span>
@@ -1047,7 +1041,6 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     <span class="n">BT1</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
     <span class="n">BT2</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
     <span class="k">for</span> <span class="n">i_alpha</span> <span class="o">=</span> <span class="nb">alpha</span>
-
         <span class="k">for</span> <span class="n">i_cf</span> <span class="o">=</span> <span class="n">cf</span>
             <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">omega_alpha</span><span class="p">(</span><span class="n">i_alpha</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">FNr</span><span class="s1">'*Taf_1{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_1</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span> <span class="o">+</span>  <span class="k">...</span>
                 <span class="n">FNr</span><span class="s1">'*Taf_2{i_alpha,i_cf}'</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FNr</span><span class="o">*</span><span class="n">br</span><span class="p">)</span><span class="o">'*</span><span class="n">Taf_2</span><span class="p">{</span><span class="n">i_alpha</span><span class="p">,</span><span class="n">i_cf</span><span class="p">}</span><span class="o">*</span><span class="n">FNr</span><span class="p">);</span>
@@ -1067,9 +1060,9 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     <span class="c1">% % Updating the x_r and b_r</span>
     <span class="n">xr</span> <span class="o">=</span> <span class="o">-</span><span class="nb">inv</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">A1</span><span class="p">)))</span><span class="o">*</span><span class="n">BT1</span><span class="o">'</span><span class="p">;</span>
     <span class="n">br</span> <span class="o">=</span> <span class="o">-</span><span class="nb">inv</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A2</span><span class="p">)</span><span class="o">*</span><span class="n">BT2</span><span class="o">'</span><span class="p">;</span>
-    
+
     <span class="c1">% Step 3 , Solving the h</span>
-    
+
     <span class="c1">% Step 4 , Solving the u, v_n</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">rho</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xr</span><span class="o">-</span><span class="n">br</span><span class="p">);</span>
     <span class="k">for</span> <span class="n">i_n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">N</span>
@@ -1077,14 +1070,17 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
     <span class="k">end</span>
 
 <span class="k">end</span>
-
 </pre></td></tr></tbody></table></code></div></div>
+
 <h2 id="总结分析"><span class="me-2">总结分析</span><a href="#总结分析" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>
 </pre></td></tr></tbody></table></code></div></div>
+
+<p>```</p>
 
   </div>
 
@@ -1199,6 +1195,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   <section id="access-lastmod">
     <h2 class="panel-heading">Recently Updated</h2>
     <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/MATLAB/">Matlab</a>
+        </li>
       
         
         
@@ -1456,9 +1459,13 @@ s.t. &amp; \boldsymbol{x}_r^T\boldsymbol{x}_r=1
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Newer">
-      <p>-</p>
-    </div>
+    <a
+      href="/posts/MATLAB/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Matlab</p>
+    </a>
   
 </nav>
 
