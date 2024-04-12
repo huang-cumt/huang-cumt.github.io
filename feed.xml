@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-04-10T18:12:27+08:00</updated>
+  <updated>2024-04-12T10:28:48+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://huang-cumt.github.io/posts/MATLAB/" rel="alternate" type="text/html" title="Matlab" />
     <published>2024-04-10T09:36:10+08:00</published>
   
-    <updated>2024-04-10T11:12:57+08:00</updated>
+    <updated>2024-04-10T09:36:10+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/MATLAB/</id>
     <content src="https://huang-cumt.github.io/posts/MATLAB/" />
@@ -72,7 +72,7 @@ classdef forWaitbar &amp;lt; handle
     <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读" />
     <published>2024-03-15T14:50:16+08:00</published>
   
-    <updated>2024-04-10T10:00:59+08:00</updated>
+    <updated>2024-03-15T14:50:16+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
@@ -117,7 +117,7 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
     <link href="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="alternate" type="text/html" title="博客搭建" />
     <published>2024-03-13T16:47:23+08:00</published>
   
-    <updated>2024-04-10T10:00:59+08:00</updated>
+    <updated>2024-03-13T16:47:23+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
     <content src="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" />
@@ -170,7 +170,7 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
     <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" rel="alternate" type="text/html" title="A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读" />
     <published>2023-06-21T13:56:37+08:00</published>
   
-    <updated>2024-04-10T10:00:59+08:00</updated>
+    <updated>2023-06-21T13:56:37+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" />
@@ -214,7 +214,7 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
     <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读后感-《长日将尽》" />
     <published>2023-03-30T12:00:00+08:00</published>
   
-    <updated>2024-03-29T06:03:29+08:00</updated>
+    <updated>2023-03-30T12:00:00+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
     <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
