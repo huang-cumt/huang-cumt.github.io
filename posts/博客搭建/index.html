@@ -722,7 +722,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="700 words"
+  title="699 words"
 >
   <em>3 min</em> read</span>
 
@@ -755,7 +755,7 @@
   <span class="na">url</span><span class="pi">:</span> <span class="c1"># Fill with your homepage</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome(https://fontawesome.com/)网站。
+<p>对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 <a href="https://fontawesome.com/">Fontawesome</a>网站。
 其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为<code class="language-plaintext highlighter-rouge">fa-brands fa-bilibili</code>。</p>
 
 <h3 id="添加自定义脚注"><span class="me-2">添加自定义脚注</span><a href="#添加自定义脚注" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
@@ -766,19 +766,16 @@
 
 <p>在<code class="language-plaintext filepath highlighter-rouge">_data/locales/lang.yml</code>文件中添加如下代码：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>在<code class="language-plaintext highlighter-rouge">_include/footer.html</code>文件中添加如下代码：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>
-</pre></td></tr></tbody></table></code></div></div>
+<pre><code class="language-HTML">
+</code></pre>
 
 <h3 id="文档更新时间未显示"><span class="me-2">文档更新时间未显示</span><a href="#文档更新时间未显示" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 
@@ -788,8 +785,8 @@
 
 <p>查看<code class="language-plaintext highlighter-rouge">_plugins/posts-lastmod-hook.rb</code>文件，其代码如下：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -817,8 +814,8 @@ end
 <p>解决方案：
 查看<code class="language-plaintext highlighter-rouge">_include/refactor-content.html</code>文件，其中代码如下：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -828,13 +825,13 @@ end
       
     
 
-    &lt;!-- lazy-load images --&gt;
+    <span class="c">&lt;!-- lazy-load images --&gt;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>其通过代码判断图像的<code class="language-plaintext highlighter-rouge">_lqip</code>属性来给<code class="language-plaintext highlighter-rouge">_class</code>分配值，若为真则分配为<code class="language-plaintext highlighter-rouge">blur</code>，若为假则分配为<code class="language-plaintext highlighter-rouge">shimmer</code>，其中若分配为<code class="language-plaintext highlighter-rouge">shimmer</code>则会使得在显示时呈现闪光特效。因此我们在最后添加一行代码，无论合适都给<code class="language-plaintext highlighter-rouge">_class</code>分配为<code class="language-plaintext highlighter-rouge">null</code>。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+<div class="language-html highlighter-rouge"><div class="code-header">
+        <span data-label-text="HTML"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>    
 </pre></td></tr></tbody></table></code></div></div>
@@ -961,21 +958,7 @@ end
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/">读后感-《长日将尽》</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</a>
+          <a href="/posts/Git/">Git指令学习</a>
         </li>
       
         
@@ -990,6 +973,20 @@ end
         
         <li class="text-truncate lh-lg">
           <a href="/posts/MATLAB/">Matlab</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/">ssh远程挂载文件目录</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
         </li>
       
     </ul>
@@ -1023,6 +1020,21 @@ end
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1036,6 +1048,96 @@ end
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -1065,6 +1167,15 @@ end
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%8C%82%E8%BD%BD/">挂载</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
@@ -1236,6 +1347,21 @@ end
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1249,6 +1375,96 @@ end
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -1278,6 +1494,15 @@ end
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/%E6%8C%82%E8%BD%BD/">挂载</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E6%9D%82%E9%A1%B9/">杂项</a>

@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-04-12T13:15:10+08:00</updated>
+  <updated>2024-04-18T08:36:32+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -20,11 +20,134 @@
 
   
   <entry>
+    <title>Git指令学习</title>
+    <link href="https://huang-cumt.github.io/posts/Git/" rel="alternate" type="text/html" title="Git指令学习" />
+    <published>2024-04-13T15:34:19+08:00</published>
+  
+    <updated>2024-04-13T15:34:19+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/Git/</id>
+    <content src="https://huang-cumt.github.io/posts/Git/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="其它" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      初始化
+
+git init
+
+上传
+
+git add .
+git commit -m “CommitMessage”
+git push
+
+拉取
+
+git fetch 与 git pull的区别
+
+其它
+
+
+  忽略文件
+
+
+touch .gitignore
+
+选择不追踪文件夹中的哪些文件。
+
+
+  创建/切换分支
+
+
+指定ssh密钥连接github
+
+Linux平台下执行sudo git push会出现的问题
+
+在Linux平台下执行sudo命令时
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>ssh远程挂载文件目录</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/" rel="alternate" type="text/html" title="ssh远程挂载文件目录" />
+    <published>2024-04-12T22:09:10+08:00</published>
+  
+    <updated>2024-04-12T22:09:10+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="杂谈" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      0. 前言
+
+当我们处理服务器上的数据时，上传或者下载显得很冗余且不便于编辑，此时我们可以将远程的文件目录通过 ssh 服务挂载到本地，从而在本地进行服务器端的文件编辑。
+
+在这里我们使用 SSHFS 来实现挂载。SSHFS（SSH Filesystem）是一个基于 FUSE 的文件系统客户端，用于通过 SSH 连接远程目录。SSHFS 使用的是 SFTP 协议，它是 SSH 的一个子系统，在大多数 SSH 服务器上默认启用。
+
+平台：Win11
+
+1. 具体实现
+
+必选
+
+WinFsp
+
+SSHFS-Win
+
+可选（提供GUI界面服务）
+SSHFS-Win Manager
+
+使用GUI服务
+
+安装完成后，打开SSHFS-Win Manager 软件，指定IP、用户名、授权方式即可进行连接。
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Matlab</title>
     <link href="https://huang-cumt.github.io/posts/MATLAB/" rel="alternate" type="text/html" title="Matlab" />
     <published>2024-04-10T09:36:10+08:00</published>
   
-    <updated>2024-04-12T11:30:03+08:00</updated>
+    <updated>2024-04-13T14:40:27+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/MATLAB/</id>
     <content src="https://huang-cumt.github.io/posts/MATLAB/" />
@@ -44,11 +167,12 @@
 
 
 
-      在MATLAB创建循环进度条
+      1. 在MATLAB创建循环进度条
 
 事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
 
 关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
+
 % Example 
 % Include forWaitbar.m
 N = 1000;
@@ -58,9 +182,11 @@ for i = 1:N
     mywaitbar.show_bar;
 end
 
+
 其中所需要的forWaitbar.m文件定义如下。我们使用了一个结构体来实现这一功能。
+
 classdef forWaitbar &amp;lt; handle
-    properties (...
+    proper...
     </summary>
   
 
@@ -72,7 +198,7 @@ classdef forWaitbar &amp;lt; handle
     <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读" />
     <published>2024-03-15T14:50:16+08:00</published>
   
-    <updated>2024-04-12T11:30:03+08:00</updated>
+    <updated>2024-04-13T14:40:27+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
@@ -100,12 +226,12 @@ classdef forWaitbar &amp;lt; handle
 
 发表时间：2023
 
-模型构建
+0. 模型构建
 
 针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,\cdots,x_N]\in \mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted
 cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 
-\[f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol{x}...
+\[f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol...
     </summary>
   
 
@@ -155,102 +281,13 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
   url: # Fill with your homepage
 
 
-对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome(https://fontawesome.com/)网站。
+对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome网站。
 其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。
 
-添加自定...
-    </summary>
-  
+添加自定义脚注
 
-  </entry>
-
-  
-  <entry>
-    <title>A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</title>
-    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" rel="alternate" type="text/html" title="A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读" />
-    <published>2023-06-21T13:56:37+08:00</published>
-  
-    <updated>2024-04-12T11:30:03+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/</id>
-    <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="科研记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
-
-期刊/会议：IEEE TRANSACTIONS ON Signal Processing
-
-发表时间：2017
-
-1. 问题建模
-
-在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目标的旁瓣所遮蔽；同时，为了减轻相近目标的分布式杂波的回波的影响，我们需要信号具有低的积分旁瓣电平（Integrated Sidelobe Level, ISL）。考虑一个相位编码序列$\boldsymbol{x}=[x_1,x_2,…,x_N]^T\in \mathbb{C} ^N$，其自相关函数$r_k$、PSL、ISL的定义如下。
-
-\[r_k=\sum_{i=1}^{N-1}{x_{i}^{...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>读后感-《长日将尽》</title>
-    <link href="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" rel="alternate" type="text/html" title="读后感-《长日将尽》" />
-    <published>2023-03-30T12:00:00+08:00</published>
-  
-    <updated>2024-04-12T11:30:03+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/</id>
-    <content src="https://huang-cumt.github.io/posts/%E8%AF%BB%E5%90%8E%E6%84%9F-%E9%95%BF%E6%97%A5%E5%B0%86%E5%B0%BD/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="个人记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      读后感
-
-作品简介
-
-长日将尽(The Remains  of the Day)是
-
-阅读感悟
-
-我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。
-
-这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关于伟大管家的定义，也是文中不断谈及的一点，他的心中对此有些见解并为之不断奋斗。
-
-可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。
-
-待到克林顿府的繁华散去，昔日...
+问题说明：由于图片引用至其它网站，希望。
+...
     </summary>
   
 

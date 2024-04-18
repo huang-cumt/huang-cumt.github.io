@@ -30,22 +30,24 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="404: Page not found" />
+<meta property="og:title" content="Git指令学习" />
+<meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Test" />
-<meta property="og:description" content="Test" />
-<link rel="canonical" href="https://huang-cumt.github.io/404.html" />
-<meta property="og:url" content="https://huang-cumt.github.io/404.html" />
+<meta name="description" content="初始化 git init 上传 git add . git commit -m “CommitMessage” git push 拉取 git fetch 与 git pull的区别 其它 忽略文件 touch .gitignore 选择不追踪文件夹中的哪些文件。 创建/切换分支 指定ssh密钥连接github Linux平台下执行sudo git push会出现的问题 在Linux平台下执行sudo命令时" />
+<meta property="og:description" content="初始化 git init 上传 git add . git commit -m “CommitMessage” git push 拉取 git fetch 与 git pull的区别 其它 忽略文件 touch .gitignore 选择不追踪文件夹中的哪些文件。 创建/切换分支 指定ssh密钥连接github Linux平台下执行sudo git push会出现的问题 在Linux平台下执行sudo命令时" />
+<link rel="canonical" href="https://huang-cumt.github.io/posts/Git/" />
+<meta property="og:url" content="https://huang-cumt.github.io/posts/Git/" />
 <meta property="og:site_name" content="Fish" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-13T15:34:19+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="404: Page not found" />
+<meta property="twitter:title" content="Git指令学习" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Test","headline":"404: Page not found","url":"https://huang-cumt.github.io/404.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-04-13T15:34:19+08:00","datePublished":"2024-04-13T15:34:19+08:00","description":"初始化 git init 上传 git add . git commit -m “CommitMessage” git push 拉取 git fetch 与 git pull的区别 其它 忽略文件 touch .gitignore 选择不追踪文件夹中的哪些文件。 创建/切换分支 指定ssh密钥连接github Linux平台下执行sudo git push会出现的问题 在Linux平台下执行sudo命令时","headline":"Git指令学习","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/Git/"},"url":"https://huang-cumt.github.io/posts/Git/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>404: Page not found | Fish
+  <title>Git指令学习 | Fish
   </title>
 
   <!--
@@ -101,6 +103,8 @@
 
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
   
 
   
@@ -438,8 +442,10 @@
           
         
           
+        
+          
             
-              <span>404: Page not found</span>
+              <span>Git指令学习</span>
             
 
           
@@ -453,7 +459,7 @@
     </button>
 
     <div id="topbar-title">
-      404: Page not found
+      Post
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link">
@@ -522,10 +528,85 @@
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
 
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
   
 
   
@@ -547,21 +628,208 @@
 
 
 <article class="px-1">
+  <header>
+    <h1 data-toc-skip>Git指令学习</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
   
-    
-    
-    <h1 class="dynamic-title">
-      404: Page not found
-    </h1>
-    <div class="content">
+  data-ts="1712993659"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Apr 13, 2024
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
       
 
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              
+                <a href="https://github.com/huang-cumt/">Xinyu Huang</a>
+                
+              
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
 
 
-<p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.</p>
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="90 words"
+>
+  <em>1 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <h3 id="初始化"><span class="me-2">初始化</span><a href="#初始化" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>git init</p>
+
+<h3 id="上传"><span class="me-2">上传</span><a href="#上传" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>git add .
+git commit -m “CommitMessage”
+git push</p>
+
+<h3 id="拉取"><span class="me-2">拉取</span><a href="#拉取" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>git fetch 与 git pull的区别</p>
+
+<h3 id="其它"><span class="me-2">其它</span><a href="#其它" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ol>
+  <li>忽略文件</li>
+</ol>
+
+<p>touch .gitignore</p>
+
+<p>选择不追踪文件夹中的哪些文件。</p>
+
+<ol>
+  <li>创建/切换分支</li>
+</ol>
+
+<h2 id="指定ssh密钥连接github"><span class="me-2">指定ssh密钥连接github</span><a href="#指定ssh密钥连接github" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Linux平台下执行sudo git push会出现的问题</p>
+
+<p>在Linux平台下执行sudo命令时</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/%E5%85%B6%E5%AE%83/">其它</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/git/"
+            class="post-tag no-text-decoration"
+          >Git</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
+      
+
+      <a href="http://service.weibo.com/share/share.php?title=Git%E6%8C%87%E4%BB%A4%E5%AD%A6%E4%B9%A0%20-%20Fish&url=https%3A%2F%2Fhuang-cumt.github.io%2Fposts%2FGit%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Weibo" aria-label="Weibo">
+        <i class="fa-fw fab fa-weibo"></i>
+      </a>
+    
+
+      
+
+      <a href="https://www.zhihu.com/" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="zhihu" aria-label="zhihu">
+        <i class="fa-fw fa-brands fa-zhihu"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
 
     </div>
-  
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
 </article>
 
 
@@ -826,12 +1094,94 @@
             </div>
 
             
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>ssh远程挂载文件目录</p>
+    </a>
+  
+
+  
+    <div class="btn btn-outline-primary disabled" aria-label="Newer">
+      <p>-</p>
+    </div>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+
             
 
             <!-- The Footer -->
@@ -1184,16 +1534,51 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/page.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 
