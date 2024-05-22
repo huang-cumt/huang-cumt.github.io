@@ -30,23 +30,24 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="About" />
+<meta property="og:title" content="Ubuntu" />
+<meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="关于我" />
-<meta property="og:description" content="关于我" />
-<link rel="canonical" href="https://huang-cumt.github.io/about/" />
-<meta property="og:url" content="https://huang-cumt.github.io/about/" />
+<meta name="description" content="1. 开机自启动脚本设置" />
+<meta property="og:description" content="1. 开机自启动脚本设置" />
+<link rel="canonical" href="https://huang-cumt.github.io/posts/Ubuntu/" />
+<meta property="og:url" content="https://huang-cumt.github.io/posts/Ubuntu/" />
 <meta property="og:site_name" content="Fish" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-05-22T16:55:34+08:00" />
+<meta property="article:published_time" content="2024-05-12T15:56:42+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
+<meta property="twitter:title" content="Ubuntu" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-05-22T16:55:34+08:00","datePublished":"2024-05-22T16:55:34+08:00","description":"关于我","headline":"About","name":"XinyuHuang","sameAs":["https://github.com/huang-cumt","https://twitter.com/username"],"url":"https://huang-cumt.github.io/about/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-12T15:56:42+08:00","datePublished":"2024-05-12T15:56:42+08:00","description":"1. 开机自启动脚本设置","headline":"Ubuntu","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/Ubuntu/"},"url":"https://huang-cumt.github.io/posts/Ubuntu/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>About | Fish
+  <title>Ubuntu | Fish
   </title>
 
   <!--
@@ -102,6 +103,8 @@
 
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
   
 
   
@@ -322,7 +325,7 @@
         </li>
         <!-- .nav-item -->
       
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="/about/" class="nav-link">
             <i class="fa-fw fas fa-info-circle"></i>
             
@@ -439,8 +442,10 @@
           
         
           
+        
+          
             
-              <span>About</span>
+              <span>Ubuntu</span>
             
 
           
@@ -454,7 +459,7 @@
     </button>
 
     <div id="topbar-title">
-      About
+      Post
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link">
@@ -591,35 +596,269 @@
 
 
 <article class="px-1">
+  <header>
+    <h1 data-toc-skip>Ubuntu</h1>
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
   
+  data-ts="1715500602"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  May 12, 2024
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              
+                <a href="https://github.com/huang-cumt/">Xinyu Huang</a>
+                
+              
+            
+          </em>
+        </span>
+
+        <!-- read time -->
+        <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="491 words"
+>
+  <em>2 min</em> read</span>
+
+      </div>
+      <!-- .d-flex -->
+    </div>
+    <!-- .post-meta -->
+  </header>
+
+  <div class="content">
+    <h2 id="1-开机自启动脚本设置"><span class="me-2">1. 开机自启动脚本设置</span><a href="#1-开机自启动脚本设置" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>你可以使用<code class="language-plaintext highlighter-rouge">sudo</code>命令来运行需要超级用户权限的脚本，并且可以通过修改<code class="language-plaintext highlighter-rouge">sudoers</code>文件来避免输入密码。同时，你可以通过<code class="language-plaintext highlighter-rouge">systemd</code>来设置开机自动运行脚本。以下是具体步骤：</p>
+
+<ol>
+  <li>
+    <p>打开终端，输入<code class="language-plaintext highlighter-rouge">sudo visudo</code>来编辑<code class="language-plaintext highlighter-rouge">sudoers</code>文件。</p>
+  </li>
+  <li>
+    <p>在文件末尾添加一行，格式为<code class="language-plaintext highlighter-rouge">username ALL=(ALL) NOPASSWD: /path/to/your/network.sh</code>，其中<code class="language-plaintext highlighter-rouge">username</code>是你的用户名，<code class="language-plaintext highlighter-rouge">/path/to/your/network.sh</code>是你的脚本的完整路径。这一行的意思是允许<code class="language-plaintext highlighter-rouge">username</code>在所有主机上以所有用户身份运行你的脚本，而不需要输入密码。</p>
+  </li>
+  <li>
+    <p>按<code class="language-plaintext highlighter-rouge">Ctrl+X</code>，然后按<code class="language-plaintext highlighter-rouge">Y</code>，最后按<code class="language-plaintext highlighter-rouge">Enter</code>来保存并退出。</p>
+  </li>
+  <li>
+    <p>创建一个新的<code class="language-plaintext highlighter-rouge">systemd</code>服务单元文件，例如<code class="language-plaintext highlighter-rouge">/etc/systemd/system/network.service</code>，并添加以下内容：</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Network script
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span><span class="nb">sudo</span> /path/to/your/network.sh
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre></td></tr></tbody></table></code></div></div>
+
+<ol>
+  <li>
+    <p>保存并退出，然后运行<code class="language-plaintext highlighter-rouge">sudo systemctl enable network.service</code>来启用服务。</p>
+  </li>
+  <li>
+    <p>重启你的电脑，你的脚本应该会在开机时自动运行。</p>
+  </li>
+</ol>
+
+<p>注意：这种方法具有一定的安全风险，因为它允许你的脚本以超级用户权限运行，而不需要输入密码。请确保你的脚本是安全的，不会被恶意修改。如果可能，最好找到一种不需要超级用户权限就能运行的方法。</p>
+
+<h2 id="2-切换lighdm3与gdm"><span class="me-2">2. 切换lighdm3与gdm</span><a href="#2-切换lighdm3与gdm" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>切换Wayland</p>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>nano /etc/gdm3/custom.conf
+<span class="nb">sudo </span>dpkg-reconfigure gdm3
+<span class="nb">sudo </span>service gdm3 restart
+</pre></td></tr></tbody></table></code></div></div>
+
+<pre><code class="language-tsconfig">WaylandEnable=false
+</code></pre>
+
+<div class="language-shell highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="o">[</span>Unit]
+Description <span class="o">=</span> Rj Network script
+<span class="nv">Wants</span><span class="o">=</span>network-online.target
+<span class="nv">After</span><span class="o">=</span>network-online.target
+
+<span class="o">[</span>Service]
+ExecStart <span class="o">=</span> <span class="nb">sudo</span> /etc/userscript/rjnet.sh 
+
+<span class="o">[</span>Install]
+WantedBy <span class="o">=</span> multi-user.target
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="3-环境变量配置"><span class="me-2">3. 环境变量配置</span><a href="#3-环境变量配置" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>环境变量配置存储在<code class="language-plaintext highlighter-rouge">.bashrc</code>文件中，使用<code class="language-plaintext highlighter-rouge">vim ~/.bashrc</code>即可编辑该文件。添加<code class="language-plaintext highlighter-rouge">export PATH=/opt/xxx/xxx:$PATH</code>至该文件即可，更改完毕使用<code class="language-plaintext highlighter-rouge">source ~/.bashrc</code>更新刚刚所完成的修改，环境变量即修改完毕。</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/other/">Other</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/ubuntu/"
+            class="post-tag no-text-decoration"
+          >Ubuntu</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">Share</span>
+  <span class="share-icons">
     
     
-    <h1 class="dynamic-title">
-      About
-    </h1>
-    <div class="content">
-      <h1 id="关于我">关于我</h1>
+    
 
-<p>learning_huang</p>
+    
 
-<p>关注学习、科研，更关注怎样更好地生活。</p>
+      
 
-<h2 id="个人经历"><span class="me-2">个人经历</span><a href="#个人经历" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+      <a href="http://service.weibo.com/share/share.php?title=Ubuntu%20-%20Fish&url=https%3A%2F%2Fhuang-cumt.github.io%2Fposts%2FUbuntu%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Weibo" aria-label="Weibo">
+        <i class="fa-fw fab fa-weibo"></i>
+      </a>
+    
 
-<p>2018.09~2022.06 中国矿业大学-本科-电子通信工程</p>
+      
 
-<p>2022.09~Now     中山大学-硕士-信息与通信工程</p>
+      <a href="https://www.zhihu.com/" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="zhihu" aria-label="zhihu">
+        <i class="fa-fw fa-brands fa-zhihu"></i>
+      </a>
+    
 
-<h2 id="学术成果"><span class="me-2">学术成果</span><a href="#学术成果" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<h2 id="联系方式"><span class="me-2">联系方式</span><a href="#联系方式" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<p>GitHub: https://github.com/huang-cumt</p>
-
-<p>Email: learning_huang@163.com</p>
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
 
     </div>
-  
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
 </article>
 
 
@@ -1134,12 +1373,285 @@
             </div>
 
             
+              
+              
+
+
+
+  <section id="toc-wrapper" class="ps-0 pe-4">
+    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1710319643"
+  data-df="ll"
+  
+>
+  Mar 13, 2024
+</time>
+
+              <h4 class="pt-0 my-2">博客搭建</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  配置说明
+
+修改左下角图标显示
+
+问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
+
+解决方案：
+
+修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。
+
+- type: email
+  icon: &quot;fas fa-envelope&quot;
+  noblank: true # open lin...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/MATLAB/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712712970"
+  data-df="ll"
+  
+>
+  Apr 10, 2024
+</time>
+
+              <h4 class="pt-0 my-2">Matlab</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  1. 在MATLAB创建循环进度条
+
+事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
+
+关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
+
+% Example 
+% Inc...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712930950"
+  data-df="ll"
+  
+>
+  Apr 12, 2024
+</time>
+
+              <h4 class="pt-0 my-2">ssh远程挂载文件目录</h4>
+              <div class="text-muted">
+                <p>
+                  
+
+
+
+
+
+                  0. 前言
+
+当我们处理服务器上的数据时，上传或者下载显得很冗余且不便于编辑，此时我们可以将远程的文件目录通过 ssh 服务挂载到本地，从而在本地进行服务器端的文件编辑。
+
+在这里我们使用 SSHFS 来实现挂载。SSHFS（SSH Filesystem）是一个基于 FUSE 的文件系统客户端，用于通过 SSH 连接远程目录。SSHFS 使用的是 SFTP 协议，它是 SSH 的一个子系统，...
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/MAA&Ubuntu/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Maa&ubuntu</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/WaveformDesign/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Waveformdesign</p>
+    </a>
+  
+</nav>
+
+            
+              
+              <!--  The comments switcher -->
+
+
             
 
             <!-- The Footer -->
@@ -1749,16 +2261,44 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/page.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 

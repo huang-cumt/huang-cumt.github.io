@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-04-18T08:36:32+08:00</updated>
+  <updated>2024-05-22T16:55:34+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -20,137 +20,14 @@
 
   
   <entry>
-    <title>Git指令学习</title>
-    <link href="https://huang-cumt.github.io/posts/Git/" rel="alternate" type="text/html" title="Git指令学习" />
-    <published>2024-04-13T15:34:19+08:00</published>
+    <title>公式推导</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" rel="alternate" type="text/html" title="公式推导" />
+    <published>2024-05-20T22:01:08+08:00</published>
   
-    <updated>2024-04-13T15:34:19+08:00</updated>
+    <updated>2024-05-20T22:01:08+08:00</updated>
   
-    <id>https://huang-cumt.github.io/posts/Git/</id>
-    <content src="https://huang-cumt.github.io/posts/Git/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="其它" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      初始化
-
-git init
-
-上传
-
-git add .
-git commit -m “CommitMessage”
-git push
-
-拉取
-
-git fetch 与 git pull的区别
-
-其它
-
-
-  忽略文件
-
-
-touch .gitignore
-
-选择不追踪文件夹中的哪些文件。
-
-
-  创建/切换分支
-
-
-指定ssh密钥连接github
-
-Linux平台下执行sudo git push会出现的问题
-
-在Linux平台下执行sudo命令时
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>ssh远程挂载文件目录</title>
-    <link href="https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/" rel="alternate" type="text/html" title="ssh远程挂载文件目录" />
-    <published>2024-04-12T22:09:10+08:00</published>
-  
-    <updated>2024-04-12T22:09:10+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/</id>
-    <content src="https://huang-cumt.github.io/posts/%E5%85%B6%E5%AE%83-%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="杂谈" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      0. 前言
-
-当我们处理服务器上的数据时，上传或者下载显得很冗余且不便于编辑，此时我们可以将远程的文件目录通过 ssh 服务挂载到本地，从而在本地进行服务器端的文件编辑。
-
-在这里我们使用 SSHFS 来实现挂载。SSHFS（SSH Filesystem）是一个基于 FUSE 的文件系统客户端，用于通过 SSH 连接远程目录。SSHFS 使用的是 SFTP 协议，它是 SSH 的一个子系统，在大多数 SSH 服务器上默认启用。
-
-平台：Win11
-
-1. 具体实现
-
-必选
-
-WinFsp
-
-SSHFS-Win
-
-可选（提供GUI界面服务）
-SSHFS-Win Manager
-
-使用GUI服务
-
-安装完成后，打开SSHFS-Win Manager 软件，指定IP、用户名、授权方式即可进行连接。
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Matlab</title>
-    <link href="https://huang-cumt.github.io/posts/MATLAB/" rel="alternate" type="text/html" title="Matlab" />
-    <published>2024-04-10T09:36:10+08:00</published>
-  
-    <updated>2024-04-13T14:40:27+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/MATLAB/</id>
-    <content src="https://huang-cumt.github.io/posts/MATLAB/" />
+    <id>https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" />
     <author>
       <name>xinyu</name>
     </author>
@@ -167,26 +44,20 @@ SSHFS-Win Manager
 
 
 
-      1. 在MATLAB创建循环进度条
-
-事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
-
-关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
-
-% Example 
-% Include forWaitbar.m
-N = 1000;
-mywaitbar = forWaitbar(N);
-for i = 1:N
-    pause(0.1);
-    mywaitbar.show_bar;
-end
-
-
-其中所需要的forWaitbar.m文件定义如下。我们使用了一个结构体来实现这一功能。
-
-classdef forWaitbar &amp;lt; handle
-    proper...
+      \(\begin{align}
+f(\boldsymbol{x}) &amp;amp;= 
+\sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
+\Re
+\left\{
+{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
+\right\}\\
+&amp;amp;=
+\Re
+\left\{
+{\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
+\right\}
+\end{align}\)
+其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$...
     </summary>
   
 
@@ -194,14 +65,14 @@ classdef forWaitbar &amp;lt; handle
 
   
   <entry>
-    <title>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读</title>
-    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" rel="alternate" type="text/html" title="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读" />
-    <published>2024-03-15T14:50:16+08:00</published>
+    <title>科研记录 论文阅读 Pfpa雷达</title>
+    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" rel="alternate" type="text/html" title="科研记录 论文阅读 Pfpa雷达" />
+    <published>2024-05-18T17:13:59+08:00</published>
   
-    <updated>2024-04-13T14:40:27+08:00</updated>
+    <updated>2024-05-22T16:51:21+08:00</updated>
   
-    <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/</id>
-    <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" />
+    <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/</id>
+    <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" />
     <author>
       <name>xinyu</name>
     </author>
@@ -220,18 +91,15 @@ classdef forWaitbar &amp;lt; handle
 
 
 
-      论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties
+      论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
 
-期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
+期刊/会议: IEEE Transactions on Aerospace and Electronic Systems
 
-发表时间：2023
+发表时间: 2024
 
-0. 模型构建
+0. 前言
 
-针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,\cdots,x_N]\in \mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted
-cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
-
-\[f(\boldsymbol{x}) = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} {\left|{\left( \boldsymbol{F}_N\boldsymbol...
+随机频率与脉冲重复间隔捷变(Random frequency and pulse repetition interval agile, RFPA)雷达信号有良好的低截获与抗干扰特性。但是其在距离维上存在着较多的旁瓣，这限制了它的应用。该文章提出了一种多时隙、宽间隔频率跳变序列(wide-gap frequency-hopping sequence, WGFHS)用于抑制距离旁瓣。频域分析显示其会遭到多个临近脉冲的回波能量泄露带来的影响，该文章...
     </summary>
   
 
@@ -239,14 +107,14 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 
   
   <entry>
-    <title>博客搭建</title>
-    <link href="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="alternate" type="text/html" title="博客搭建" />
-    <published>2024-03-13T16:47:23+08:00</published>
+    <title>Waveformdesign</title>
+    <link href="https://huang-cumt.github.io/posts/WaveformDesign/" rel="alternate" type="text/html" title="Waveformdesign" />
+    <published>2024-05-12T16:18:22+08:00</published>
   
-    <updated>2024-04-12T11:42:44+08:00</updated>
+    <updated>2024-05-12T16:18:22+08:00</updated>
   
-    <id>https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
-    <content src="https://huang-cumt.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" />
+    <id>https://huang-cumt.github.io/posts/WaveformDesign/</id>
+    <content src="https://huang-cumt.github.io/posts/WaveformDesign/" />
     <author>
       <name>xinyu</name>
     </author>
@@ -265,29 +133,109 @@ cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为：
 
 
 
-      配置说明
+      本文为《Radar Waveform Design Based On Optimization Theory》一书Chapter 4-Constrained radar code design for spectrally congested enviroments via quadratic optimization的学习总结。
 
-修改左下角图标显示
-
-问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式
-
-解决方案：
-
-修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。
-
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
-  url: # Fill with your homepage
+0. 波形设计常用约束
 
 
-对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome网站。
-其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。
+  检测概率约束
+\(\left\{
+\begin{array}{l}
+H_0: \boldsymbol{v} = \boldsymbol{n} \\
+H_1: \boldsymbol{v} = \alpha_T \boldsymbol{c}+\boldsymbol{n}
+\end{array}
+\right.\)
 
-添加自定义脚注
 
-问题说明：由于图片引用至其它网站，希望。
-...
+其中$\boldsymbol{n}$为复、零均值、圆对称高斯随机向量且有协方差矩阵$\mathbb{E}[\...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Ubuntu</title>
+    <link href="https://huang-cumt.github.io/posts/Ubuntu/" rel="alternate" type="text/html" title="Ubuntu" />
+    <published>2024-05-12T15:56:42+08:00</published>
+  
+    <updated>2024-05-12T15:56:42+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/Ubuntu/</id>
+    <content src="https://huang-cumt.github.io/posts/Ubuntu/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="Other" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 开机自启动脚本设置
+
+你可以使用sudo命令来运行需要超级用户权限的脚本，并且可以通过修改sudoers文件来避免输入密码。同时，你可以通过systemd来设置开机自动运行脚本。以下是具体步骤：
+
+
+  
+    打开终端，输入sudo visudo来编辑sudoers文件。
+  
+  
+    在文件末尾添加一行，格式为username ALL=(ALL) NOPASSWD: /path/to/your/network.sh，其中username是你的用户名，/path/to/your/network.sh是你的脚本的完整路径。这一行的意思是允许username在所有主机上以所有用户身份运行你的脚本，而不需要输入密码。
+  
+  
+    按Ctrl+X，然后按Y，最后按Enter来保存并退出。
+  
+  
+    创建一个新的systemd服务单元文件，例如/etc/sys...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Maa&amp;ubuntu</title>
+    <link href="https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/" rel="alternate" type="text/html" title="Maa&amp;amp;ubuntu" />
+    <published>2024-05-12T15:55:16+08:00</published>
+  
+    <updated>2024-05-12T15:55:16+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/</id>
+    <content src="https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="Other" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      0. 模拟器与容器选择
+
+1. MAA-cli安装与配置
+
+2. config文件结构
+
     </summary>
   
 
