@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-05-31T10:09:51+08:00</updated>
+  <updated>2024-05-31T10:10:45+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -82,7 +82,7 @@ ifconfig -a
     <link href="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" rel="alternate" type="text/html" title="公式推导" />
     <published>2024-05-20T22:01:08+08:00</published>
   
-    <updated>2024-05-20T22:01:08+08:00</updated>
+    <updated>2024-05-31T10:09:51+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/</id>
     <content src="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" />
@@ -128,7 +128,7 @@ f(\boldsymbol{x}) &amp;amp;=
     <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" rel="alternate" type="text/html" title="Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读" />
     <published>2024-05-18T17:13:59+08:00</published>
   
-    <updated>2024-05-22T16:51:21+08:00</updated>
+    <updated>2024-05-31T10:09:51+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" />
@@ -170,7 +170,7 @@ f(\boldsymbol{x}) &amp;amp;=
     <link href="https://huang-cumt.github.io/posts/WaveformDesign/" rel="alternate" type="text/html" title="Waveformdesign" />
     <published>2024-05-12T16:18:22+08:00</published>
   
-    <updated>2024-05-12T16:18:22+08:00</updated>
+    <updated>2024-05-31T10:09:51+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/WaveformDesign/</id>
     <content src="https://huang-cumt.github.io/posts/WaveformDesign/" />
