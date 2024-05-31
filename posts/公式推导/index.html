@@ -33,8 +33,8 @@
 <meta property="og:title" content="公式推导" />
 <meta name="author" content="Xinyu Huang" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="\(\begin{align} f(\boldsymbol{x}) &amp;= \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \Re \left\{ {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)} \right\}\\ &amp;= \Re \left\{ {\boldsymbol{x}}^H \boldsymbol{S} {\boldsymbol{x}} \right\} \end{align}\) 其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$\boldsymbol{S}=\boldsymbol{F}_N^H \varGamma\boldsymbol{F}_N$。" />
-<meta property="og:description" content="\(\begin{align} f(\boldsymbol{x}) &amp;= \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \Re \left\{ {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)} \right\}\\ &amp;= \Re \left\{ {\boldsymbol{x}}^H \boldsymbol{S} {\boldsymbol{x}} \right\} \end{align}\) 其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$\boldsymbol{S}=\boldsymbol{F}_N^H \varGamma\boldsymbol{F}_N$。" />
+<meta name="description" content="[\begin{align} f(\boldsymbol{x}) &amp;= \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \Re \left{ {\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)} \right} &amp;= \Re \left{ {\boldsymbol{x}}^H \boldsymbol{S} {\boldsymbol{x}} \right} \end{align}]" />
+<meta property="og:description" content="[\begin{align} f(\boldsymbol{x}) &amp;= \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \Re \left{ {\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)} \right} &amp;= \Re \left{ {\boldsymbol{x}}^H \boldsymbol{S} {\boldsymbol{x}} \right} \end{align}]" />
 <link rel="canonical" href="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" />
 <meta property="og:url" content="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" />
 <meta property="og:site_name" content="Fish" />
@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="公式推导" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-20T22:01:08+08:00","datePublished":"2024-05-20T22:01:08+08:00","description":"\\(\\begin{align} f(\\boldsymbol{x}) &amp;= \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\Re \\left\\{ {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)}^H \\varGamma_{\\alpha,f} {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)} \\right\\}\\\\ &amp;= \\Re \\left\\{ {\\boldsymbol{x}}^H \\boldsymbol{S} {\\boldsymbol{x}} \\right\\} \\end{align}\\) 其中有$\\varGamma = \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\varGamma_{\\alpha,f}$,$\\boldsymbol{S}=\\boldsymbol{F}_N^H \\varGamma\\boldsymbol{F}_N$。","headline":"公式推导","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/"},"url":"https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-20T22:01:08+08:00","datePublished":"2024-05-20T22:01:08+08:00","description":"[\\begin{align} f(\\boldsymbol{x}) &amp;= \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\Re \\left{ {\\left( \\boldsymbol{F}N\\boldsymbol{x} \\right)}^H \\varGamma{\\alpha,f} {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)} \\right} &amp;= \\Re \\left{ {\\boldsymbol{x}}^H \\boldsymbol{S} {\\boldsymbol{x}} \\right} \\end{align}]","headline":"公式推导","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/"},"url":"https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -624,7 +624,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="598 words"
+  title="625 words"
 >
   <em>3 min</em> read</span>
 
@@ -635,7 +635,7 @@
   </header>
 
   <div class="content">
-    <p>\(\begin{align}
+    \[\begin{align}
 f(\boldsymbol{x}) &amp;= 
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \Re
@@ -647,8 +647,9 @@ f(\boldsymbol{x}) &amp;=
 \left\{
 {\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
 \right\}
-\end{align}\)
-其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$\boldsymbol{S}=\boldsymbol{F}_N^H \varGamma\boldsymbol{F}_N$。</p>
+\end{align}\]
+
+<p>其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$\boldsymbol{S}=\boldsymbol{F}_N^H \varGamma\boldsymbol{F}_N$。</p>
 
 <p>由于循环谱的对称性，可以注意到实际上为一个实对称矩阵，即有$\varGamma^H=\varGamma$，由于$\boldsymbol{F}_N$为一个Hermite矩阵，因此我们有S为一个Hermite矩阵，因此目标函数事实上构成一个复二次型。</p>
 
@@ -656,7 +657,7 @@ f(\boldsymbol{x}) &amp;=
 
 <p>假设我们的目标信号是相位编码信号，$\boldsymbol{x} \in \mathbb{C}^{N\times 1}$，$\boldsymbol{S}\in \mathbb{C}^{N\times N}$</p>
 
-<p>\(\begin{aligned}
+\[\begin{aligned}
 f \left( \boldsymbol{x} \right) &amp;= \Re
 \left\{
 {\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
@@ -666,8 +667,9 @@ f \left( \boldsymbol{x} \right) &amp;= \Re
 \left\{
 \sum_{m=1}^{N}\sum_{n=1}^{N}x_m^H S_{m,n} x_n
 \right\}
-\end{aligned}\)
-因此我们有</p>
+\end{aligned}\]
+
+<p>因此我们有</p>
 
 \[\begin{aligned}
 f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \left( {x_m^H S_{m,n} x_n} \right) + \Re \left( x_k^H S_{k,k} x_k \right) 
@@ -681,18 +683,28 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
 
 <p>故可以得到</p>
 
-<p>\(f\left(x_{k,r},x_{k,i}\right)=a_k (x_{k,r}^2+x_{k,i}^2) + b_k x_{k,r} + c_k x_{k,i} + d_k\)
-其中有
-\(\begin{aligned}
+\[f\left(x_{k,r},x_{k,i}\right)=a_k (x_{k,r}^2+x_{k,i}^2) + b_k x_{k,r} + c_k x_{k,i} + d_k\]
+
+<p>其中有</p>
+
+\[\begin{aligned}
   a_k &amp;= \Re \left( S_{k,k} \right) \\
   b_k &amp;= \sum_{n=1,n\neq k}^{N}\Re\left( S_{k,n}x_n\right) + \sum_{m=1,m\neq k}^{N}\Re \left( x_m^H S_{m,k}\right)\\
   c_k &amp;= \sum_{n=1,n\neq k}^{N}\Im\left( S_{k,n}x_n\right) - \sum_{m=1,m\neq k}^{N}\Im \left( x_m^H S_{m,k}\right) \\
   d_k &amp;= \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \left( {x_m^H S_{m,n} x_n} \right) 
-\end{aligned}\)</p>
+\end{aligned}\]
 
-<p>带入有
-\(f\left(\beta_k\right) = \frac{a_k \beta_k^4+\left(2a_k-c_k+d_k\right)\beta_k^2+2b_k\beta_k+\left(a_k+c_k+d_k\right)}{1+\beta_k^2}\)
-这是一个典型的分式规划问题，我们可以使用Dinkelbach算法进行求解。由于分子为四阶多项式，分母为二阶多项式，其总是存在极值。</p>
+<p>带入有</p>
+
+\[f\left(\beta_k\right) = \frac{a_k \beta_k^4+\left(2a_k-c_k+d_k\right)\beta_k^2+2b_k\beta_k+\left(a_k+c_k+d_k\right)}{1+\beta_k^2}\]
+
+<p>显然，</p>
+
+\[f^\prime (\beta_k) = \frac{4a_k\beta_k^5-2a_k\beta_k^4-2b_k\beta_k^2+(2a_k-4c_k)\beta_k+2b_k}{(1+\beta_k^2)^2}\]
+
+<p>分母恒为正数，可以直接求得分子的零点即为</p>
+
+<p>这是一个典型的分式规划问题，我们可以使用Dinkelbach算法进行求解。由于分子为四阶多项式，分母为二阶多项式，其总是存在极值。</p>
 
 <blockquote>
   <p>注意在这里$a_k$有可能取负值，针对于负值情况，此时$f(\beta_k)$没有最小值，因为其在正负无穷两端都趋向于负无穷。</p>
@@ -716,7 +728,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
   <li>Step 3: 计算$\lambda_k= \frac{g(\beta_k)}{h(\beta_k)}$，跳转至Step 1</li>
   <li>Step 4: $\beta^* = \beta_k$</li>
 </ul>
-
 
   </div>
 
@@ -820,14 +831,14 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">科研记录 论文阅读 Pfpa雷达</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">Matlab</a>
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
         
@@ -926,6 +937,45 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1127,59 +1177,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1235,8 +1232,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
-    
-      
     
   
     
@@ -1269,6 +1264,9 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
@@ -1285,9 +1283,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
@@ -1365,14 +1360,18 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>科研记录 论文阅读 Pfpa雷达</p>
+      <p>Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</p>
     </a>
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Newer">
-      <p>-</p>
-    </div>
+    <a
+      href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Ubuntu网卡debug</p>
+    </a>
   
 </nav>
 
@@ -1490,6 +1489,45 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1691,59 +1729,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1799,8 +1784,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
     
     
     
-    
-      
     
   
     
@@ -1833,6 +1816,9 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
@@ -1849,9 +1835,6 @@ f\left( x_k \right) = &amp; \sum_{m=1,m\neq k}^{N} \sum_{n=1,n\neq k}^{N} \Re \l
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>

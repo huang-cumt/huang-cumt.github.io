@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-05-22T16:55:34+08:00</updated>
+  <updated>2024-05-31T10:09:51+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Ubuntu网卡debug</title>
+    <link href="https://huang-cumt.github.io/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/" rel="alternate" type="text/html" title="Ubuntu网卡debug" />
+    <published>2024-05-24T14:31:18+08:00</published>
+  
+    <updated>2024-05-24T14:31:18+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/</id>
+    <content src="https://huang-cumt.github.io/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="Other" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      0. 问题描述
+
+系统: Ubuntu 20.04
+内核版本： 6.5.0-35-generic
+
+近期在主机上新增了一块nvme固态硬盘，新装上之后有线网卡不能正常使用，wifi可以正常使用。但是一旦移除新增的硬盘，网络又可以正常使用了。下附个人解决思路与方案。
+
+先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置文件中的网卡名称与实际网卡名称并不匹配，因此不能正确加载网卡配置。
+
+解决思路：
+
+
+  主机安装了双系统，切换到Windows后发现有线网络是可以正常使用的，排除硬件层面问题。
+  重新安装网卡驱动，问题仍然存在，排除驱动问题。
+  在不断重启中发现，有时会直接不显示网卡。
+
+
+对于3.中问题，解决方案如下:
+# 查看启用的网卡
+ifconfig
+# 查看所有网卡
+ifconfig -a
+
+
+可...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -44,7 +102,7 @@
 
 
 
-      \(\begin{align}
+      \[\begin{align}
 f(\boldsymbol{x}) &amp;amp;= 
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \Re
@@ -56,8 +114,9 @@ f(\boldsymbol{x}) &amp;amp;=
 \left\{
 {\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
 \right\}
-\end{align}\)
-其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$...
+\end{align}\]
+
+其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,...
     </summary>
   
 
@@ -65,8 +124,8 @@ f(\boldsymbol{x}) &amp;amp;=
 
   
   <entry>
-    <title>科研记录 论文阅读 Pfpa雷达</title>
-    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" rel="alternate" type="text/html" title="科研记录 论文阅读 Pfpa雷达" />
+    <title>Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</title>
+    <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" rel="alternate" type="text/html" title="Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读" />
     <published>2024-05-18T17:13:59+08:00</published>
   
     <updated>2024-05-22T16:51:21+08:00</updated>
@@ -197,45 +256,6 @@ H_1: \boldsymbol{v} = \alpha_T \boldsymbol{c}+\boldsymbol{n}
   
   
     创建一个新的systemd服务单元文件，例如/etc/sys...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Maa&amp;ubuntu</title>
-    <link href="https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/" rel="alternate" type="text/html" title="Maa&amp;amp;ubuntu" />
-    <published>2024-05-12T15:55:16+08:00</published>
-  
-    <updated>2024-05-12T15:55:16+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/</id>
-    <content src="https://huang-cumt.github.io/posts/MAA&amp;Ubuntu/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="Other" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      0. 模拟器与容器选择
-
-1. MAA-cli安装与配置
-
-2. config文件结构
-
     </summary>
   
 

@@ -558,6 +558,76 @@
 <div id="post-list" class="flex-grow-1 px-xl-1">
   
     <article class="card-wrapper card">
+      <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/" class="post-preview row g-0 flex-md-row-reverse">
+        
+
+        
+
+        <div class="col-md-12">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">Ubuntu网卡debug</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>
+                
+
+
+
+
+
+                0. 问题描述
+
+系统: Ubuntu 20.04
+内核版本： 6.5.0-35-generic
+
+近期在主机上新增了一块nvme固态硬盘，新装上之后有线网卡不能正常使用，wifi可以正常使用。但是一旦移除新增的硬盘，网络又可以正常使用了。下附个人解决思路与方案。
+
+先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置...
+              </p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1716532278"
+  data-df="ll"
+  
+>
+  May 24, 2024
+</time>
+
+
+                <!-- categories -->
+                
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    
+                      Other
+                  </span>
+                
+              </div>
+
+              
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  
+    <article class="card-wrapper card">
       <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" class="post-preview row g-0 flex-md-row-reverse">
         
 
@@ -575,12 +645,12 @@
 
 
 
-                \(\begin{align}
+                [\begin{align}
 f(\boldsymbol{x}) &amp;amp;= 
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \Re
-\left\{
-{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsym...
+\left{
+{\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{...
               </p>
             </div>
 
@@ -627,7 +697,7 @@ f(\boldsymbol{x}) &amp;amp;=
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">科研记录 论文阅读 Pfpa雷达</h1>
+            <h1 class="card-title my-2 mt-md-0">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</h1>
 
             <div class="card-text content mt-0 mb-3">
               <p>
@@ -1101,7 +1171,7 @@ Linux平台下执行sudo git p...
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      其它
+                      Other
                   </span>
                 
               </div>
@@ -1160,76 +1230,6 @@ Linux平台下执行sudo git p...
   
 >
   Apr 12, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Other
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/MATLAB/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Matlab</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                1. 在MATLAB创建循环进度条
-
-事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
-
-关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
-
-% Example 
-% Inc...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1712712970"
-  data-df="ll"
-  
->
-  Apr 10, 2024
 </time>
 
 
@@ -1361,14 +1361,14 @@ Linux平台下执行sudo git p...
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">科研记录 论文阅读 Pfpa雷达</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">Matlab</a>
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
         
@@ -1467,6 +1467,45 @@ Linux平台下执行sudo git p...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1668,59 +1707,6 @@ Linux平台下执行sudo git p...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1776,8 +1762,6 @@ Linux平台下执行sudo git p...
     
     
     
-    
-      
     
   
     
@@ -1810,6 +1794,9 @@ Linux平台下执行sudo git p...
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
@@ -1826,9 +1813,6 @@ Linux平台下执行sudo git p...
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
@@ -1958,6 +1942,45 @@ Linux平台下执行sudo git p...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -2159,59 +2182,6 @@ Linux平台下执行sudo git p...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2267,8 +2237,6 @@ Linux平台下执行sudo git p...
     
     
     
-    
-      
     
   
     
@@ -2301,6 +2269,9 @@ Linux平台下执行sudo git p...
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
@@ -2317,9 +2288,6 @@ Linux平台下执行sudo git p...
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/ubuntu/">Ubuntu</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
