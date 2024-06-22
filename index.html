@@ -1,5 +1,37 @@
 <!doctype html>
 
+<canvas
+id="glcanvas"
+style="
+width: 100px;
+height: 100px;
+position: fixed;
+top: 100;
+bottom: 0;
+left: 100;
+right: 0;
+"
+>
+</canvas>
+<script type="text/javascript" src="/assets/javascripts/live2d.min.js"></script>
+<script type="text/javascript" src="/assets/javascripts/Simple.js"></script>
+<script type="text/javascript">
+  Simple();
+</script>
+
+<body onload="Simple()">
+  <canvas id="glcanvas" width="512px" height="512px" style="border:dashed 1px #CCC"></canvas>
+
+  <div id="myconsole" style="color:#BBB">---- Log ----</div>
+
+  <!-- Live2D Library -->
+  <script src="../../lib/live2d.min.js"></script>
+
+  <!-- User's Script -->
+  <script src="src/Simple.js"></script>
+</body>
+
+
 
 
 
@@ -70,37 +102,49 @@
 <meta name="theme-color" content="#ffffff">
 
 
+  <!-- Resource Hints -->
   
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" >
+      
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
-    
-      <link rel="preconnect" href="https://cdn.jsdelivr.net" >
-      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
-    
-      <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
-      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+      
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+      
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+      
     
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
   
 
   <!-- GA -->
   
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-
+  <!-- Theme style -->
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  <!-- Web Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+  <!-- 3rd-party Dependencies -->
 
   
 
@@ -134,54 +178,34 @@
     }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
+      let self = this;this.sysDarkPrefers.addEventListener('change', () => {
         if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
           self.clearMode();
         }
-
         self.notify();
       });
-    } /* constructor() */
+
+      if (!this.hasMode) {
+        return;
+      }
+
+      if (this.isDarkMode) {
+        this.setDark();
+      } else {
+        this.setLight();
+      }
+    }
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
     }
 
-    get isSysDarkPrefer() {
+    get isPreferDark() {
       return this.sysDarkPrefers.matches;
     }
 
     get isDarkMode() {
       return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
     }
 
     get hasMode() {
@@ -190,14 +214,11 @@
 
     get mode() {
       return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
+    }get modeStatus() {
+      if (this.hasMode) {
+        return this.mode;
       } else {
-        return ModeToggle.LIGHT_MODE;
+        return this.isPreferDark ? ModeToggle.DARK_MODE : ModeToggle.LIGHT_MODE;
       }
     }
 
@@ -214,10 +235,7 @@
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
+    }notify() {
       window.postMessage(
         {
           direction: ModeToggle.ID,
@@ -229,21 +247,9 @@
 
     flipMode() {
       if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
+        this.clearMode();
       } else {
-        if (this.isSysDarkPrefer) {
+        if (this.isPreferDark) {
           this.setLight();
         } else {
           this.setDark();
@@ -251,8 +257,8 @@
       }
 
       this.notify();
-    } /* flipMode() */
-  } /* ModeToggle */
+    }
+  }
 
   const modeToggle = new ModeToggle();
 </script>
@@ -334,7 +340,7 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
-      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
       </button>
 
@@ -446,7 +452,7 @@
       <i class="fas fa-search fa-fw"></i>
     </button>
 
-    <search class="align-items-center ms-3 ms-lg-0">
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
       <i class="fas fa-search fa-fw"></i>
       <input
         class="form-control"
@@ -558,6 +564,76 @@
 <div id="post-list" class="flex-grow-1 px-xl-1">
   
     <article class="card-wrapper card">
+      <a href="/posts/HPC%E5%AD%A6%E4%B9%A0/" class="post-preview row g-0 flex-md-row-reverse">
+        
+
+        
+
+        <div class="col-md-12">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">Hpc学习</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>0. HPC(High Performance Computing)高性能计算学习记录
+
+参考链接
+
+1. 尝试使用std::thread优化向量加法与向量点乘运算
+
+
+  
+    C/C++ 语言。
+  
+  
+    [] 多线程与锁（std::thread, pthread）
+  
+
+
+在c++中，我们可以使用std::thread类来创建线程并进行运算，我们不能或许各个子线程的返回...</p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1718353864"
+  data-df="ll"
+  
+>
+  Jun 14, 2024
+</time>
+
+
+                <!-- categories -->
+                
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    
+                      Learning
+                  </span>
+                
+              </div>
+
+              
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  
+    <article class="card-wrapper card">
       <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/" class="post-preview row g-0 flex-md-row-reverse">
         
 
@@ -568,22 +644,14 @@
             <h1 class="card-title my-2 mt-md-0">Ubuntu网卡debug</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                0. 问题描述
+              <p>0. 问题描述
 
 系统: Ubuntu 20.04
 内核版本： 6.5.0-35-generic
 
 近期在主机上新增了一块nvme固态硬盘，新装上之后有线网卡不能正常使用，wifi可以正常使用。但是一旦移除新增的硬盘，网络又可以正常使用了。下附个人解决思路与方案。
 
-先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置...
-              </p>
+先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -628,6 +696,61 @@
     </article>
   
     <article class="card-wrapper card">
+      <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/" class="post-preview row g-0 flex-md-row-reverse">
+        
+
+        
+
+        <div class="col-md-12">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">公式推导2</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>1. 约束与目标函数定义，问题初步建模
+\(\begin{align}
+f(\boldsymbol{x}) &amp;amp;=
+\sum_{\alpha}\sum_{f}{\omega_{\alpha}}
+\Re
+\left\{
+{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \bolds...</p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1716213668"
+  data-df="ll"
+  
+>
+  May 20, 2024
+</time>
+
+
+                <!-- categories -->
+                
+              </div>
+
+              
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  
+    <article class="card-wrapper card">
       <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" class="post-preview row g-0 flex-md-row-reverse">
         
 
@@ -638,20 +761,12 @@
             <h1 class="card-title my-2 mt-md-0">公式推导</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                [\begin{align}
+              <p>[\begin{align}
 f(\boldsymbol{x}) &amp;amp;= 
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \Re
 \left{
-{\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{...
-              </p>
+{\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -700,14 +815,7 @@ f(\boldsymbol{x}) &amp;amp;=
             <h1 class="card-title my-2 mt-md-0">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
+              <p>论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
 
 期刊/会议: IEEE Transactions on Aerospace and Electronic Systems
 
@@ -715,8 +823,7 @@ f(\boldsymbol{x}) &amp;amp;=
 
 0. 前言
 
-随机频率与脉冲重复间隔捷变(Random fr...
-              </p>
+随机频率与脉冲重复间隔捷变(Random fr...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -761,75 +868,6 @@ f(\boldsymbol{x}) &amp;amp;=
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/WaveformDesign/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Waveformdesign</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                本文为《Radar Waveform Design Based On Optimization Theory》一书Chapter 4-Constrained radar code design for spectrally congested enviroments via quadratic optimization的学习总结。
-
-0. 波形设计常用约束
-
-
-  检测概率约束
-\(\lef...
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1715501902"
-  data-df="ll"
-  
->
-  May 12, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      学习记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
       <a href="/posts/Ubuntu/" class="post-preview row g-0 flex-md-row-reverse">
         
 
@@ -840,14 +878,7 @@ f(\boldsymbol{x}) &amp;amp;=
             <h1 class="card-title my-2 mt-md-0">Ubuntu</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                1. 开机自启动脚本设置
+              <p>1. 开机自启动脚本设置
 
 你可以使用sudo命令来运行需要超级用户权限的脚本，并且可以通过修改sudoers文件来避免输入密码。同时，你可以通过systemd来设置开机自动运行脚本。以下是具体步骤：
 
@@ -856,8 +887,7 @@ f(\boldsymbol{x}) &amp;amp;=
     打开终端，输入sudo visudo来编辑sudoers文件。
   
   
-    在文件末尾添加一行，格式为username ALL=(ALL) NOPASSWD: /pa...
-              </p>
+    在文件末尾添加一行，格式为username ALL=(ALL) NOPASSWD: /pa...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -912,20 +942,11 @@ f(\boldsymbol{x}) &amp;amp;=
             <h1 class="card-title my-2 mt-md-0">Maa&ubuntu</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                0. 模拟器与容器选择
+              <p>0. 模拟器与容器选择
 
 1. MAA-cli安装与配置
 
-2. config文件结构
-
-              </p>
+2. config文件结构</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -970,129 +991,6 @@ f(\boldsymbol{x}) &amp;amp;=
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/SDP%E4%B8%8E%E7%A7%A9%E4%B8%80%E7%BA%A6%E6%9D%9F/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Sdp与秩一约束</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                0. SDR(Semi-definite Relaxation)半定松弛技术
-
-
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1715500362"
-  data-df="ll"
-  
->
-  May 12, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      学习记录
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/ADMM%E4%B8%8EQCQP/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Admm与qcqp</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                
-
-              </p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1715443200"
-  data-df="ll"
-  
->
-  May 12, 2024
-</time>
-
-
-                <!-- categories -->
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
       <a href="/posts/Git/" class="post-preview row g-0 flex-md-row-reverse">
         
 
@@ -1103,14 +1001,7 @@ f(\boldsymbol{x}) &amp;amp;=
             <h1 class="card-title my-2 mt-md-0">Git指令学习</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                初始化
+              <p>初始化
 
 git init
 
@@ -1140,8 +1031,7 @@ touch .gitignore
 
 指定ssh密钥连接github
 
-Linux平台下执行sudo git p...
-              </p>
+Linux平台下执行sudo git p...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -1196,19 +1086,11 @@ Linux平台下执行sudo git p...
             <h1 class="card-title my-2 mt-md-0">ssh远程挂载文件目录</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>
-                
-
-
-
-
-
-                0. 前言
+              <p>0. 前言
 
 当我们处理服务器上的数据时，上传或者下载显得很冗余且不便于编辑，此时我们可以将远程的文件目录通过 ssh 服务挂载到本地，从而在本地进行服务器端的文件编辑。
 
-在这里我们使用 SSHFS 来实现挂载。SSHFS（SSH Filesystem）是一个基于 FUSE 的文件系统客户端，用于通过 SSH 连接远程目录。SSHFS 使用的是 SFTP 协议，它是 SSH 的一个子系统，...
-              </p>
+在这里我们使用 SSHFS 来实现挂载。SSHFS（SSH Filesystem）是一个基于 FUSE 的文件系统客户端，用于通过 SSH 连接远程目录。SSHFS 使用的是 SFTP 协议，它是 SSH 的一个子系统，...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -1230,6 +1112,68 @@ Linux平台下执行sudo git p...
   
 >
   Apr 12, 2024
+</time>
+
+
+                <!-- categories -->
+                
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    
+                      Other
+                  </span>
+                
+              </div>
+
+              
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  
+    <article class="card-wrapper card">
+      <a href="/posts/MATLAB/" class="post-preview row g-0 flex-md-row-reverse">
+        
+
+        
+
+        <div class="col-md-12">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">MATLAB使用心得汇总</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>1. 在MATLAB创建循环进度条
+
+事实上，MATLAB自带waitbar函数可以使用图窗显示进度条，可是当我们使用MATLAB提供的API调用其进行计算时，图窗并不能够显示（如使用VScode中的matlab插件），此时运行时间较长的程序则需要我们自己创建进度条以用于打印输出。
+
+关于这一点，我们可以使用MATLAB中的结构体实现这一功能，使用示例为：
+
+% Example 
+% Inc...</p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1712712970"
+  data-df="ll"
+  
+>
+  Apr 10, 2024
 </time>
 
 
@@ -1361,28 +1305,14 @@ Linux平台下执行sudo git p...
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/Git/">Git指令学习</a>
+          <a href="/posts/HPC%E5%AD%A6%E4%B9%A0/">Hpc学习</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/WaveformDesign/">Waveformdesign</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">MATLAB使用心得汇总</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
@@ -1390,6 +1320,20 @@ Linux平台下执行sudo git p...
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/">公式推导</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/">公式推导2</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
     </ul>
@@ -1453,11 +1397,6 @@ Linux平台下执行sudo git p...
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1706,69 +1645,6 @@ Linux平台下执行sudo git p...
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1800,22 +1676,19 @@ Linux平台下执行sudo git p...
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -1860,7 +1733,14 @@ Linux平台下执行sudo git p...
     
   </p>
 
-  <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  <p>Using the <a
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="v7.0.1"
+        href="https://github.com/cotes2020/jekyll-theme-chirpy"
+        target="_blank"
+        rel="noopener"
+      >Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
   </p>
 </footer>
 
@@ -1869,7 +1749,7 @@ Linux平台下执行sudo git p...
 
         <!-- The Search results -->
 
-<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
   <div class="col-11 content">
     <div id="search-hints">
       <!-- The trending tags list -->
@@ -1928,11 +1808,6 @@ Linux平台下执行sudo git p...
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -2181,69 +2056,6 @@ Linux平台下执行sudo git p...
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2275,22 +2087,19 @@ Linux平台下执行sudo git p...
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -2416,30 +2225,16 @@ Linux平台下执行sudo git p...
 
   
 
-  
-    
-
-    
-
-  
-
-  
-    
-
-    
-
-  
 
 
-
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/dayjs@1.11.11/dayjs.min.js,npm/dayjs@1.11.11/locale/en.min.js,npm/dayjs@1.11.11/plugin/relativeTime.min.js,npm/dayjs@1.11.11/plugin/localizedFormat.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/home.min.js"></script>
+<script src="/assets/js/dist/home.min.js"></script>
 
 
 
@@ -2457,9 +2252,7 @@ Linux平台下执行sudo git p...
 
 
 
-<script>
-  /* Note: dependent library will be loaded in `js-selector.html` */
-  SimpleJekyllSearch({
+<script>SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
     json: '/assets/js/data/search.json',

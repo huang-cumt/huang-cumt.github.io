@@ -4,7 +4,7 @@
   <id>https://huang-cumt.github.io/</id>
   <title>Fish</title>
   <subtitle>Test</subtitle>
-  <updated>2024-06-01T13:16:53+08:00</updated>
+  <updated>2024-06-22T18:05:36+08:00</updated>
   <author>
     <name>XinyuHuang</name>
     <uri>https://huang-cumt.github.io/</uri>
@@ -17,6 +17,51 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Hpc学习</title>
+    <link href="https://huang-cumt.github.io/posts/HPC%E5%AD%A6%E4%B9%A0/" rel="alternate" type="text/html" title="Hpc学习" />
+    <published>2024-06-14T16:31:04+08:00</published>
+  
+    <updated>2024-06-14T16:31:04+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/HPC%E5%AD%A6%E4%B9%A0/</id>
+    <content src="https://huang-cumt.github.io/posts/HPC%E5%AD%A6%E4%B9%A0/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+    <category term="Learning" />
+    
+  
+
+  <summary>0. HPC(High Performance Computing)高性能计算学习记录
+
+参考链接
+
+1. 尝试使用std::thread优化向量加法与向量点乘运算
+
+
+  
+    C/C++ 语言。
+  
+  
+    [] 多线程与锁（std::thread, pthread）
+  
+
+
+在c++中，我们可以使用std::thread类来创建线程并进行运算，我们不能或许各个子线程的返回值，因此我们可以通过传递参数地址的形式来获取我们所感兴趣的子线程的变量值。
+在线程中，所谓锁的概念事实上是由于子进程可能同时进行导致的内存读写问题所引入的机制。对于一块内存多个进行无法同时对其进行读写操作，因此如何避免可能会出现的多个线程同时访问同一块内存区域所带来的错误，因此引入了锁机制。
+
+
+  [] SIMD 指令的使用
+  [] OpenMP 的使用
+由于有部分C++基础，选择使用str:...</summary>
+
+  </entry>
 
   
   <entry>
@@ -38,15 +83,7 @@
     
   
 
-  
-    <summary>
-      
-
-
-
-
-
-      0. 问题描述
+  <summary>0. 问题描述
 
 系统: Ubuntu 20.04
 内核版本： 6.5.0-35-generic
@@ -70,9 +107,44 @@ ifconfig
 ifconfig -a
 
 
-可...
-    </summary>
+可...</summary>
+
+  </entry>
+
   
+  <entry>
+    <title>公式推导2</title>
+    <link href="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/" rel="alternate" type="text/html" title="公式推导2" />
+    <published>2024-05-20T22:01:08+08:00</published>
+  
+    <updated>2024-05-20T22:01:08+08:00</updated>
+  
+    <id>https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/</id>
+    <content src="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/" />
+    <author>
+      <name>xinyu</name>
+    </author>
+
+  
+    
+  
+
+  <summary>1. 约束与目标函数定义，问题初步建模
+\(\begin{align}
+f(\boldsymbol{x}) &amp;amp;amp;=
+\sum_{\alpha}\sum_{f}{\omega_{\alpha}}
+\Re
+\left\{
+{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
+\right\}\\
+&amp;amp;amp;=
+\Re
+\left\{
+{\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
+\right\}
+\end{align}\)
+
+其中有$\varGamma=\sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGa...</summary>
 
   </entry>
 
@@ -82,7 +154,7 @@ ifconfig -a
     <link href="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" rel="alternate" type="text/html" title="公式推导" />
     <published>2024-05-20T22:01:08+08:00</published>
   
-    <updated>2024-05-31T10:09:51+08:00</updated>
+    <updated>2024-05-20T22:01:08+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/</id>
     <content src="https://huang-cumt.github.io/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/" />
@@ -94,31 +166,21 @@ ifconfig -a
     
   
 
-  
-    <summary>
-      
-
-
-
-
-
-      \[\begin{align}
-f(\boldsymbol{x}) &amp;amp;= 
+  <summary>[\begin{align}
+f(\boldsymbol{x}) &amp;amp;amp;= 
 \sum_{\alpha}\sum_{f}{\omega_{\alpha}} 
 \Re
-\left\{
-{\left( \boldsymbol{F}_N\boldsymbol{x} \right)}^H \varGamma_{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
-\right\}\\
-&amp;amp;=
+\left{
+{\left( \boldsymbol{F}N\boldsymbol{x} \right)}^H \varGamma{\alpha,f} {\left( \boldsymbol{F}_N\boldsymbol{x} \right)}
+\right}
+&amp;amp;amp;=
 \Re
-\left\{
+\left{
 {\boldsymbol{x}}^H  \boldsymbol{S}  {\boldsymbol{x}}
-\right\}
-\end{align}\]
+\right}
+\end{align}]
 
-其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,...
-    </summary>
-  
+其中有$\varGamma = \sum_{\alpha}\sum_{f}{\omega_{\alpha}} \varGamma_{\alpha,f}$,$\boldsymb...</summary>
 
   </entry>
 
@@ -128,7 +190,7 @@ f(\boldsymbol{x}) &amp;amp;=
     <link href="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" rel="alternate" type="text/html" title="Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读" />
     <published>2024-05-18T17:13:59+08:00</published>
   
-    <updated>2024-05-31T10:09:51+08:00</updated>
+    <updated>2024-05-18T17:13:59+08:00</updated>
   
     <id>https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/</id>
     <content src="https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" />
@@ -142,15 +204,7 @@ f(\boldsymbol{x}) &amp;amp;=
     
   
 
-  
-    <summary>
-      
-
-
-
-
-
-      论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
+  <summary>论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
 
 期刊/会议: IEEE Transactions on Aerospace and Electronic Systems
 
@@ -158,106 +212,7 @@ f(\boldsymbol{x}) &amp;amp;=
 
 0. 前言
 
-随机频率与脉冲重复间隔捷变(Random frequency and pulse repetition interval agile, RFPA)雷达信号有良好的低截获与抗干扰特性。但是其在距离维上存在着较多的旁瓣，这限制了它的应用。该文章提出了一种多时隙、宽间隔频率跳变序列(wide-gap frequency-hopping sequence, WGFHS)用于抑制距离旁瓣。频域分析显示其会遭到多个临近脉冲的回波能量泄露带来的影响，该文章...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Waveformdesign</title>
-    <link href="https://huang-cumt.github.io/posts/WaveformDesign/" rel="alternate" type="text/html" title="Waveformdesign" />
-    <published>2024-05-12T16:18:22+08:00</published>
-  
-    <updated>2024-05-31T10:09:51+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/WaveformDesign/</id>
-    <content src="https://huang-cumt.github.io/posts/WaveformDesign/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="学习记录" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      本文为《Radar Waveform Design Based On Optimization Theory》一书Chapter 4-Constrained radar code design for spectrally congested enviroments via quadratic optimization的学习总结。
-
-0. 波形设计常用约束
-
-
-  检测概率约束
-\(\left\{
-\begin{array}{l}
-H_0: \boldsymbol{v} = \boldsymbol{n} \\
-H_1: \boldsymbol{v} = \alpha_T \boldsymbol{c}+\boldsymbol{n}
-\end{array}
-\right.\)
-
-
-其中$\boldsymbol{n}$为复、零均值、圆对称高斯随机向量且有协方差矩阵$\mathbb{E}[\...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Ubuntu</title>
-    <link href="https://huang-cumt.github.io/posts/Ubuntu/" rel="alternate" type="text/html" title="Ubuntu" />
-    <published>2024-05-12T15:56:42+08:00</published>
-  
-    <updated>2024-05-12T15:56:42+08:00</updated>
-  
-    <id>https://huang-cumt.github.io/posts/Ubuntu/</id>
-    <content src="https://huang-cumt.github.io/posts/Ubuntu/" />
-    <author>
-      <name>xinyu</name>
-    </author>
-
-  
-    
-    <category term="Other" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. 开机自启动脚本设置
-
-你可以使用sudo命令来运行需要超级用户权限的脚本，并且可以通过修改sudoers文件来避免输入密码。同时，你可以通过systemd来设置开机自动运行脚本。以下是具体步骤：
-
-
-  
-    打开终端，输入sudo visudo来编辑sudoers文件。
-  
-  
-    在文件末尾添加一行，格式为username ALL=(ALL) NOPASSWD: /path/to/your/network.sh，其中username是你的用户名，/path/to/your/network.sh是你的脚本的完整路径。这一行的意思是允许username在所有主机上以所有用户身份运行你的脚本，而不需要输入密码。
-  
-  
-    按Ctrl+X，然后按Y，最后按Enter来保存并退出。
-  
-  
-    创建一个新的systemd服务单元文件，例如/etc/sys...
-    </summary>
-  
+随机频率与脉冲重复间隔捷变(Random frequency and pulse repetition interval agile, RFPA)雷达信号有良好的低截获与抗干扰特性。但是其在距离维上存在着较多的旁瓣，这限制了它的应用。该文章提出了一种多时隙、宽间隔频率跳变序列(wide-gap frequency-hopping sequence, WGFHS)用于抑制距离旁瓣。频域分析显示其会遭到多个临近脉冲的回波能量泄露带来的影响，该文章...</summary>
 
   </entry>
 

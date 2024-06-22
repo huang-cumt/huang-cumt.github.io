@@ -1,6 +1,23 @@
 [
   
   {
+    "title": "Hpc学习",
+    "url": "/posts/HPC%E5%AD%A6%E4%B9%A0/",
+    "categories": "Learning",
+    "tags": "HPC",
+    "date": "2024-06-14 16:31:04 +0800",
+    
+
+
+
+
+
+    
+    "snippet": "0. HPC(High Performance Computing)高性能计算学习记录参考链接1. 尝试使用std::thread优化向量加法与向量点乘运算      C/C++ 语言。        [] 多线程与锁（std::thread, pthread）  在c++中，我们可以使用std::thread类来创建线程并进行运算，我们不能或许各个子线程的返回值，因此我们可以通过传递参数地...",
+    "content": "0. HPC(High Performance Computing)高性能计算学习记录参考链接1. 尝试使用std::thread优化向量加法与向量点乘运算      C/C++ 语言。        [] 多线程与锁（std::thread, pthread）  在c++中，我们可以使用std::thread类来创建线程并进行运算，我们不能或许各个子线程的返回值，因此我们可以通过传递参数地址的形式来获取我们所感兴趣的子线程的变量值。在线程中，所谓锁的概念事实上是由于子进程可能同时进行导致的内存读写问题所引入的机制。对于一块内存多个进行无法同时对其进行读写操作，因此如何避免可能会出现的多个线程同时访问同一块内存区域所带来的错误，因此引入了锁机制。  [] SIMD 指令的使用  [] OpenMP 的使用由于有部分C++基础，选择使用str::thread进行向量加法与点乘的计算可能原因二维加法与乘法计算量过小；在数组维度较小时，如长度1e6 1e7级别等，使用并行化并不会带来时间上的增益，甚至还有负面效果；即便到1e8数量级别，使用并行化的程序运行时间也仅仅只有较为微弱的优势。当数据维度增大到1e9时，并行化计算程序表现出时间增益。            向量长度      运算      未使用并行化加速运行时间      使用并行化加速运行时间                  1e8      向量求和      0.145785s      0.0114792s              1e8      向量转置乘法      0.141825s      0.0135729s              1e9      向量求和      1.47171s      0.0903245s              1e9      向量转置乘法      1.42515s      0.138204s      C++程序示例如下。#include&lt;iostream&gt;#include&lt;chrono&gt;#include&lt;stdlib.h&gt;#include&lt;math.h&gt;#include&lt;thread&gt;#include&lt;vector&gt;using namespace std;// a. 使用std::thread进行加速void Random(int *a, int len, int low, int upper){    for(int i=0; i&lt;len; i++){        a[i] = rand()%(upper-low+1) + low;    }}void new_sum_array(int *arr, int len, int *out) {  int sum = 0;  for(int i = 0; i &lt; len; ++i) {    sum += arr[i];  }  *out = sum;}// 如何使用多线程加速向量加法与向量乘法// a. 向量加法的加速：同时进行多次加法，然后对求和结果进行累积？但是结果变量的访问会出现冲突，依据向量的长度进行分段同时加法，最后再求和// 使用std::thread进行多线程处理优化int std_thread_sum_array(int *a, int len, int num_thread, int* out_in){  std::thread threads[num_thread];  int num = ceil(len/num_thread);  int sub_num[num_thread];  int out[num_thread];  for (int i = 0; i &lt; num_thread-1; i++) {      threads[i] = std::thread(new_sum_array, &amp;(a[i*num]), num, &amp;(out[i]));  }  threads[num_thread-1] = std::thread(new_sum_array, &amp;(a[(num_thread-1)*num]), len-num*(num_thread-1), &amp;(out[num_thread-1]));  for (auto&amp; t:threads){    t.join();  }  new_sum_array(out, num_thread, out_in);  return 0;}void new_dot_product(int *a, int *b, int len, int *out) {  int sum = 0;  for(int i = 0; i &lt; len; ++i) {    sum += a[i] * b[i];  }  *out = sum;}int std_thread_dot_product(int *a, int *b, int len, int num_thread, int* out_in){  std::thread threads[num_thread];  int num = ceil(len/num_thread); // 数据片长度  int sub_num[num_thread]; // 子线程计算结果储存地址  int out[num_thread];  for (int i = 0; i &lt; num_thread-1; i++) {      threads[i] = std::thread(new_dot_product, &amp;(a[i*num]), &amp;(b[i*num]), num, &amp;(out[i]));  }  threads[num_thread-1] = std::thread(new_dot_product, &amp;(a[(num_thread-1)*num]), &amp;(b[(num_thread-1)*num]),len-num*(num_thread-1), &amp;(out[num_thread-1]));  for (auto&amp; t:threads){    t.join();  }  new_sum_array(out, num_thread, out_in);  return 0;}int main(){    // 获取硬件信息    int num_thread = std::thread::hardware_concurrency();    cout &lt;&lt;\"支持线程数：\"&lt;&lt; num_thread &lt;&lt; endl;    num_thread -= 2;    // 数据初始化    int len = 1e9;    int *a = new int[len];    int *b = new int[len];    int *add_out = new int;    int *dot_out = new int;    Random(a, len, 1, 20000);    Random(b, len, 1, 20000);    // sequence sum    auto s_t1 = chrono::steady_clock::now();    new_sum_array(a, len, add_out);    auto e_t1 = chrono::steady_clock::now();    // sequence dot product    auto s_t2 = chrono::steady_clock::now();    new_dot_product(a, b, len, dot_out);    auto e_t2 = chrono::steady_clock::now();    // parallel sum    auto s_t3 = chrono::steady_clock::now();    std_thread_sum_array(a, len, num_thread, add_out);    auto e_t3 = chrono::steady_clock::now();    // parallel dot product    auto s_t4 = chrono::steady_clock::now();    std_thread_dot_product(a, b, len, num_thread, add_out);    auto e_t4 = chrono::steady_clock::now();    double time1 = std::chrono::duration&lt;double&gt;(e_t1-s_t1).count();    double time2 = std::chrono::duration&lt;double&gt;(e_t2-s_t2).count();    double time3 = std::chrono::duration&lt;double&gt;(e_t3-s_t3).count();    double time4 = std::chrono::duration&lt;double&gt;(e_t4-s_t4).count();    cout&lt;&lt;\"未使用并行化向量加法所需时间:\" &lt;&lt; time1 &lt;&lt; \"s\"&lt;&lt; endl;    cout&lt;&lt;\"使用并行化向量加法所需时间:\" &lt;&lt; time3 &lt;&lt; \"s\"&lt;&lt; endl;    cout&lt;&lt;\"未使用并行化向量乘法所需时间:\" &lt;&lt; time2 &lt;&lt; \"s\"&lt;&lt; endl;    cout&lt;&lt;\"使用并行化向量乘法所需时间:\" &lt;&lt; time4 &lt;&lt; \"s\"&lt;&lt; endl;    delete add_out, dot_out;    delete[] a, b;    return 0;}2."
+  },
+  
+  {
     "title": "Ubuntu网卡debug",
     "url": "/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/",
     "categories": "Other",
@@ -15,6 +32,23 @@
     
     "snippet": "0. 问题描述系统: Ubuntu 20.04内核版本： 6.5.0-35-generic近期在主机上新增了一块nvme固态硬盘，新装上之后有线网卡不能正常使用，wifi可以正常使用。但是一旦移除新增的硬盘，网络又可以正常使用了。下附个人解决思路与方案。先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置文件中的网卡名...",
     "content": "0. 问题描述系统: Ubuntu 20.04内核版本： 6.5.0-35-generic近期在主机上新增了一块nvme固态硬盘，新装上之后有线网卡不能正常使用，wifi可以正常使用。但是一旦移除新增的硬盘，网络又可以正常使用了。下附个人解决思路与方案。先说结论：该问题疑似由ubuntu的udev规则机制引起，即在增加了新的固态硬盘之后，系统会重新分配网卡的名称，导致在网络配置文件中的网卡名称与实际网卡名称并不匹配，因此不能正确加载网卡配置。解决思路：  主机安装了双系统，切换到Windows后发现有线网络是可以正常使用的，排除硬件层面问题。  重新安装网卡驱动，问题仍然存在，排除驱动问题。  在不断重启中发现，有时会直接不显示网卡。对于3.中问题，解决方案如下:# 查看启用的网卡ifconfig# 查看所有网卡ifconfig -a可以看到设备存在但是没有被挂载。使用sudo vim /etc/NetworkManager/NetworkManager.conf查看文件内容，并修改managed=true,修改完毕后重启，网卡可以正常显示。[main]                                                                      plugins=ifupdown,keyfiledns = default[ifupdown]managed=false[device]wifi.scan-rand-mac-address=no解决了网卡显示的问题之后，网络问题仍然存在。  经过多次重启测试后发现，一旦新加上该硬盘，网卡名称将由enp4s0变为enp5s0，且在NetworkManager中二者的配置文件也并不通用。对于4.中现象，怀疑是由于网卡名称改变导致网络并不能正常加载，因此尝试使得网卡名称不变，方案如下：使用sudo vim /etc/default/grub打开配置文件，将GRUB_CMDLINE_LINUX=\"\"修改为GRUB_CMDLINE_LINUX=\"net.ifnames=0 biosdevname=0\"，保存并关闭后输入sudo update-grub。之后重启。该参数用于修改GRUB配置中网络接口的命名规则，net.ifnames=0参数会禁用Predictable Network Interface即可预测的网络接口的命名行为，biosdevname提供了一种网络设备命名机制，当biosdevname=0时，该工具将不会被使用。至此，重启后问题解决。"
+  },
+  
+  {
+    "title": "公式推导2",
+    "url": "/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/",
+    "categories": "",
+    "tags": "",
+    "date": "2024-05-20 22:01:08 +0800",
+    
+
+
+
+
+
+    
+    "snippet": "1. 约束与目标函数定义，问题初步建模\\(\\begin{align}f(\\boldsymbol{x}) &amp;=\\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}}\\Re\\left\\{{\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)}^H \\varGamma_{\\alpha,f} {\\left( \\boldsymbol{...",
+    "content": "1. 约束与目标函数定义，问题初步建模\\(\\begin{align}f(\\boldsymbol{x}) &amp;=\\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}}\\Re\\left\\{{\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)}^H \\varGamma_{\\alpha,f} {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)}\\right\\}\\\\&amp;=\\Re\\left\\{{\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}}\\right\\}\\end{align}\\)其中有$\\varGamma=\\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\varGamma_{\\alpha,f}$ ，$\\boldsymbol{S}=\\boldsymbol{F}_N^H \\varGamma\\boldsymbol{F}_N$ 。由于循环谱的对称性，可以注意到实际上为一个实对称矩阵，即有$\\varGamma^H=\\varGamma$，因此我们有 S 为一个 Hermite 矩阵（这里并不会受到$\\boldsymbol{F}_N$特性的影响，事实上傅里叶变换矩阵是一个与酉矩阵有类似的性质，即有$\\boldsymbol{F}_N^H\\boldsymbol{F}_N=N\\boldsymbol{I}$），因此目标函数事实上构成一个复二次型。因此目标函数恒为实数。$$$$即有：\\[f(x)={\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}}\\]      检测概率建模    雷达目标检测的假设检验模型可以表征为：\\[\\left\\{\\begin{array}{ll}\\boldsymbol{H}_0: &amp; \\boldsymbol{v} = \\boldsymbol{n}\\\\\\boldsymbol{H}_1: &amp; \\boldsymbol{v} = \\alpha_T\\boldsymbol{x} + \\boldsymbol{n}\\end{array}\\right.\\]    其中$\\boldsymbol{v}$为接收到的回波，假设当前环境下噪声为高斯分布，且已知其协方差矩阵为正定矩阵$\\boldsymbol{M}$，因此依据纽曼-皮尔逊准则可以得到检测器为：\\[{\\left| \\boldsymbol{v}^H\\boldsymbol{M}^{-1}\\boldsymbol{c} \\right|}^2  \\stackrel{H_1}{\\underset{H_0}{\\gtrless}} G\\]    其中$G$为在给定虚警概率$P_{fa}$下的检测阈值，且有检测概率为：\\[P_d = Q \\left(\\sqrt{2 {\\left|\\alpha_T\\right|}^2\\boldsymbol{c}^H\\boldsymbol{M}^{-1}\\boldsymbol{c} },\\sqrt{-2 \\ln{P_{fa}}}\\right)\\]    因此对于给定的协方差矩阵，检测概率仅仅依赖于信干噪比，即有：    \\(\\text{SINR}={\\left|\\alpha_T\\right|}^2\\boldsymbol{c}^H\\boldsymbol{M}^{-1}\\boldsymbol{c}\\)最大化检测概率即最大化$\\text{SINR}$值。        相似度约束建模    一些常用的雷达波形拥有较为良好的性质，假设给定的参考波形为$\\boldsymbol{x}_0$，因此我们可以设置波形相似度约束有：\\({\\left\\|\\boldsymbol{x}-\\boldsymbol{x}_0 \\right\\|}^2 \\leq \\varepsilon\\)其中$\\varepsilon$为指定的波形相似度参数，用于控制波形可设计的范围大小。    注意到事实上我们有：\\({\\left\\|\\boldsymbol{x}-\\boldsymbol{x}_0 \\right\\|}^2={\\left(\\boldsymbol{x}-\\boldsymbol{x}_0 \\right)}^H {\\left(\\boldsymbol{x}-\\boldsymbol{x}_0 \\right)}=\\boldsymbol{x}^H\\boldsymbol{x}+\\boldsymbol{x}_0^H\\boldsymbol{x}_0-\\boldsymbol{x}^H\\boldsymbol{x}_0-\\boldsymbol{x}_0^H\\boldsymbol{x}\\)假设我们的目标波形与参考波形均满足恒模约束，此时我们有上式的等价表示：\\(\\Re (\\boldsymbol{x}^H\\boldsymbol{x}_0) \\geq 1-\\frac{\\varepsilon}{2}\\)此外，雷达波形通常希望最大化输出功率以提升目标探测性能，因此我们需要有恒模约束有：\\({\\left\\| \\boldsymbol{x} \\right\\|}^2=1\\)        频谱约束建模    假设给定一个初始波形，给定一组阻带约束集合考虑阻带约束下频带内的能量，有：\\(\\int_{f_1^k}^{f_2^k}{S_x(f) ~\\text{d}f}=\\boldsymbol{x}^H \\boldsymbol{R}_{s,k}\\boldsymbol{x}\\)    其中有$S_x(f)={\\left| \\sum\\limits_{n=0}\\limits^{N-1}{x(n)e^{-2j2\\pi fn}} \\right|}^2$为信号的能量谱密度。且有：\\(\\boldsymbol{R}_{s,k}=\\left\\{\\begin{array}{ll}f_2^{k}-f_1^{k} &amp; m=l \\\\\\frac{e^{j2\\pi f_2^{k}(m-l)}-e^{j2\\pi f_1^{k}(m-l)}}{j2\\pi (m-l)} &amp;m\\neq l\\end{array}\\right.\\quad, (m,l)\\in \\left\\{1,\\ldots,N\\right\\}^2\\)假设给定一组阻带约束集合$\\left{ [f_1^1,f_2^1,\\right],\\ldots,[f_1^K, f_2^K]}$，因此我们有阻带内能量为：\\(E_s=\\sum_{k=1}^{K}\\boldsymbol{x}^H\\boldsymbol{R}_{s,k}\\boldsymbol{x}\\)  ​\t此时对于多阻带约束，我们有：\\(\\boldsymbol{R}_s=\\sum_{k=1}^{K}w_k\\boldsymbol{R}_{s,k}\\)​\t其中$w_k$是我们对于多个阻带的权重约束。假设我们希望阻带内的最大能量为$E_s$，因此我们可以得到约束：\\(\\boldsymbol{x}^H\\boldsymbol{R}_{s}\\boldsymbol{x}\\leq E_s\\)下面我们定义在给定这些条件下的WCFS建模分析：\\(\\mathscr{P}_1\\left\\{\\begin{array}{ll}\\min\\limits_{\\boldsymbol{x}} &amp; {\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}} \\\\\\text{s.t.} &amp; \\begin{array}{l} \\boldsymbol{x}^H\\boldsymbol{x}=1 \\\\ \\Re (\\boldsymbol{x}^H\\boldsymbol{x}_0) \\geq 1-\\frac{\\varepsilon}{2} \\\\\\boldsymbol{x}^H\\boldsymbol{R}_{s}\\boldsymbol{x}\\leq E_s\\end{array}\\end{array}\\right.\\)2. 问题形式化简首先对于相似性约束进行松弛，其在形式上并不能够使用这种方式进行处理，考虑到${|\\boldsymbol{x}^H\\boldsymbol{x}_0|}^2= \\boldsymbol{x}^H\\boldsymbol{x}_0\\boldsymbol{x}_0^H\\boldsymbol{x}^H={\\Re{(\\boldsymbol{x}^H\\boldsymbol{x}_0)}}^2+{\\Im{(\\boldsymbol{x}^H\\boldsymbol{x}_0)}}^2 \\geq {\\Re{(\\boldsymbol{x}^H\\boldsymbol{x}_0)}}^2 \\geq (1-\\frac{\\varepsilon}{2})^2$。我们考虑对其进行松弛，有：\\(\\boldsymbol{x}_0^H \\boldsymbol{R}_0 \\boldsymbol{x} \\geq \\delta\\)其中，$\\delta=(1-\\frac{\\varepsilon}{2})^2$，$\\boldsymbol{R}_0=\\boldsymbol{x}_0\\boldsymbol{x}_0^H$，因此我们可以得到\\[\\mathscr{P}_2\\left\\{\\begin{array}{ll}\\min\\limits_{\\boldsymbol{x}} &amp; {\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}} \\\\\\text{s.t.} &amp; \\begin{array}{l} \\boldsymbol{x}^H\\boldsymbol{x}=1 \\\\ \\boldsymbol{x}_0^H \\boldsymbol{R}_0 \\boldsymbol{x} \\geq \\delta \\\\\\boldsymbol{x}^H\\boldsymbol{R}_{s}\\boldsymbol{x}\\leq E_s\\end{array}\\end{array}\\right.\\]下面我们考虑问题$\\mathscr{P}_2$，注意到其中的恒模约束以及目标函数较难处理。注意到目标函数事实上为一个实数，且考虑到$\\text{tr}(\\boldsymbol{A}\\boldsymbol{B})=\\text{tr}(\\boldsymbol{A}\\boldsymbol{B})$，其中$\\text{tr}(\\cdot)$为矩阵的迹函数，因此我们有\\({\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}}= \\text{tr}({\\boldsymbol{x}}^H  \\boldsymbol{S}  {\\boldsymbol{x}})= \\text{tr}(\\boldsymbol{S}  {\\boldsymbol{x}} {\\boldsymbol{x}}^H)= \\text{tr}(\\boldsymbol{S}  {\\boldsymbol{X}})\\)其中$\\boldsymbol{X}={\\boldsymbol{x}} {\\boldsymbol{x}}^H$。利用相似的原理，我们可以将$\\mathscr{P}_2$等价表示为：\\(\\mathscr{P}_3\\left\\{\\begin{array}{ll}\\min\\limits_{\\boldsymbol{X}} &amp; \\text{tr}(\\boldsymbol{S}  {\\boldsymbol{X}}) \\\\\\text{s.t.} &amp; \\begin{array}{l} \\text{tr}({\\boldsymbol{X}})=1 \\\\ \\text{tr}(\\boldsymbol{R}_0 {\\boldsymbol{X}}) \\geq \\delta \\\\\\text{tr}(\\boldsymbol{R}_{s}  {\\boldsymbol{X}})\\leq E_s\\end{array}\\end{array}\\right.\\)针对于这一问题，我们忽略掉秩一约束求解出矩阵$\\boldsymbol{X}$，再对于矩阵$\\boldsymbol{X}$进行秩一分解可以求解出最后的信号$\\boldsymbol{x}$。对于忽略掉秩一约束后的问题，有：\\(\\mathscr{P}_4\\left\\{\\begin{array}{ll}\\min\\limits_{\\boldsymbol{X}} &amp; \\text{tr}(\\boldsymbol{S}  {\\boldsymbol{X}}) \\\\\\text{s.t.} &amp; \\begin{array}{l} \\text{tr}(\\boldsymbol{R}_0 {\\boldsymbol{X}}) \\geq \\delta \\\\\\text{tr}(\\boldsymbol{R}_{s}  {\\boldsymbol{X}})\\leq E_s\\end{array}\\end{array}\\right.\\)其是一个典型的凸优化问题，我们可以使用内点法对其进行求解。$$$$"
   },
   
   {
@@ -48,24 +82,7 @@
 
     
     "snippet": "论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar期刊/会议: IEEE Transactions on Aerospace and Electronic Systems发表时间: 20240. 前言随机频率与脉冲重复间隔捷变(Random frequency ...",
-    "content": "论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar期刊/会议: IEEE Transactions on Aerospace and Electronic Systems发表时间: 20240. 前言随机频率与脉冲重复间隔捷变(Random frequency and pulse repetition interval agile, RFPA)雷达信号有良好的低截获与抗干扰特性。但是其在距离维上存在着较多的旁瓣，这限制了它的应用。该文章提出了一种多时隙、宽间隔频率跳变序列(wide-gap frequency-hopping sequence, WGFHS)用于抑制距离旁瓣。频域分析显示其会遭到多个临近脉冲的回波能量泄露带来的影响，该文章受无线通信中临近信道干扰抑制启发，其提出了一种子带外(out-of-subband)能量泄露抑制方法，其利用子带集特性构成了一个优化问题，并利用坐标下降法对其进行了求解。1. 问题建模对于一个$m$个传输脉冲的RFPA雷达，其第$m$个传输脉冲可以被表示为:\\[s_T \\left( m,t \\right) = g_m \\left( t-t_m \\right)e^{j\\left(2\\pi f_mt+\\phi_0\\right)},m\\in\\mathcal{M}=\\left\\{0,1,\\ldots,M-1\\right\\}\\]其中$t_m$与$f_m$为第m个子脉冲的随机的起始时间与载波频率。      $t_m = m T_R + T_m$，其中$T_R$是平均PRI，且有$T_m\\in \\left[0,T_J\\right]$为随机的PRI捷变值，$T_J$是PRI捷变的最大值。        $f_m = \\left[ f_C-\\frac{B}{2},f_C + \\frac{B}{2} \\right]$，其中$f_C$是中心载波频率，$B$是频率捷变的范围。  此外$\\phi_0$为初始相位，$g_m\\left(t\\right)$表示第$m$个传输脉冲的基带波形。且有其支撑集为$supp\\left(g_m\\right)=\\left[0,T_W\\right]$  $supp\\left(\\cdot \\right)$函数表示支撑集，即英文support的缩写。支撑集为满足$\\left{ x\\in X \\vert f\\left( x\\right)\\neq 0 \\right}的集合。$一些文献中通常采用矩形窗函数，即：\\[g_m(t) = \\mu\\left( \\frac{t}{T_W}\\right)\\]其中:\\[\\mu \\left( t\\right) = \\left\\{\\begin{aligned}1,\\quad&amp; t\\in \\left[ 0,1 \\right] \\\\0,\\quad&amp; \\text{otherwise}\\end{aligned}\\right.\\]因此，我们可以将回波信号表示为:\\[s_R\\left(t\\right) = \\sum_{m=0}^{M-1}\\sum_{l=0}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_T\\left[ m,t-\\frac{2\\left(l\\Delta r-k\\Delta vt\\right)}{c} \\right]\\]其中，$x_{l,k}$是目标在$t=0$时刻第$\\left(l,k\\right)$个距离-速度单元的复散射系数，对于该距离-速度单元的径向距离与径向速度分别为$l\\varDelta r$与$k\\varDelta v$，其中$\\varDelta r$与$\\varDelta v$分别为距离与速度单元间隔。$L_{max}$为探测最大距离单元数目，$K$为探测最大速度单元数目。假设$T_S\\leq \\frac{1}{2B}$为采样间隔，采样时间为$t_{n,p} = t_n + pT_S$，其中$t_n$为第$n$个传输脉冲的起始时间，$p$为采样间隔数目，这表示在$t_{n,p}$时刻接收到第$n$个传输脉冲的回波，且距离发射时经过了$p$个采样时间间隔。我们可以得到解调后的第$n$个传输脉冲为:\\[y_B\\left(n,p\\right) = \\sum_{m=0}^{M-1}\\sum_{l=0}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_{m,l,k}\\left(n,p\\right)+e\\left(n,p\\right)\\]其中$e\\left( n,p \\right)$为采样噪声，且有:\\[\\begin{aligned}s_{m,l,k}\\left(n,p\\right) &amp;= s_T\\left(m, t_{n,p}-\\frac{2\\left(l\\varDelta r-k\\varDelta v t_{n,q}\\right)}{c}\\right) e^{-j2\\pi f_n t_{n,p}} \\\\&amp;\\approx s_T\\left(m, t_{n,p}-\\frac{2\\left(l\\varDelta r-k\\varDelta v t_{n}\\right)}{c}\\right) e^{-j2\\pi f_n t_{n,p}}\\end{aligned}\\]其对应于在第$(l,k)$个距离单元处的散射体第$m$个传输脉冲的反射回波，并使用第$n$个传输脉冲的载波进行解调。当多普勒效应导致的脉冲拉伸/频移以及脉内相移可以忽略不计时，上式中的$\\approx$成立。即有$s_{m,l,k}\\left(n,p\\right) $是时延、频移后的$s_T\\left(m,t_{n,p}\\right)$。回波信号$y_B\\left(n,p\\right)$可以进行如下分解:\\[\\begin{aligned}    y_B\\left(n,p\\right) =    &amp; \\sum_{l=l_0\\left(p\\right)}^{l_0\\left(p\\right)+L_W-1}\\sum_{k=-K}^{K} x_{l,k}s_{n,l,k}\\left(n,p\\right)   \\\\    &amp; +\\sum_{m=n+1}^{n+N_1}\\sum_{l=0}^{l_1\\left(p\\right)}\\sum_{k=-K}^{K} x_{l,k}s_{m,l,k}\\left(n,p\\right) \\\\    &amp; + \\sum_{m=n-N_2}^{n-1}\\sum_{l=l_2\\left(p\\right)}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_{m,l,k}\\left(n,p\\right)\\end{aligned}\\]其中有$N_1=\\min{\\left(N,M-1-n\\right)}$，$N_2=\\min{\\left(N,n\\right)}$，\\[N = \\lfloor \\frac{2L_{\\max}\\varDelta r/c+T_J+ T_W + 2T_M}{T_R} \\rfloor\\]\\[\\begin{aligned}l_0(p) &amp;= \\lfloor \\frac{c\\left(pT_S-T_W-T_M\\right)}{2\\Delta r} \\rfloor\\\\l_1(p) &amp;= \\lceil \\frac{c\\left(pT_S-T_R+T_J+T_M\\right)}{2\\Delta r} \\rceil\\\\l_2(p) &amp;= \\lfloor \\frac{c\\left(pT_S+T_R-T_J-T_W-T_M\\right)}{2\\Delta r} \\rfloor\\\\\\end{aligned}\\]注意到$T_W$为脉冲宽度，$T_J$为最大PRI捷变值，$T_S$为采样间隔，$T_R$为脉冲重复周期，$T_m$为第$M$个发射脉冲的时间偏移。\\[\\frac{2k\\Delta v t_{n,p}}{c}\\in\\left[ -T_M,T_M \\right]\\]注意到，若要使$x_{l,k}s_{m,l,k}\\left(n,p\\right)\\neq 0$，则有\\[\\left\\{     \\begin{aligned}       &amp; l\\in \\left[0,L_{\\max}\\right] \\\\       &amp; k\\in \\left[-K,K \\right] \\\\       &amp; \\tau_{m,n}\\in\\left[0,T_W \\right]    \\end{aligned}\\right.\\]其中:\\[\\tau_{m,n}=pT_S-(m-n)T_R-(T_m-T_n)-\\frac{2l\\Delta r}{c}-\\frac{2k\\Delta v t_{n,p}}{c}\\]第一个条件对应于目标位于探测范围内，第二个条件对应于目标速度在探测范围内，第三个条件对应于第$m$个传输脉冲的回波恰好与第$n$个传输脉冲回波在时域上存在重叠。注意到其中$(m-n)T_R+(T_m-T_n)$对应于发射时间差，$\\frac{2l\\Delta r}{c}$对应于第$l$个距离单元处散射体的回波时延。$\\frac{2k\\Delta v t_{n,p}}{c}$对应于$k$个速度单元处散射体由于存在径向速度带来的时延。"
-  },
-  
-  {
-    "title": "Waveformdesign",
-    "url": "/posts/WaveformDesign/",
-    "categories": "学习记录",
-    "tags": "WaveformDesign",
-    "date": "2024-05-12 16:18:22 +0800",
-    
-
-
-
-
-
-    
-    "snippet": "本文为《Radar Waveform Design Based On Optimization Theory》一书Chapter 4-Constrained radar code design for spectrally congested enviroments via quadratic optimization的学习总结。0. 波形设计常用约束  检测概率约束\\(\\left\\{\\be...",
-    "content": "本文为《Radar Waveform Design Based On Optimization Theory》一书Chapter 4-Constrained radar code design for spectrally congested enviroments via quadratic optimization的学习总结。0. 波形设计常用约束  检测概率约束\\(\\left\\{\\begin{array}{l}H_0: \\boldsymbol{v} = \\boldsymbol{n} \\\\H_1: \\boldsymbol{v} = \\alpha_T \\boldsymbol{c}+\\boldsymbol{n}\\end{array}\\right.\\)其中$\\boldsymbol{n}$为复、零均值、圆对称高斯随机向量且有协方差矩阵$\\mathbb{E}[\\boldsymbol{n}\\boldsymbol{n}^\\dagger]=\\boldsymbol{M}$，"
+    "content": "论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar期刊/会议: IEEE Transactions on Aerospace and Electronic Systems发表时间: 20240. 前言随机频率与脉冲重复间隔捷变(Random frequency and pulse repetition interval agile, RFPA)雷达信号有良好的低截获与抗干扰特性。但是其在距离维上存在着较多的旁瓣，这限制了它的应用。该文章提出了一种多时隙、宽间隔频率跳变序列(wide-gap frequency-hopping sequence, WGFHS)用于抑制距离旁瓣。频域分析显示其会遭到多个临近脉冲的回波能量泄露带来的影响，该文章受无线通信中临近信道干扰抑制启发，其提出了一种子带外(out-of-subband)能量泄露抑制方法，其利用子带集特性构成了一个优化问题，并利用坐标下降法对其进行了求解。1. 问题建模对于一个$m$个传输脉冲的RFPA雷达，其第$m$个传输脉冲可以被表示为:\\[s_T \\left( m,t \\right) = g_m \\left( t-t_m \\right)e^{j\\left(2\\pi f_mt+\\phi_0\\right)},m\\in\\mathcal{M}=\\left\\{0,1,\\ldots,M-1\\right\\}\\]其中$t_m$与$f_m$为第m个子脉冲的随机的起始时间与载波频率。      $t_m = m T_R + T_m$，其中$T_R$是平均PRI，且有$T_m\\in \\left[0,T_J\\right]$为随机的PRI捷变值，$T_J$是PRI捷变的最大值。        $f_m = \\left[ f_C-\\frac{B}{2},f_C + \\frac{B}{2} \\right]$，其中$f_C$是中心载波频率，$B$是频率捷变的范围。  此外$\\phi_0$为初始相位，$g_m\\left(t\\right)$表示第$m$个传输脉冲的基带波形。且有其支撑集为$supp\\left(g_m\\right)=\\left[0,T_W\\right]$  $supp\\left(\\cdot \\right)$函数表示支撑集，即英文support的缩写。支撑集为满足$\\left{ x\\in X \\vert f\\left( x\\right)\\neq 0 \\right}的集合。$一些文献中通常采用矩形窗函数，即：\\[g_m(t) = \\mu\\left( \\frac{t}{T_W}\\right)\\]其中:\\[\\mu \\left( t\\right) = \\left\\{\\begin{aligned}1,\\quad&amp; t\\in \\left[ 0,1 \\right] \\\\0,\\quad&amp; \\text{otherwise}\\end{aligned}\\right.\\]因此，我们可以将回波信号表示为:\\[s_R\\left(t\\right) = \\sum_{m=0}^{M-1}\\sum_{l=0}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_T\\left[ m,t-\\frac{2\\left(l\\Delta r-k\\Delta vt\\right)}{c} \\right]\\]其中，$x_{l,k}$是目标在$t=0$时刻第$\\left(l,k\\right)$个距离-速度单元的复散射系数，对于该距离-速度单元的径向距离与径向速度分别为$l\\varDelta r$与$k\\varDelta v$，其中$\\varDelta r$与$\\varDelta v$分别为距离与速度单元间隔。$L_{max}$为探测最大距离单元数目，$K$为探测最大速度单元数目。假设$T_S\\leq \\frac{1}{2B}$为采样间隔，采样时间为$t_{n,p} = t_n + pT_S$，其中$t_n$为第$n$个传输脉冲的起始时间，$p$为采样间隔数目，这表示在$t_{n,p}$时刻接收到第$n$个传输脉冲的回波，且距离发射时经过了$p$个采样时间间隔。我们可以得到解调后的第$n$个传输脉冲为:\\[y_B\\left(n,p\\right) = \\sum_{m=0}^{M-1}\\sum_{l=0}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_{m,l,k}\\left(n,p\\right)+e\\left(n,p\\right)\\]其中$e\\left( n,p \\right)$为采样噪声，且有:\\[\\begin{aligned}s_{m,l,k}\\left(n,p\\right) &amp;= s_T\\left(m, t_{n,p}-\\frac{2\\left(l\\varDelta r-k\\varDelta v t_{n,q}\\right)}{c}\\right) e^{-j2\\pi f_n t_{n,p}} \\\\&amp;\\approx s_T\\left(m, t_{n,p}-\\frac{2\\left(l\\varDelta r-k\\varDelta v t_{n}\\right)}{c}\\right) e^{-j2\\pi f_n t_{n,p}}\\end{aligned}\\]其对应于在第$(l,k)$个距离单元处的散射体第$m$个传输脉冲的反射回波，并使用第$n$个传输脉冲的载波进行解调。当多普勒效应导致的脉冲拉伸/频移以及脉内相移可以忽略不计时，上式中的$\\approx$成立。即有$s_{m,l,k}\\left(n,p\\right) $是时延、频移后的$s_T\\left(m,t_{n,p}\\right)$。回波信号$y_B\\left(n,p\\right)$可以进行如下分解:\\[\\begin{aligned}    y_B\\left(n,p\\right) =    &amp; \\sum_{l=l_0\\left(p\\right)}^{l_0\\left(p\\right)+L_W-1}\\sum_{k=-K}^{K} x_{l,k}s_{n,l,k}\\left(n,p\\right)   \\\\    &amp; +\\sum_{m=n+1}^{n+N_1}\\sum_{l=0}^{l_1\\left(p\\right)}\\sum_{k=-K}^{K} x_{l,k}s_{m,l,k}\\left(n,p\\right) \\\\    &amp; + \\sum_{m=n-N_2}^{n-1}\\sum_{l=l_2\\left(p\\right)}^{L_{max}}\\sum_{k=-K}^{K}x_{l,k}s_{m,l,k}\\left(n,p\\right)\\end{aligned}\\]其中有$N_1=\\min{\\left(N,M-1-n\\right)}$，$N_2=\\min{\\left(N,n\\right)}$，\\[N = \\lfloor \\frac{2L_{\\max}\\varDelta r/c+T_J+ T_W + 2T_M}{T_R} \\rfloor\\]\\[\\begin{aligned}l_0(p) &amp;= \\lfloor \\frac{c\\left(pT_S-T_W-T_M\\right)}{2\\Delta r} \\rfloor\\\\l_1(p) &amp;= \\lceil \\frac{c\\left(pT_S-T_R+T_J+T_M\\right)}{2\\Delta r} \\rceil\\\\l_2(p) &amp;= \\lfloor \\frac{c\\left(pT_S+T_R-T_J-T_W-T_M\\right)}{2\\Delta r} \\rfloor\\\\\\end{aligned}\\]注意到$T_W$为脉冲宽度，$T_J$为最大PRI捷变值，$T_S$为采样间隔，$T_R$为脉冲重复周期，$T_m$为第$M$个发射脉冲的时间偏移。$T_M$为一个相干处理间隔内产生的最大距离偏移带来的时延。假设最大相干处理单元为$N_{cp}$，有$T_M=\\frac{2K\\Delta v N_{cp}T_R}{c}$。且有：\\[\\frac{2k\\Delta v t_{n,p}}{c}\\in\\left[ -T_M,T_M \\right]\\]注意到，若要使$x_{l,k}s_{m,l,k}\\left(n,p\\right)\\neq 0$，则有\\[\\left\\{     \\begin{aligned}       &amp; l\\in \\left[0,L_{\\max}\\right] \\\\       &amp; k\\in \\left[-K,K \\right] \\\\       &amp; \\tau_{m,n}\\in\\left[0,T_W \\right]    \\end{aligned}\\right.\\]其中:\\[\\tau_{m,n}=pT_S-(m-n)T_R-(T_m-T_n)-\\frac{2l\\Delta r}{c}-\\frac{2k\\Delta v t_{n,p}}{c}\\]第一个条件对应于目标位于探测范围内，第二个条件对应于目标速度在探测范围内，第三个条件对应于第$m$个传输脉冲的回波恰好与第$n$个传输脉冲回波在时域上存在重叠。注意到其中$(m-n)T_R+(T_m-T_n)$对应于发射时间差，$\\frac{2l\\Delta r}{c}$对应于第$l$个距离单元处散射体的回波时延。$\\frac{2k\\Delta v t_{n,p}}{c}$对应于$k$个速度单元处散射体由于存在径向速度带来的时延。假设对于信号我们采用相位编码形式，设码元传输速率为$V_C(bit/s)$，因此有单个码元传输时间为$T_C=\\frac{1}{V_C}$，假设脉冲宽度是码元传输间隔的整数倍；因此一个脉冲内传输的码元个数可以表示为$M_W=\\frac{T_W}{T_C}=T_WV_C$。因此有相位编码信号的连续时间表示:\\[g_m(t)=\\sum_{n_c=0}^{M_W-1}{z_m(n_c)\\mu(\\frac{t-n_cT_C}{T_C})}\\]其中$z_m(n_c)=e^{j\\phi(n_c)}$对应于第$n_c$个码元。为此，我们可以得到它的频域表示:\\[G_m(f)=T_c\\text{sinc}(fT_C)\\sum_{n_c=0}^{M_W-1}z_m(n_c)e^{-j2\\pi fn_c T_C}\\]我们可以得到其在阻带中的能量为$\\int_{f_1}^{f_2}{G_m(f)}$；其中$[f_1,f_2]，f_1&lt;f_2$为阻带频率。我们可以将$G_m(f)$改写为$\\boldsymbol{z}_m$的函数，有$G_m(f)=T_c\\text{sinc}(fT_C)\\boldsymbol{S}(f),\\boldsymbol{S}(f)=[0,e^{j2\\pi f T_C},\\ldots,e^{j2\\pi fn_cT_C}]^T$，故有$\\Vert G_m(f) \\Vert^2 = \\boldsymbol{z}_m^H \\boldsymbol{S}(f)\\boldsymbol{S}(f)^H\\boldsymbol{z}_m$。因此我们可以得到在某一阻带内的能量为:\\[\\begin{aligned}\\int_{f_1}^{f_2}\\Vert G_m(f) \\Vert^2 \\text{d}f &amp;=\\int_{f_1}^{f_2}\\boldsymbol{z}_m^H \\boldsymbol{S}(f)\\boldsymbol{S}(f)^H\\boldsymbol{z}_m \\text{d}f\\\\&amp;= \\boldsymbol{z}_m^H [\\int_{f_{m,1}}^{f_{m,2}}\\boldsymbol{S}(f)\\boldsymbol{S}(f)^H\\text{d}f]\\boldsymbol{z}_m\\\\&amp;= \\boldsymbol{z}_m^H\\boldsymbol{R}_m\\boldsymbol{z}_m\\end{aligned}\\]其中有:\\[\\boldsymbol{R}_m(n_{c,1},n_{c,2})=\\int_{f_{m,1}}^{f_{m,2}}T_C^2 \\text{sinc}^2(fT_C)e^{j2\\pi f(n_{c,1}-n_{c,2})T_C}\\text{d}f\\]其中$n_{c,1},n_{c,2}\\in \\left{1,2,\\ldots,M_W\\right}$。$[f_{m,1},f_{m,2}]$为阻带，$\\text{sinc}(fT_C)=\\frac{sin(\\pi f T_C)}{\\pi f T_C}$。考虑到阻带有$f_{m,1}=f_n-f_m-f_{pass},f_{m,2}=f_n-f_m+f_{pass}$，且有$\\vert f_n-f_m \\vert \\gg f_{pass}$，因此有$\\text{sinc}(fT_C) \\approx \\frac{sin(\\pi f T_C)}{\\pi (f_n-f_m)T_C}$。现在我们考虑该积分的计算，近似处理后，我们实际需要进行积分的式子有如下形式，我们先进行其积分的推导。\\[\\begin{aligned}\\int{\\sin^2(ax)e^{bx}} \\text{d}x &amp;= \\frac{1}{b}\\sin^2(ax)e^{bx}-\\frac{1}{b}\\int2a \\sin(ax)\\cos(ax)e^{bx} \\text{d}x \\\\&amp;= \\frac{1}{b}\\sin^2(ax)e^{bx}-\\frac{a}{b}\\int \\sin(2ax)e^{bx} \\text{d}x \\\\&amp;= \\frac{1}{b}\\sin^2(ax)e^{bx}-\\frac{a}{b^2}{\\sin(2ax)e^{bx}} + \\frac{2a^2}{b^2}\\int \\cos(2ax)e^{bx} \\text{d}x \\end{aligned}\\]又因为\\[\\begin{aligned}\\int{\\sin^2(ax)e^{bx}} \\text{d}x &amp;= \\int{\\frac{1-\\cos(2ax)}{2}e^{bx}} \\text{d}x \\\\&amp; = \\frac{1}{2b}e^{bx}-\\frac{1}{2}\\int\\cos(2ax)e^{bx} \\text{d}x\\end{aligned}\\]故有\\[\\int\\cos(2ax)e^{bx} \\text{dx} = \\frac{1}{b}e^{bx}-2\\int \\sin^2(ax)e^{bx}\\text{d}x\\]结合有\\[\\int{\\sin^2(ax)e^{bx}\\text{d}x}=\\frac{b^2}{4a^2+b^2}{\\left[ \\frac{1}{b}\\sin^2(ax)e^{bx}-\\frac{a}{b^2}{\\sin(2ax)e^{bx}} + \\frac{2a^2}{b^3}e^{bx} \\right]}\\]代入$a=\\pi T_C,b=j2\\pi(n_{c,1}-n_{c,2})T_C$。因此有\\[\\int_{f_n-f_m-f_{pass}}^{f_n-f_m+f_{pass}}\\]"
   },
   
   {
@@ -100,40 +117,6 @@
     
     "snippet": "0. 模拟器与容器选择1. MAA-cli安装与配置2. config文件结构",
     "content": "0. 模拟器与容器选择1. MAA-cli安装与配置2. config文件结构"
-  },
-  
-  {
-    "title": "Sdp与秩一约束",
-    "url": "/posts/SDP%E4%B8%8E%E7%A7%A9%E4%B8%80%E7%BA%A6%E6%9D%9F/",
-    "categories": "学习记录",
-    "tags": "Math",
-    "date": "2024-05-12 15:52:42 +0800",
-    
-
-
-
-
-
-    
-    "snippet": "0. SDR(Semi-definite Relaxation)半定松弛技术",
-    "content": "0. SDR(Semi-definite Relaxation)半定松弛技术"
-  },
-  
-  {
-    "title": "Admm与qcqp",
-    "url": "/posts/ADMM%E4%B8%8EQCQP/",
-    "categories": "",
-    "tags": "",
-    "date": "2024-05-12 00:00:00 +0800",
-    
-
-
-
-
-
-    
-    "snippet": "",
-    "content": ""
   },
   
   {
@@ -218,7 +201,7 @@
 
     
     "snippet": "配置说明修改左下角图标显示问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式解决方案：修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。- type: email  icon: \"fas fa-envelope\"  noblank: true # open link in current...",
-    "content": "配置说明修改左下角图标显示问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式解决方案：修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。- type: email  icon: \"fas fa-envelope\"  noblank: true # open link in current tab  url: # Fill with your homepage对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome网站。其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。添加自定义脚注问题说明：由于图片引用至其它网站，希望。解决方案：在_data/locales/lang.yml文件中添加如下代码：在_include/footer.html文件中添加如下代码：文档更新时间未显示问题说明：新文档更新时间不显示，示例文档可以正常显示，但复制黏贴一个示例文档的样本，结果为不显示。测试发现，仅有原文件存在page.last_modified_at属性，其它文档均没有该属性，而更新时间是通过输出该属性来显示的，因此对于其它文件而言无法正常显示。查看_plugins/posts-lastmod-hook.rb文件，其代码如下：Jekyll::Hooks.register :posts, :post_init do |post|  commit_num = `git rev-list --count HEAD \"#{ post.path }\"`  if commit_num.to_i &gt; 1    lastmod_date = `git log -1 --pretty=\"%ad\" --date=iso \"#{ post.path }\"`    post.data['last_modified_at'] = lastmod_date  endend其中commit_num记录了 git 提交次数，其通过是否存在多次 git 提交来判断，但是本项目挂载在 github 上，测试发现即便多次修改提交文件，返回的该变量值仍为 1，因此导致了仅在本地使用jekyll serve指令进行本地测试时该参数将为 1，因此不显示更新时间。自定义修改问题说明：在使用非LQIP图像时，网页所使用默认格式会加载使用shimmer特效，个人并不喜欢这一特效，希望关闭。解决方案：查看_include/refactor-content.html文件，其中代码如下：                  &lt;!-- lazy-load images --&gt;其通过代码判断图像的_lqip属性来给_class分配值，若为真则分配为blur，若为假则分配为shimmer，其中若分配为shimmer则会使得在显示时呈现闪光特效。因此我们在最后添加一行代码，无论合适都给_class分配为null。      免费图标素材网站"
+    "content": "配置说明修改左下角图标显示问题说明：左下角默认具有推特、feed 等图标，但是可能有一些并不使用，以及想添加一些非默认的联系方式解决方案：修改_data/contact.yml文件中的代码，示例如下。注释并不使用的联系方式类型，保留所需要的。- type: email  icon: \"fas fa-envelope\"  noblank: true # open link in current tab  url: # Fill with your homepage对于不在示例中的联系方式的填写，需要填写其中的 url，此外其所使用的图标代码来自于 Fontawesome网站。其中一些常用的网站的图标均有，例如其中 Bilibili 的图标代码则为fa-brands fa-bilibili。添加自定义脚注问题说明：由于图片引用至其它网站，希望。解决方案：在_data/locales/lang.yml文件中添加如下代码：在_include/footer.html文件中添加如下代码：文档更新时间未显示问题说明：新文档更新时间不显示，示例文档可以正常显示，但复制黏贴一个示例文档的样本，结果为不显示。测试发现，仅有原文件存在page.last_modified_at属性，其它文档均没有该属性，而更新时间是通过输出该属性来显示的，因此对于其它文件而言无法正常显示。查看_plugins/posts-lastmod-hook.rb文件，其代码如下：Jekyll::Hooks.register :posts, :post_init do |post|  commit_num = `git rev-list --count HEAD \"#{ post.path }\"`  if commit_num.to_i &gt; 1    lastmod_date = `git log -1 --pretty=\"%ad\" --date=iso \"#{ post.path }\"`    post.data['last_modified_at'] = lastmod_date  endend其中commit_num记录了 git 提交次数，其通过是否存在多次 git 提交来判断，但是本项目挂载在 github 上，测试发现即便多次修改提交文件，返回的该变量值仍为 1，因此导致了仅在本地使用jekyll serve指令进行本地测试时该参数将为 1，因此不显示更新时间。自定义修改问题说明：在使用非LQIP图像时，网页所使用默认格式会加载使用shimmer特效，个人并不喜欢这一特效，希望关闭。解决方案：查看_include/refactor-content.html文件，其中代码如下：                  &lt;!-- lazy-load images --&gt;其通过代码判断图像的_lqip属性来给_class分配值，若为真则分配为blur，若为假则分配为shimmer，其中若分配为shimmer则会使得在显示时呈现闪光特效。因此我们在最后添加一行代码，无论合适都给_class分配为null。    添加Live2D模型为了添加一个Live2D模型，我们需要自己创建相应的js脚本并调用，以及一个Live2D的模型资源。&lt;script src=\"/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887\"&gt;&lt;/script&gt;&lt;script&gt;L2Dwidget.init({\"pluginModelPath\":\"assets/\",\"model\":{\"jsonPath\":\"/live2dw/assets/koharu.model.json\"},\"display\":{\"position\":\"right\",\"width\":150,\"height\":300},\"mobile\":{\"show\":false},\"log\":false,\"pluginJsPath\":\"lib/\",\"pluginRootPath\":\"live2dw/\",\"tagMode\":false});&lt;/script&gt;  免费图标素材网站"
   },
   
   {
@@ -253,6 +236,57 @@
     
     "snippet": "读后感作品简介长日将尽(The Remains  of the Day)是阅读感悟我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关...",
     "content": "读后感作品简介长日将尽(The Remains  of the Day)是阅读感悟我从中感到一种忧伤、一种怜悯、一种无可奈何。我们或者说我自己亦是如此。这本书以史蒂文斯–一位英国式管家/男仆的第一人称讲述展开，在他已是中老年之时（文中未具体提及，不过大抵如此）的一次旅游记述展开，穿插以他旧时辉煌时光的回忆。他的父亲是一位英国男仆、管家，而他也是在父亲的教育之下希冀着成为一名伟大的管家；至于关于伟大管家的定义，也是文中不断谈及的一点，他的心中对此有些见解并为之不断奋斗。可是，他将这看的如此之重。在他的父亲病逝之时，他忙于工作；在与他暗生情愫的女管家肯特小姐，他克制自己的情感，以致于肯特小姐因失望而与他人订婚之时，他亦是无动于衷；在他的主人克林顿公爵渐渐走偏、沦为纳粹的棋子之时，他仍因自己对于管家应绝对详细主人的原则而对此视而不见。待到克林顿府的繁华散去，昔日忙碌不再，新任主人容许他有一个假期之时，他才在脑海中开始审视自己过去的每一个选择。他意识到自己的过去种种，似乎错失了一些重要的东西，关于亲情、关于爱情、也关于他的理想。对于父亲的病逝，对于肯特小姐的示好、失落、绝望，对于克林顿公爵的误入歧途，他都无动于衷，他沉溺在自己的工作或者说是理想之中，脑海中不允许其它事物的存在。“不识庐山真面目，只缘身在此山中。”其实面对很多时刻，或许他可以有更好的选择，或许他面临的并非是非此即彼的选择，或许，他本可以…在书的最后一章中，似乎也有意表现出史蒂文斯的反思，但是，他似乎有些不愿面对。“那么你呢，史蒂文斯先生？你回到达林顿府以后又会有什么样的未来在等着你呢？”“喔，不管等着我的到底是什么，本恩太太，我只知道那不可能是一片虚空。如果是的话倒好了，可是不会的，只有工作、工作、做不完的工作。”他每一次放弃自己的情感，都从中得到一种对于理想更一步接近的自豪，沉溺于抛弃一切追求心中所想的偏执之中。或许对于他而言如此做是幸福的，至少在他做出决定之后是如此。只是，对于这样的做法，我并不苟同，最后史蒂文斯旅行将尽之时的怅然若失亦是如此，即便他很快又回到了那一种对于工作的偏执之中。“一定要爱着些什么，恰似草木对光阴的深情。”不是吗？希望你我都有更多关于生活，当自己日渐迟暮，回忆起过往之时，不会有这样的缺憾。"
+  },
+  
+  {
+    "title": "Getting Started",
+    "url": "/posts/getting-started/",
+    "categories": "",
+    "tags": "",
+    "date": "2019-08-09 00:00:00 +0800",
+    
+
+
+
+
+
+    
+    "snippet": "",
+    "content": ""
+  },
+  
+  {
+    "title": "Write A New Post",
+    "url": "/posts/write-a-new-post/",
+    "categories": "",
+    "tags": "",
+    "date": "2019-08-08 00:00:00 +0800",
+    
+
+
+
+
+
+    
+    "snippet": "",
+    "content": ""
+  },
+  
+  {
+    "title": "Text And Typography",
+    "url": "/posts/text-and-typography/",
+    "categories": "",
+    "tags": "",
+    "date": "2019-08-08 00:00:00 +0800",
+    
+
+
+
+
+
+    
+    "snippet": "",
+    "content": ""
   }
   
 ]

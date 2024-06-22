@@ -1,5 +1,37 @@
 <!doctype html>
 
+<canvas
+id="glcanvas"
+style="
+width: 100px;
+height: 100px;
+position: fixed;
+top: 100;
+bottom: 0;
+left: 100;
+right: 0;
+"
+>
+</canvas>
+<script type="text/javascript" src="/assets/javascripts/live2d.min.js"></script>
+<script type="text/javascript" src="/assets/javascripts/Simple.js"></script>
+<script type="text/javascript">
+  Simple();
+</script>
+
+<body onload="Simple()">
+  <canvas id="glcanvas" width="512px" height="512px" style="border:dashed 1px #CCC"></canvas>
+
+  <div id="myconsole" style="color:#BBB">---- Log ----</div>
+
+  <!-- Live2D Library -->
+  <script src="../../lib/live2d.min.js"></script>
+
+  <!-- User's Script -->
+  <script src="src/Simple.js"></script>
+</body>
+
+
 
 
 
@@ -69,37 +101,49 @@
 <meta name="theme-color" content="#ffffff">
 
 
+  <!-- Resource Hints -->
   
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" >
+      
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
-    
-      <link rel="preconnect" href="https://cdn.jsdelivr.net" >
-      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
-    
-      <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
-      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+      
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+      
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+      
     
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
   
 
   <!-- GA -->
   
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-
+  <!-- Theme style -->
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  <!-- Web Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+  <!-- 3rd-party Dependencies -->
 
   
 
@@ -131,54 +175,34 @@
     }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
+      let self = this;this.sysDarkPrefers.addEventListener('change', () => {
         if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
           self.clearMode();
         }
-
         self.notify();
       });
-    } /* constructor() */
+
+      if (!this.hasMode) {
+        return;
+      }
+
+      if (this.isDarkMode) {
+        this.setDark();
+      } else {
+        this.setLight();
+      }
+    }
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
     }
 
-    get isSysDarkPrefer() {
+    get isPreferDark() {
       return this.sysDarkPrefers.matches;
     }
 
     get isDarkMode() {
       return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
     }
 
     get hasMode() {
@@ -187,14 +211,11 @@
 
     get mode() {
       return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
+    }get modeStatus() {
+      if (this.hasMode) {
+        return this.mode;
       } else {
-        return ModeToggle.LIGHT_MODE;
+        return this.isPreferDark ? ModeToggle.DARK_MODE : ModeToggle.LIGHT_MODE;
       }
     }
 
@@ -211,10 +232,7 @@
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
+    }notify() {
       window.postMessage(
         {
           direction: ModeToggle.ID,
@@ -226,21 +244,9 @@
 
     flipMode() {
       if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
+        this.clearMode();
       } else {
-        if (this.isSysDarkPrefer) {
+        if (this.isPreferDark) {
           this.setLight();
         } else {
           this.setDark();
@@ -248,8 +254,8 @@
       }
 
       this.notify();
-    } /* flipMode() */
-  } /* ModeToggle */
+    }
+  }
 
   const modeToggle = new ModeToggle();
 </script>
@@ -331,7 +337,7 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
-      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
       </button>
 
@@ -461,7 +467,7 @@
       <i class="fas fa-search fa-fw"></i>
     </button>
 
-    <search class="align-items-center ms-3 ms-lg-0">
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
       <i class="fas fa-search fa-fw"></i>
       <input
         class="form-control"
@@ -605,28 +611,14 @@
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/Git/">Git指令学习</a>
+          <a href="/posts/HPC%E5%AD%A6%E4%B9%A0/">Hpc学习</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/WaveformDesign/">Waveformdesign</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">MATLAB使用心得汇总</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
@@ -634,6 +626,20 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/">公式推导</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/">公式推导2</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
     </ul>
@@ -697,11 +703,6 @@
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -950,69 +951,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1044,22 +982,19 @@
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -1104,7 +1039,14 @@
     
   </p>
 
-  <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  <p>Using the <a
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="v7.0.1"
+        href="https://github.com/cotes2020/jekyll-theme-chirpy"
+        target="_blank"
+        rel="noopener"
+      >Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
   </p>
 </footer>
 
@@ -1113,7 +1055,7 @@
 
         <!-- The Search results -->
 
-<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
   <div class="col-11 content">
     <div id="search-hints">
       <!-- The trending tags list -->
@@ -1172,11 +1114,6 @@
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1425,69 +1362,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1519,22 +1393,19 @@
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -1649,30 +1520,16 @@
 
   
 
-  
-    
-
-    
-
-  
-
-  
-    
-
-    
-
-  
 
 
-
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/dayjs@1.11.11/dayjs.min.js,npm/dayjs@1.11.11/locale/en.min.js,npm/dayjs@1.11.11/plugin/relativeTime.min.js,npm/dayjs@1.11.11/plugin/localizedFormat.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/misc.min.js"></script>
+<script src="/assets/js/dist/misc.min.js"></script>
 
 
 
@@ -1690,9 +1547,7 @@
 
 
 
-<script>
-  /* Note: dependent library will be loaded in `js-selector.html` */
-  SimpleJekyllSearch({
+<script>SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
     json: '/assets/js/data/search.json',

@@ -1,5 +1,37 @@
 <!doctype html>
 
+<canvas
+id="glcanvas"
+style="
+width: 100px;
+height: 100px;
+position: fixed;
+top: 100;
+bottom: 0;
+left: 100;
+right: 0;
+"
+>
+</canvas>
+<script type="text/javascript" src="/assets/javascripts/live2d.min.js"></script>
+<script type="text/javascript" src="/assets/javascripts/Simple.js"></script>
+<script type="text/javascript">
+  Simple();
+</script>
+
+<body onload="Simple()">
+  <canvas id="glcanvas" width="512px" height="512px" style="border:dashed 1px #CCC"></canvas>
+
+  <div id="myconsole" style="color:#BBB">---- Log ----</div>
+
+  <!-- Live2D Library -->
+  <script src="../../lib/live2d.min.js"></script>
+
+  <!-- User's Script -->
+  <script src="src/Simple.js"></script>
+</body>
+
+
 
 
 
@@ -43,7 +75,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-31T10:09:51+08:00","datePublished":"2024-05-18T17:13:59+08:00","description":"论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar","headline":"Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-18T17:13:59+08:00","datePublished":"2024-05-18T17:13:59+08:00","description":"论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar","headline":"Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -71,40 +103,52 @@
 <meta name="theme-color" content="#ffffff">
 
 
+  <!-- Resource Hints -->
   
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" >
+      
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
-    
-      <link rel="preconnect" href="https://cdn.jsdelivr.net" >
-      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
-    
-      <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
-      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+      
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+      
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+      
     
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
   
 
   <!-- GA -->
   
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-
+  <!-- Theme style -->
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
 
+  <!-- Web Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+  <!-- 3rd-party Dependencies -->
+
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.27.20/dist/tocbot.min.css">
   
 
   
@@ -112,8 +156,8 @@
   
 
   
-    <!-- Manific Popup -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- JavaScript -->
@@ -140,54 +184,34 @@
     }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
+      let self = this;this.sysDarkPrefers.addEventListener('change', () => {
         if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
           self.clearMode();
         }
-
         self.notify();
       });
-    } /* constructor() */
+
+      if (!this.hasMode) {
+        return;
+      }
+
+      if (this.isDarkMode) {
+        this.setDark();
+      } else {
+        this.setLight();
+      }
+    }
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
     }
 
-    get isSysDarkPrefer() {
+    get isPreferDark() {
       return this.sysDarkPrefers.matches;
     }
 
     get isDarkMode() {
       return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
     }
 
     get hasMode() {
@@ -196,14 +220,11 @@
 
     get mode() {
       return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
+    }get modeStatus() {
+      if (this.hasMode) {
+        return this.mode;
       } else {
-        return ModeToggle.LIGHT_MODE;
+        return this.isPreferDark ? ModeToggle.DARK_MODE : ModeToggle.LIGHT_MODE;
       }
     }
 
@@ -220,10 +241,7 @@
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
+    }notify() {
       window.postMessage(
         {
           direction: ModeToggle.ID,
@@ -235,21 +253,9 @@
 
     flipMode() {
       if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
+        this.clearMode();
       } else {
-        if (this.isSysDarkPrefer) {
+        if (this.isPreferDark) {
           this.setLight();
         } else {
           this.setDark();
@@ -257,8 +263,8 @@
       }
 
       this.notify();
-    } /* flipMode() */
-  } /* ModeToggle */
+    }
+  }
 
   const modeToggle = new ModeToggle();
 </script>
@@ -340,7 +346,7 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
-      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
       </button>
 
@@ -466,7 +472,7 @@
       <i class="fas fa-search fa-fw"></i>
     </button>
 
-    <search class="align-items-center ms-3 ms-lg-0">
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
       <i class="fas fa-search fa-fw"></i>
       <input
         class="form-control"
@@ -587,6 +593,7 @@
 <article class="px-1">
   <header>
     <h1 data-toc-skip>Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</h1>
+    
 
     <div class="post-meta text-muted">
       <!-- published date -->
@@ -614,29 +621,6 @@
       </span>
 
       <!-- lastmod date -->
-      
-        <span>
-          Updated
-          <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1717121391"
-  data-df="ll"
-  
-    data-bs-toggle="tooltip" data-bs-placement="bottom"
-  
->
-  May 31, 2024
-</time>
-
-        </span>
       
 
       
@@ -679,9 +663,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="1133 words"
+  title="1538 words"
 >
-  <em>6 min</em> read</span>
+  <em>8 min</em> read</span>
 
       </div>
       <!-- .d-flex -->
@@ -782,7 +766,7 @@ l_1(p) &amp;= \lceil \frac{c\left(pT_S-T_R+T_J+T_M\right)}{2\Delta r} \rceil\\
 l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rfloor\\
 \end{aligned}\]
 
-<p>注意到$T_W$为脉冲宽度，$T_J$为最大PRI捷变值，$T_S$为采样间隔，$T_R$为脉冲重复周期，$T_m$为第$M$个发射脉冲的时间偏移。</p>
+<p>注意到$T_W$为脉冲宽度，$T_J$为最大PRI捷变值，$T_S$为采样间隔，$T_R$为脉冲重复周期，$T_m$为第$M$个发射脉冲的时间偏移。$T_M$为一个相干处理间隔内产生的最大距离偏移带来的时延。假设最大相干处理单元为$N_{cp}$，有$T_M=\frac{2K\Delta v N_{cp}T_R}{c}$。且有：</p>
 
 \[\frac{2k\Delta v t_{n,p}}{c}\in\left[ -T_M,T_M \right]\]
 
@@ -802,6 +786,55 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
 <p>第一个条件对应于目标位于探测范围内，第二个条件对应于目标速度在探测范围内，第三个条件对应于第$m$个传输脉冲的回波恰好与第$n$个传输脉冲回波在时域上存在重叠。
 注意到其中$(m-n)T_R+(T_m-T_n)$对应于发射时间差，$\frac{2l\Delta r}{c}$对应于第$l$个距离单元处散射体的回波时延。$\frac{2k\Delta v t_{n,p}}{c}$对应于$k$个速度单元处散射体由于存在径向速度带来的时延。</p>
+
+<p>假设对于信号我们采用相位编码形式，设码元传输速率为$V_C(bit/s)$，因此有单个码元传输时间为$T_C=\frac{1}{V_C}$，假设脉冲宽度是码元传输间隔的整数倍；因此一个脉冲内传输的码元个数可以表示为$M_W=\frac{T_W}{T_C}=T_WV_C$。因此有相位编码信号的连续时间表示:</p>
+
+\[g_m(t)=\sum_{n_c=0}^{M_W-1}{z_m(n_c)\mu(\frac{t-n_cT_C}{T_C})}\]
+
+<p>其中$z_m(n_c)=e^{j\phi(n_c)}$对应于第$n_c$个码元。</p>
+
+<p>为此，我们可以得到它的频域表示:</p>
+
+\[G_m(f)=T_c\text{sinc}(fT_C)\sum_{n_c=0}^{M_W-1}z_m(n_c)e^{-j2\pi fn_c T_C}\]
+
+<p>我们可以得到其在阻带中的能量为$\int_{f_1}^{f_2}{G_m(f)}$；其中$[f_1,f_2]，f_1&lt;f_2$为阻带频率。我们可以将$G_m(f)$改写为$\boldsymbol{z}_m$的函数，有$G_m(f)=T_c\text{sinc}(fT_C)\boldsymbol{S}(f),\boldsymbol{S}(f)=[0,e^{j2\pi f T_C},\ldots,e^{j2\pi fn_cT_C}]^T$，故有$\Vert G_m(f) \Vert^2 = \boldsymbol{z}_m^H \boldsymbol{S}(f)\boldsymbol{S}(f)^H\boldsymbol{z}_m$。因此我们可以得到在某一阻带内的能量为:</p>
+
+\[\begin{aligned}
+\int_{f_1}^{f_2}\Vert G_m(f) \Vert^2 \text{d}f &amp;=\int_{f_1}^{f_2}\boldsymbol{z}_m^H \boldsymbol{S}(f)\boldsymbol{S}(f)^H\boldsymbol{z}_m \text{d}f\\
+&amp;= \boldsymbol{z}_m^H [\int_{f_{m,1}}^{f_{m,2}}\boldsymbol{S}(f)\boldsymbol{S}(f)^H\text{d}f]\boldsymbol{z}_m\\
+&amp;= \boldsymbol{z}_m^H\boldsymbol{R}_m\boldsymbol{z}_m
+\end{aligned}\]
+
+<p>其中有:</p>
+
+\[\boldsymbol{R}_m(n_{c,1},n_{c,2})=\int_{f_{m,1}}^{f_{m,2}}T_C^2 \text{sinc}^2(fT_C)e^{j2\pi f(n_{c,1}-n_{c,2})T_C}\text{d}f\]
+
+<p>其中$n_{c,1},n_{c,2}\in \left{1,2,\ldots,M_W\right}$。$[f_{m,1},f_{m,2}]$为阻带，$\text{sinc}(fT_C)=\frac{sin(\pi f T_C)}{\pi f T_C}$。考虑到阻带有$f_{m,1}=f_n-f_m-f_{pass},f_{m,2}=f_n-f_m+f_{pass}$，且有$\vert f_n-f_m \vert \gg f_{pass}$，因此有$\text{sinc}(fT_C) \approx \frac{sin(\pi f T_C)}{\pi (f_n-f_m)T_C}$。现在我们考虑该积分的计算，近似处理后，我们实际需要进行积分的式子有如下形式，我们先进行其积分的推导。</p>
+
+\[\begin{aligned}
+\int{\sin^2(ax)e^{bx}} \text{d}x &amp;= \frac{1}{b}\sin^2(ax)e^{bx}-\frac{1}{b}\int2a \sin(ax)\cos(ax)e^{bx} \text{d}x \\
+&amp;= \frac{1}{b}\sin^2(ax)e^{bx}-\frac{a}{b}\int \sin(2ax)e^{bx} \text{d}x \\
+&amp;= \frac{1}{b}\sin^2(ax)e^{bx}-\frac{a}{b^2}{\sin(2ax)e^{bx}} + \frac{2a^2}{b^2}\int \cos(2ax)e^{bx} \text{d}x 
+\end{aligned}\]
+
+<p>又因为</p>
+
+\[\begin{aligned}
+\int{\sin^2(ax)e^{bx}} \text{d}x &amp;= \int{\frac{1-\cos(2ax)}{2}e^{bx}} \text{d}x \\
+&amp; = \frac{1}{2b}e^{bx}-\frac{1}{2}\int\cos(2ax)e^{bx} \text{d}x
+\end{aligned}\]
+
+<p>故有</p>
+
+\[\int\cos(2ax)e^{bx} \text{dx} = \frac{1}{b}e^{bx}-2\int \sin^2(ax)e^{bx}\text{d}x\]
+
+<p>结合有</p>
+
+\[\int{\sin^2(ax)e^{bx}\text{d}x}=\frac{b^2}{4a^2+b^2}{\left[ \frac{1}{b}\sin^2(ax)e^{bx}-\frac{a}{b^2}{\sin(2ax)e^{bx}} + \frac{2a^2}{b^3}e^{bx} \right]}\]
+
+<p>代入$a=\pi T_C,b=j2\pi(n_{c,1}-n_{c,2})T_C$。因此有</p>
+
+\[\int_{f_n-f_m-f_{pass}}^{f_n-f_m+f_{pass}}\]
 
   </div>
 
@@ -921,28 +954,14 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/Git/">Git指令学习</a>
+          <a href="/posts/HPC%E5%AD%A6%E4%B9%A0/">Hpc学习</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/WaveformDesign/">Waveformdesign</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">MATLAB使用心得汇总</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
@@ -950,6 +969,20 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/">公式推导</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/">公式推导2</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
     </ul>
@@ -1013,11 +1046,6 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1266,69 +1294,6 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1360,22 +1325,19 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -1392,8 +1354,8 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
 
 
-  <section id="toc-wrapper" class="ps-0 pe-4">
-    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+  <section id="toc-wrapper" class="d-none ps-0 pe-4">
+    <h2 class="panel-heading ps-3 mb-2">Contents</h2>
     <nav id="toc"></nav>
   </section>
 
@@ -1430,34 +1392,35 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
 
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
 
 
 
@@ -1471,50 +1434,6 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
   <aside id="related-posts" aria-labelledby="related-label">
     <h3 class="mb-4" id="related-label">Further Reading</h3>
     <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
-      
-        <article class="col">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" class="post-preview card h-100">
-            <div class="card-body">
-              <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1687326997"
-  data-df="ll"
-  
->
-  Jun 21, 2023
-</time>
-
-              <h4 class="pt-0 my-2">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</h4>
-              <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
-
-期刊/会议：IEEE TRANSACTIONS ON Signal Processing
-
-发表时间：2017
-
-1. 问题建模
-
-在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目...
-                </p>
-              </div>
-            </div>
-          </a>
-        </article>
       
         <article class="col">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/" class="post-preview card h-100">
@@ -1538,14 +1457,7 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
               <h4 class="pt-0 my-2">LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读</h4>
               <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties
+                <p>论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties
 
 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY
 
@@ -1553,8 +1465,43 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
 0. 模型构建
 
-针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,...
-                </p>
+针对于相位编码信号$\boldsymbol{x}=[x_1,x_2,...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1687326997"
+  data-df="ll"
+  
+>
+  Jun 21, 2023
+</time>
+
+              <h4 class="pt-0 my-2">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</h4>
+              <div class="text-muted">
+                <p>论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
+
+期刊/会议：IEEE TRANSACTIONS ON Signal Processing
+
+发表时间：2017
+
+1. 问题建模
+
+在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目...</p>
               </div>
             </div>
           </a>
@@ -1575,11 +1522,11 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
   
     <a
-      href="/posts/WaveformDesign/"
+      href="/posts/Ubuntu/"
       class="btn btn-outline-primary"
       aria-label="Older"
     >
-      <p>Waveformdesign</p>
+      <p>Ubuntu</p>
     </a>
   
 
@@ -1596,7 +1543,7 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
             
               
-              <!--  The comments switcher -->
+              <!-- The comments switcher -->
 
 
             
@@ -1626,7 +1573,14 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
     
   </p>
 
-  <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  <p>Using the <a
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="v7.0.1"
+        href="https://github.com/cotes2020/jekyll-theme-chirpy"
+        target="_blank"
+        rel="noopener"
+      >Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
   </p>
 </footer>
 
@@ -1635,7 +1589,7 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
         <!-- The Search results -->
 
-<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
   <div class="col-11 content">
     <div id="search-hints">
       <!-- The trending tags list -->
@@ -1694,11 +1648,6 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -1947,69 +1896,6 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2041,22 +1927,19 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -2206,52 +2089,20 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
   
 
-  
-    
-
-    
-
-  
-
-  
-    
-
-    
-
-  
 
 
-
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.11/dayjs.min.js,npm/dayjs@1.11.11/locale/en.min.js,npm/dayjs@1.11.11/plugin/relativeTime.min.js,npm/dayjs@1.11.11/plugin/localizedFormat.min.js,npm/tocbot@4.27.20/dist/tocbot.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/post.min.js"></script>
+<script src="/assets/js/dist/post.min.js"></script>
 
 
   <!-- MathJax -->
-  <script>
-    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
-    MathJax = {
-      tex: {
-        /* start/end delimiter pairs for in-line math */
-        inlineMath: [
-          ['$', '$'],
-          ['\\(', '\\)']
-        ],
-        /* start/end delimiter pairs for display math */
-        displayMath: [
-          ['$$', '$$'],
-          ['\\[', '\\]']
-        ],
-        /* equation numbering */
-        tags: 'ams'
-      }
-    };
-  </script>
+  <script src="/assets/js/data/mathjax.js"></script>
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 
@@ -2270,9 +2121,7 @@ l_2(p) &amp;= \lfloor \frac{c\left(pT_S+T_R-T_J-T_W-T_M\right)}{2\Delta r} \rflo
 
 
 
-<script>
-  /* Note: dependent library will be loaded in `js-selector.html` */
-  SimpleJekyllSearch({
+<script>SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
     json: '/assets/js/data/search.json',

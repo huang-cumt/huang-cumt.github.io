@@ -1,5 +1,37 @@
 <!doctype html>
 
+<canvas
+id="glcanvas"
+style="
+width: 100px;
+height: 100px;
+position: fixed;
+top: 100;
+bottom: 0;
+left: 100;
+right: 0;
+"
+>
+</canvas>
+<script type="text/javascript" src="/assets/javascripts/live2d.min.js"></script>
+<script type="text/javascript" src="/assets/javascripts/Simple.js"></script>
+<script type="text/javascript">
+  Simple();
+</script>
+
+<body onload="Simple()">
+  <canvas id="glcanvas" width="512px" height="512px" style="border:dashed 1px #CCC"></canvas>
+
+  <div id="myconsole" style="color:#BBB">---- Log ----</div>
+
+  <!-- Live2D Library -->
+  <script src="../../lib/live2d.min.js"></script>
+
+  <!-- User's Script -->
+  <script src="src/Simple.js"></script>
+</body>
+
+
 
 
 
@@ -43,7 +75,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-05-21T16:20:19+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY 发表时间：2023 0. 模型构建 针对于相位编码信号$\\boldsymbol{x}=[x_1,x_2,\\cdots,x_N]\\in \\mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为： [f(\\boldsymbol{x}) = \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} {\\left {\\left( \\boldsymbol{F}N\\boldsymbol{x} \\right)}^H \\varGamma{\\alpha,f} {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)} \\right }^2] 其中$\\varGamma_{\\alpha,f}$为$N$循环谱计算矩阵。 $\\boldsymbol{F_{N}}$为阶傅里叶变换矩阵。 除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下： [{\\Vert \\boldsymbol{x}-\\boldsymbol{c} \\Vert}_{\\infty} \\leq \\vartheta] 其中$\\boldsymbol{c}$即为预设的参考信号，$\\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。 考虑复矩阵/向量的实数表示为 [\\boldsymbol{x}_r=[\\Re(\\boldsymbol{x})^T~~\\Im(\\boldsymbol{x})^T]^T] [\\boldsymbol{c}_r=[\\Re(\\boldsymbol{c})^T~~\\Im(\\boldsymbol{c})^T]^T] [\\boldsymbol{F}_{N,r} = \\left[\\begin{matrix} \\Re (\\boldsymbol{F}_N) &amp; -\\Im (\\boldsymbol{F}_N) \\Im (\\boldsymbol{F}_N) &amp; \\Re (\\boldsymbol{F}_N) \\end{matrix} \\right]] 相似性度量可以等价表示为： [{\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)}^H \\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)} \\leq \\vartheta] 其中 [\\chi_n (i,j) = \\left{\\begin{aligned} &amp;1 \\quad i=j=n,n\\in \\left{1,2,\\cdots,N\\right} &amp;0 \\quad otherwise \\end{aligned} \\right.] [\\chi_{n,r}=\\left[ \\begin{matrix} \\Re (\\chi_{n}) &amp; -\\Im (\\chi_{n}) \\Im (\\chi_{n}) &amp; \\Re (\\chi_{n}) \\end{matrix} \\right]] 即对于任意$n\\in { 1,2,\\cdots,N }$均有$x_{r,n}-c_{r,n} &lt; \\vartheta$成立。 相应的，目标函数可写为 [f(\\boldsymbol{x}r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right]] 其中有： [\\varGamma_{\\alpha,f}^1 = \\left[\\begin{matrix} \\Re (\\varGamma_{\\alpha,f}) &amp; -\\Im (\\varGamma_{\\alpha,f}) \\Im (\\varGamma_{\\alpha,f}) &amp; \\Re (\\varGamma_{\\alpha,f}) \\end{matrix} \\right],\\varGamma_{\\alpha,f}^2 = \\left[\\begin{matrix} \\Im (\\varGamma_{\\alpha,f}) &amp; -\\Re(\\varGamma_{\\alpha,f}) \\Re (\\varGamma_{\\alpha,f}) &amp; \\Im (\\varGamma_{\\alpha,f}) \\end{matrix} \\right]] 在这里，由于本来$\\boldsymbol{x}$的实数表示应该为 [\\begin{bmatrix} \\Re{\\left(\\boldsymbol{x}\\right)} &amp; -\\Im{\\left(\\boldsymbol{x}\\right)} \\Im{\\left(\\boldsymbol{x}\\right)} &amp; \\Re{\\left(\\boldsymbol{x}\\right)} \\end{bmatrix}] 为便于处理，令 [\\boldsymbol{x}_r=\\begin{bmatrix} \\Re{\\left(\\boldsymbol{x}\\right)} \\Im{\\left(\\boldsymbol{x}\\right)} \\end{bmatrix}] 因此有 [{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)}] 同时考虑到式$f \\left( \\boldsymbol{x}_r \\right)$中虽然作为一个二次规划问题，但是其中间矩阵并不为正定导致难以处理。因此在这里可以引入一个辅助变量并令$\\boldsymbol{x}_r-\\boldsymbol{b}_r=\\boldsymbol{0}$，因此 总结来说，对于该模型约束主要分为三个方面： 相似性度量 恒模约束 辅助变量约束 此时有目标函数和约束条件为： [\\begin{aligned}\\min_{\\boldsymbol{b}r,\\boldsymbol{x}_r,h} &amp;\\quad f(\\boldsymbol{x}_r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right] s.t.&amp;\\quad \\begin{array}{l} {\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right)}^H \\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}- \\vartheta-h=0 \\quad n\\in [1,2,\\cdots,N] {\\boldsymbol{x}_r}^T{\\boldsymbol{x}_r}=1 \\boldsymbol{x}_r-\\boldsymbol{b}_r=\\boldsymbol{0} h \\leq 0 \\end{array} \\end{aligned}] 定义目标函数为： [\\varrho \\left( \\boldsymbol{b}r,\\boldsymbol{x}_r \\right)= f(\\boldsymbol{x}_r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right]] 因此，我们可以写出拉格朗日函数为： [\\begin{array}{ll} \\mathcal{L} \\left( \\boldsymbol{x}r,\\boldsymbol{b}_r,\\boldsymbol{\\lambda}_0,\\left{ \\lambda_n \\right} _{n=1}^{N},h \\right) =&amp; \\varrho (\\boldsymbol{b}_r,\\boldsymbol{x}_r)+{\\boldsymbol{\\lambda }_0^T}\\left( \\boldsymbol{x}_r-\\boldsymbol{b}_r \\right) +\\frac{\\rho _0}{2}\\Vert\\boldsymbol{x}_r-\\boldsymbol{b}_r\\Vert^2 &amp; +\\sum{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h \\right) &amp; +\\sum{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h\\Vert^2 \\end{array}] 注意，这里所写的是增广拉格朗日函数。 其中，$\\boldsymbol{\\lambda}0\\in \\mathbb{R}^{N\\times 1},{\\lambda}{n}\\in \\mathbb{R},n=1,2,\\cdots,N$为拉格朗日乘子参数；$\\rho_0,\\rho_1,\\cdots,\\rho_{n+1},\\cdots,\\rho_{N+1}$为罚函数参数项，用于控制算法收敛的进度。 1. 算法详解 采用ADMM算法求解。 Step 1：求解$\\boldsymbol{x}_r^{k+1}$ 确定$\\boldsymbol{b}r^{k},\\boldsymbol{\\lambda}_0^{k},\\left{\\lambda_n^k \\right}{n=1}^N,h^k$。此时仅仅只有$\\boldsymbol{x}_r$变量，此时拉格朗日函数如下： [\\mathcal{L}_1\\left( \\boldsymbol{x}_r\\right)=\\boldsymbol{x}_r^T \\boldsymbol{A}\\boldsymbol{x}_r+\\boldsymbol{B}^T\\boldsymbol{x}_r+\\boldsymbol{C}] 其中$\\boldsymbol{C}$为常数项，因此可以舍弃，故有： [\\begin{array}{ll} \\min\\limits_{\\boldsymbol{x}_r} &amp;\\mathcal{L}_1\\left( \\boldsymbol{x}_r\\right)=\\boldsymbol{x}_r^T \\boldsymbol{A}\\boldsymbol{x}_r+\\boldsymbol{B}^T\\boldsymbol{x}_r s.t. &amp; \\boldsymbol{x}_r^T\\boldsymbol{x}_r=1 \\end{array}] 其中有： [\\begin{array}{l} \\boldsymbol{A}=&amp; \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ \\boldsymbol{F}{N,r}^T \\varGamma{\\alpha,f}^{1,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{b}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^1 {\\boldsymbol{F}{N,r}} \\right. &amp;+ \\left. \\boldsymbol{F}{N,r}^T \\varGamma_{\\alpha,f}^{2,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{b}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\boldsymbol{F}{N,r}}\\right] &amp;+ \\sum\\limits{n=1}^{N}\\frac{\\rho_n}{2}{\\chi_{n,r}\\left(\\boldsymbol{b}r- \\boldsymbol{c}_r\\right) \\left(\\boldsymbol{b}_r- \\boldsymbol{c}_r\\right)^T\\chi{n,r}^T}+\\frac{\\rho_0} {2}\\boldsymbol{I} \\end{array}] [\\begin{array}{l} \\boldsymbol{B}^T= &amp; \\boldsymbol{\\lambda}0^T-\\rho_0\\boldsymbol{b}_r^T+\\sum\\limits{n=1}^{N} \\lambda_n {\\left( \\boldsymbol{b}r-\\boldsymbol{c}_r \\right)}^T \\chi{n,r}^T-\\sum\\limits_{n=1}^N{\\rho_n \\boldsymbol{c}r^T \\chi{n,r}\\left( \\boldsymbol{b}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}^T} &amp; -\\sum\\limits_{n=1}^N{\\rho_n (\\vartheta+h) (\\boldsymbol{b}r-\\boldsymbol{c}_r)}^T\\chi{n,r}^T \\end{array}] [\\begin{array}{l} \\boldsymbol{C}=&amp; \\frac{\\rho 0}{2}\\boldsymbol{b}{r}^{T}\\boldsymbol{b}r-\\boldsymbol{\\lambda }{0}^{T}\\boldsymbol{b}r-\\sum{n=1}^N{\\lambda n\\left( \\boldsymbol{c}{r}^{T}\\chi {n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) +\\vartheta +h \\right)} &amp; +\\sum{n=1}^N{\\frac{\\rho n}{2}\\left[ \\left( \\vartheta +h \\right) ^2+\\boldsymbol{c}{r}^{T}\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) \\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}^{T}\\boldsymbol{c}_r \\right]} \\end{array}] 显然,，其中$\\boldsymbol{A}$为一个对称矩阵。此时可以写出该问题的KKT条件为： [\\begin{array}{l} &amp; {\\left( 2\\boldsymbol{A}+2\\boldsymbol{I} \\right)} \\boldsymbol{x}_r^+\\boldsymbol{B}=0 &amp; {\\left( \\boldsymbol{x}_r^{} \\right)}^T\\boldsymbol{x}_r^{*}=1 \\end{array}] 注意：在这里$\\boldsymbol{B}^T\\boldsymbol{x}$为标量，其对于$\\boldsymbol{x}$求导并不等于$\\boldsymbol{B}^T$，而是$\\boldsymbol{B}$。 因此可以求得$\\boldsymbol{x}^{*}_r =- \\left( 2\\boldsymbol{A}+2\\boldsymbol{I} \\right)^{\\dagger}\\boldsymbol{B}$。 其中${\\left( \\cdot \\right)}^{\\dagger}$为矩阵的伪逆。这里并不一定为恒模的，应该如何处理？ 若$\\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。 Step 2： 求解$\\boldsymbol{b}_r^{k+1}$ 此时目标问题为一个无约束二次规划问题。与Step 1 中类似，有： [\\mathcal{L}_2 \\left( \\boldsymbol{b}_r \\right) = \\boldsymbol{b}_r^T \\boldsymbol{A}_2 \\boldsymbol{b}_r + \\boldsymbol{B}_2^T\\boldsymbol{b}_r+ \\boldsymbol{C}_2] 其中有： [\\begin{array}{l} \\boldsymbol{A}2=&amp; \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ \\boldsymbol{F}{N,r}^T \\varGamma{\\alpha,f}^{1,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{x}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^1 {\\boldsymbol{F}{N,r}} \\right. + \\left. \\boldsymbol{F}{N,r}^T \\varGamma_{\\alpha,f}^{2,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{x}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\boldsymbol{F}{N,r}}\\right] &amp;+ \\sum\\limits{n=1}^{N}\\frac{\\rho_n}{2}{\\chi_{n,r}^T \\left(\\boldsymbol{x}r- \\boldsymbol{c}_r\\right) \\left(\\boldsymbol{x}_r- \\boldsymbol{c}_r\\right)^T\\chi{n,r}}+\\frac{\\rho_0} {2}\\boldsymbol{I} \\end{array}] [\\boldsymbol{B}2^T= -\\boldsymbol{\\lambda}_0^T-\\rho_0\\boldsymbol{x}_r^T+\\sum\\limits{n=1}^{N}{\\lambda}n {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T \\chi{n,r}-\\sum\\limits_{n=1}^N{\\rho_n \\boldsymbol{c}r^T \\chi{n,r}\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}^T}] [\\begin{array}{l} \\boldsymbol{C}2= &amp; \\boldsymbol{x}_r^T\\boldsymbol{x}_r -\\boldsymbol{u}^T\\boldsymbol{x}_r - \\sum\\limits{n=1}^{N}{v_n{\\left( {\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}\\boldsymbol{c}r+\\vartheta + h\\right)}}+ \\sum\\limits{n=1}^{N}{\\frac{\\rho_n}{2}}{\\left( \\vartheta+h \\right)}^2 &amp;+\\sum\\limits_{n=1}^{N}{\\frac{\\rho_n}{2}\\left( {\\left( \\vartheta + h \\right)}^2 + \\boldsymbol{c}r^T \\chi{n,r}^T\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}\\boldsymbol{c}_r\\right)} \\end{array}] 对于无约束二次规划问题，对于$\\boldsymbol{A}_2$的不同情况处理方式也不同。 当$\\boldsymbol{A}_2 \\succeq 0$时，该问题为严格凸问题。 当$\\boldsymbol{A}_2 \\succ 0$时，该问题为凸问题。 当$\\boldsymbol{A}_2 \\prec 0$或为不定矩阵时，该问题为非凸问题。 在这里$$矩阵 Step 3：求解$h^{k+1}$ 我们注意到此时$\\mathcal{L} \\left( \\boldsymbol{x}_r,\\boldsymbol{b}_r,\\boldsymbol{u},\\lbrace v_n \\rbrace _{n=1}^{N},h \\right)$中仅仅只有最后两项与$h$有关。 [\\begin{array}{ll} \\mathcal{L} \\left( \\boldsymbol{x}r,\\boldsymbol{b}_r,\\boldsymbol{\\lambda}_0,\\left{ \\lambda_n \\right} _{n=1}^{N},h \\right) =&amp; \\varrho (\\boldsymbol{b}_r,\\boldsymbol{x}_r)+{\\boldsymbol{\\lambda }_0^T}\\left( \\boldsymbol{x}_r-\\boldsymbol{b}_r \\right) +\\frac{\\rho _0}{2}\\Vert\\boldsymbol{x}_r-\\boldsymbol{b}_r\\Vert^2 &amp; +\\sum{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h \\right) &amp; +\\sum{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h\\Vert^2 \\end{array}] 当固定除$h$的其它变量时，该式对于$h$而言即为一个二次表达式。有 [\\begin{array}{ll} \\min\\limits_h &amp; \\mathcal{L} \\left( h \\right) = \\varrho h^2 +\\varpi h+c \\s.t. &amp; h \\leq0 \\end{array}] 其中有 [\\varrho = \\sum\\limits_{n=1}^{N}\\frac{\\rho_n}{2}] [\\varpi = -\\sum\\limits_{n=1}^{N} \\left[ \\rho_n \\left( \\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)^T\\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)^T} -\\vartheta\\right) + \\lambda_n \\right]] [\\begin{array}{ll} c=&amp; \\varrho \\left( \\boldsymbol{b}r^{k+1},\\boldsymbol{x}_r^{k+1} \\right) +\\boldsymbol{\\lambda}_0^{k+1}\\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1} \\right) +\\frac{\\rho_0}{2}\\Vert \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1} \\Vert &amp;+\\sum\\limits{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta\\right) &amp;+\\sum\\limits{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta\\Vert^2 \\end{array}] 为了处理这里的不等式约束，我们可以添加对数障碍函数进行处理，即$\\gamma \\left( h \\right) = -r \\ln \\left( -h \\right) $，这里$r$是我们所设定的系数项，且其应该接近于0。 因此我们有： [\\mathcal{L} \\left( h,r \\right)=\\varrho h^2+\\varpi h + c+\\gamma \\left( h \\right)] 令$\\frac {\\partial{\\mathcal{L} \\left( h,r \\right)}}{\\partial h}=0$，可以得到： [2\\varrho h^2 +\\varpi h +r =0] 显然我们可以解得: [h=\\frac{-\\varpi \\pm\\sqrt{\\varpi^2-8\\varrho r} }{4\\varrho}] 考虑到$r \\rightarrow 0$，保留满足$h\\leq 0$的解有： [h=\\frac{-\\varpi -\\sqrt{\\varpi^2-8\\varrho r} }{4\\varrho}] Step 4：求解$\\boldsymbol{\\lambda}0,{\\lbrace \\lambda_n \\rbrace}{n=1}^N$ 最后考虑求解拉格朗日系数。该等式对于拉格朗日系数为一次方程，我们仅需要对其进行求导即可。有： [\\frac{\\partial{\\mathcal{L}\\left(\\boldsymbol{\\lambda}_0\\right)}} {\\partial \\boldsymbol{\\lambda}_0}= \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1}] [\\frac{\\partial{\\mathcal{L}\\left({\\lambda}_n\\right)}} {\\partial {\\lambda}_n}=\\left( \\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta-h^{k+1}\\right)] 2. 仿真复现 使用MATLAB对于该论文算法进行复现，其中完整代码可见该仓库 2.1 所碰见的问题 在计算过程中发现$\\boldsymbol{c}_r$与$\\boldsymbol{x}_r$并不满足我们所设定的约束条件；其次是$\\boldsymbol{x}_r-\\boldsymbol{b}_r=0$的约束事实上也并没有被满足。这显然取决于两个拉格朗日系数项并没有满足所需条件。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 % Example: % :param : % :return : % detailed description: %------------------------------------------------------------------------------ % Created by: Xinyu Huang. % On: 16/04/2024. % Copyright (C) 2024 Xinyu Huang (learning_huang@163.com). % All Rights Reserved. % Unauthorized copying of this file, via any medium is strictly prohibited. % Proprietary and confidential. %------------------------------------------------------------------------------ clc;clear;close all; % % Parameter Setting flag_PlotAndExport = 1; flag_Sparse = 0; flag_PrintLog = 1; num_Mator = 1; maxnum = 20; % 最大迭代次数 threshhold = 20; % % Data IntializationS N = 64; M = 4; x = exp(1j*2*pi*rand(N,1))/sqrt(N); xr = [real(x);imag(x)]; br = xr; fs = 5e6; T = N/fs; fc = 1e5; temp_B = 2e5; c = generator_LFM(fs,fc,temp_B,T)/sqrt(N); cr = [real(c);imag(c)]; [chi_matrix, Taf_1, Taf_2, FNr, omega_alpha_1] = Generate_data(N, M, flag_Sparse, threshhold); % % ADMM参数初始化 h = -0.1; % 相似度约束辅助变量 lambda_0 = 1*ones(2*N,1); lambda_1 = 1*ones(N,1); rho_0 = 1; rho_1 = 10*ones(N,1); % 罚函数项系数 t = 8; % 障碍函数系数 vartheta = 0.01/sqrt(N); % 参考信号相关度阈值 % % Data Record % % The initial parameter Caculation s_xr_init = RadarSignal(xr(1:N)); s_cr = RadarSignal(cr(1:N)); Tar_out = zeros(maxnum,1); if flag_PrintLog fid = fopen(&#39;./output_files/WCS_sparse.log&#39;,&#39;w+&#39;); fprintf(fid,&#39;The initial xr.\\n&#39;); PrintToLog(fid, s_xr_init); end % % ADMM forwaitbar = forWaitbar(maxnum); for i_maxnum = 1:maxnum % % Step 1 , Solving the x_r. xr = Update_xr(N, FNr, xr, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse); % % Step 2 , Solving the b_r br = Update_br(N, FNr, xr, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse); % Step 3 , Solving the h h = Update_h(xr, br, cr, rho_1, lambda_1, vartheta, t, chi_matrix, flag_Sparse); % Step 4 , Solving the u, v_n [lambda_0, lambda_1] = Update_lambda(xr, br, cr, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, chi_matrix, flag_Sparse); forwaitbar.show_bar; Tar_out(i_maxnum) = Caculate_TarFunCValue(xr,Taf_1,Taf_2,flag_Sparse,omega_alpha_1); end if flag_PlotAndExport figure; plot(Tar_out); exportgraphics(gcf, &#39;./output_files/out_tar_value_iters.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); figure; Analysis_Sidelobe(xr(1:N),xr(1:N),&#39;bool_draw&#39;,1);hold on; Analysis_Sidelobe(cr(1:N),cr(1:N),&#39;bool_draw&#39;,1);hold off; legend(&#39;xr&#39;,&#39;cr&#39;); exportgraphics(gcf, &#39;./output_files/out_sidelobe.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;) figure; plot(xr(1:N));hold on; plot(cr(1:N));hold off; legend(&#39;xr&#39;,&#39;cr&#39;); exportgraphics(gcf, &#39;./output_files/xr_and_cr.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); Analysis_CS_DFSM(fs,xr(1:N),fs/N,M,&#39;bool_draw&#39;,1); exportgraphics(gcf, &#39;./output_files/xr_CS.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); Analysis_CS_DFSM(fs,cr(1:N),fs/N,M,&#39;bool_draw&#39;,1); exportgraphics(gcf, &#39;./output_files/cr_CS.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); end % % The post-parameter after optimization and signal c s_xr_post = RadarSignal(xr(1:N)); if flag_PrintLog fprintf(fid,&#39;The xr after optimization.\\n&#39;); PrintToLog(fid, s_xr_post); fprintf(fid,&#39;The cr.\\n&#39;); PrintToLog(fid, s_cr); fclose(fid); end % The Qudratic Target Function function [y,grady] = quadobj(x,Q,f,c) y = 1/2*x&#39;*Q*x + f&#39;*x + c; if nargout &gt; 1 grady = Q*x + f; end end % The Qudratic Constraint Function function [y,yeq,grady,gradyeq] = quadconstr(x,H,k,d) jj = length(H); % jj is the number of equality constraints yeq = zeros(1,jj); for i = 1:jj yeq(i) = 1/2*x&#39;*H{i}*x + k{i}&#39;*x + d{i}; end y = []; if nargout &gt; 2 gradyeq = zeros(length(x),jj); for i = 1:jj gradyeq(:,i) = H{i}*x + k{i}; end end grady = []; end % The Hessian Function function hess = quadhess(lambda,Q,H) hess = Q; jj = length(H); % jj is the number of equality constraints for i = 1:jj hess = hess + lambda.eqnonlin(i)*H{i}; end end % Print The signal information to the log function [] = PrintToLog(fid, s_signal) fprintf(fid,&#39;The signal parameter.\\n&#39;); fprintf(fid,[&#39;PAPR: %.2f.\\n&#39;, ... &#39;PSL: %.2f dB.\\n&#39;,... &#39;ISL: %.2f dB.\\n&#39;,... &#39;PSLR: %.2f dB.\\n&#39;,... &#39;ISLR: %.2f dB.\\n&#39;... ],s_signal.PAPR,s_signal.PSL,s_signal.ISL,s_signal.PSLR,s_signal.ISLR); % &#39;Target Function Value: %.2d\\n&#39; end % The Definition of update parametetr function xr = Update_xr(N, FNr, xr_in, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse) if flag_Sparse A1_1 = 0; A1_2 = 0; for i_temp = 1:(N+1)*N/2 A1_1_1 = FNr&#39;*(Taf_1{i_temp})&#39;*(FNr*br); A1_1_2 = FNr&#39;*(Taf_2{i_temp})&#39;*(FNr*br); A1_1 = A1_1 + omega_alpha_1(i_temp)*(A1_1_1*A1_1_1&#39;+A1_1_2*A1_1_2&#39;)/((N+1)*N*10/2); end for i_temp = 1:N A1_temp_3= (chi_matrix{i_temp})&#39;*(br-cr); A1_2 = A1_2 + rho_1(i_temp)*(A1_temp_3*A1_temp_3&#39;); end A1_3 = rho_0/2*eye(2*N,2*N); A1 = A1_1 + A1_2 + A1_3; BT1_1 = lambda_0&#39;; % Caculate the matrix B_1^T BT1_2 = -rho_0*br&#39;; BT1_3 = 0; BT1_4 = 0; BT1_5 = 0; for i_temp = 1:N BT1_3 = BT1_3 + lambda_1(i_temp)*(br-cr)&#39;*(chi_matrix{i_temp}&#39;); BT1_4_temp1 = (br-cr)&#39;*(chi_matrix{i_temp})&#39;; BT1_4 = BT1_4 + rho_1(i_temp)*cr&#39;*(BT1_4_temp1*BT1_4_temp1&#39;); BT1_5 = -(vartheta+h)*rho_1(i_temp)*(br-cr)&#39;*(chi_matrix{i_temp}); end BT1 = BT1_1 + BT1_2 + BT1_3 + BT1_4 + BT1_5; else A1_temp1 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_1,&quot;transpose&quot;),FNr*br); % 子项1.1 A1_temp1 = pagemtimes(A1_temp1,&quot;none&quot;,A1_temp1,&quot;transpose&quot;); A1_11 = sum(bsxfun(@times, A1_temp1, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A1_temp2 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_2,&quot;transpose&quot;),FNr*br); % 子项1.2 A1_temp2 = pagemtimes(A1_temp2,&quot;none&quot;,A1_temp2,&quot;transpose&quot;); A1_12 = sum(bsxfun(@times, A1_temp2, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A1_temp3 = pagemtimes(chi_matrix,&quot;transpose&quot;,br-cr,&quot;none&quot;); A1_temp3 = pagemtimes(A1_temp3,&quot;none&quot;,A1_temp3,&quot;transpose&quot;); A1_2 = sum(bsxfun(@times, A1_temp3, reshape(rho_1, 1, 1, [])),3); A1_3 = rho_0/2*eye(2*N,2*N); A1 = A1_11 + A1_12 + A1_2 + A1_3; % Caculate the matrix B_1^T BT1_1 = lambda_0&#39;; BT1_2 = -rho_0*br&#39;; BT1_3_temp1 = pagemtimes(br-cr,&quot;transpose&quot;,chi_matrix,&quot;transpose&quot;); BT1_3 = sum(bsxfun(@times, BT1_3_temp1, reshape(lambda_1, 1, 1, [])), 3); BT1_4_temp1 = pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;); BT1_4_temp1 = pagemtimes(cr,&quot;transpose&quot;,pagemtimes(BT1_4_temp1,&quot;none&quot;,BT1_4_temp1,&quot;transpose&quot;),&quot;none&quot;); BT1_4 = -sum(bsxfun(@times, BT1_4_temp1, reshape(rho_1, 1, 1, [])), 3); BT1_5_temp1 = pagemtimes(br-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT1_5 = -(vartheta+h)*sum(bsxfun(@times, BT1_5_temp1, reshape(rho_1, 1, 1, [])), 3); BT1 = BT1_1 + BT1_2 + BT1_3 + BT1_4 + BT1_5; end temp_H = cell(1);temp_k= cell(1);temp_d= cell(1); temp_H{1} = eye(2*N)*2; temp_k{1} = zeros(2*N,1); temp_d{1} = -1; options = optimoptions(@fmincon,&#39;Algorithm&#39;,&#39;interior-point&#39;,... &#39;SpecifyObjectiveGradient&#39;,true,&#39;SpecifyConstraintGradient&#39;,true,... &#39;HessianFcn&#39;,@(x,lambda)quadhess(lambda,A1/2,temp_H),&#39;Display&#39;,&#39;off&#39;); [xr,~,~,~] = fmincon(@(x) quadobj(x,A1/2,BT1&#39;,0), xr_in,[],[],[],[],[],[],... @(x) quadconstr(x,temp_H,temp_k,temp_d),options); end function br = Update_br(N, FNr, xr, br_in, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse) if flag_Sparse A2_1 = 0; A2_2 = 0; for i_temp = 1:(N+1)*N/2 A2_temp1 = FNr&#39;*(Taf_1{i_temp})&#39;*(FNr*xr); A2_temp2 = FNr&#39;*(Taf_2{i_temp})&#39;*(FNr*xr); A2_1 = A2_1 + omega_alpha_1(i_temp)*(A2_temp1*A2_temp1&#39;+A2_temp2*A2_temp2&#39;/((N+1)*N*10/2)); end for i_temp = 1:N A2_temp3 = (chi_matrix{i_temp})&#39;*(xr-cr); A2_2 = A2_2 + rho_1(i_temp)*(A2_temp3*A2_temp3&#39;); end A2_3 = rho_0/2*eye(2*N,2*N); A2 = A2_1 + A2_2 + A2_3; BT2_1 = -lambda_0&#39;; BT2_2 = rho_0*xr&#39;; BT2_3 = 0; BT2_4 = 0; BT2_5 = 0; for i_temp = 1:N BT2_3 = BT2_3 + lambda_1(i_temp)*(xr-cr)&#39;*chi_matrix{i_temp}; BT2_4_temp1 = chi_matrix{i_temp}*(xr-cr); BT2_4 = -rho_1(i_temp)*cr&#39;*(BT2_4_temp1*BT2_4_temp1&#39;); BT2_5 = -(vartheta+h)*rho_1(i_temp)*(xr-cr)&#39;*(chi_matrix{i_temp}); end BT2 = BT2_1 + BT2_2 + BT2_3 + BT2_4 + BT2_5; else A2_temp1 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_1,&quot;transpose&quot;),FNr*xr); % 子项1.1 A2_temp1 = pagemtimes(A2_temp1,&quot;none&quot;,A2_temp1,&quot;transpose&quot;); A2_11 = sum(bsxfun(@times, A2_temp1, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A2_temp2 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_2,&quot;transpose&quot;),FNr*xr); % 子项1.2 A2_temp2 = pagemtimes(A2_temp2,&quot;none&quot;,A2_temp2,&quot;transpose&quot;); A2_12 = sum(bsxfun(@times, A2_temp2, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A2_1 = A2_11 + A2_12; A2_temp3 = pagemtimes(chi_matrix,&quot;transpose&quot;,xr-cr,&quot;none&quot;); A2_temp3 = pagemtimes(A2_temp3,&quot;none&quot;,A2_temp3,&quot;transpose&quot;); A2_2 = sum(bsxfun(@times, A2_temp3, reshape(rho_1, 1, 1, [])),3); A2_3 = rho_0/2*eye(2*N,2*N); A2 = A2_1 + A2_2 + A2_3; BT2_1 = -lambda_0&#39;; BT2_2 = rho_0*xr&#39;; BT2_3_temp1 = pagemtimes(xr-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT2_3 = sum(bsxfun(@times,BT2_3_temp1,reshape(lambda_1,1,1,[])),3); BT2_4_temp1 = pagemtimes(chi_matrix,&quot;none&quot;,xr-cr,&quot;none&quot;); BT2_4_temp1 = pagemtimes(cr,&quot;transpose&quot;,pagemtimes(BT2_4_temp1,&quot;none&quot;,BT2_4_temp1,&quot;transpose&quot;),&quot;none&quot;); BT2_4 = -sum(bsxfun(@times, BT2_4_temp1, reshape(rho_1, 1, 1, [])), 3); BT2_5_temp1 = pagemtimes(xr-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT2_5 = -(vartheta+h)*sum(bsxfun(@times, BT2_5_temp1, reshape(rho_1, 1, 1, [])), 3); BT2 = BT2_1 + BT2_2 + BT2_3 + BT2_4 + BT2_5; end temp_H = cell(1);temp_k= cell(1);temp_d= cell(1); temp_H{1} = eye(2*N)*2; temp_k{1} = zeros(2*N,1); temp_d{1} = -1; options = optimoptions(@fmincon,&#39;Algorithm&#39;,&#39;interior-point&#39;,... &#39;SpecifyObjectiveGradient&#39;,true,&#39;SpecifyConstraintGradient&#39;,true,... &#39;HessianFcn&#39;,@(x,lambda)quadhess(lambda,A2/2,temp_H),&#39;Display&#39;,&#39;off&#39;); [br,~,~,~] = fmincon(@(x) quadobj(x,A2/2,BT2&#39;,0), br_in,[],[],[],[],[],[],... @(x) quadconstr(x,temp_H,temp_k,temp_d),options); end function h = Update_h(xr, br, cr, rho_1, lambda_1, vartheta, t, chi_matrix, flag_Sparse) A3 = sum(rho_1)/2; BT3_1 = -sum(lambda_1); if flag_Sparse BT3_2 = 0; for i_temp = 1:N BT3_2 = -rho_1(i_temp)*(xr-cr)&#39;*chi_matrix{i_temp}*(br-cr); end else BT3_2_temp = pagemtimes(xr-cr,&quot;transpose&quot;,pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;),&quot;none&quot;); BT3_2 = sum(bsxfun(@times, BT3_2_temp, reshape(-rho_1, 1, 1, [])), 3); end BT3_3 = vartheta*sum(rho_1); BT3 = BT3_1 + BT3_2 + BT3_3; h = (-BT3-sqrt(BT3^2+8*A3/t))/(4*A3); end function [lambda_0, lambda_1] = Update_lambda(xr, br, cr, rho_0, rho_1, lambda_0_in, lambda_1_in, h, vartheta, chi_matrix, flag_Sparse) lambda_0 = lambda_0_in + rho_0*(xr-br); lambda_1 = zeros(size(lambda_1_in)); if flag_Sparse for i_n = 1:N lambda_1(i_n) = lambda_1_in(i_n) + rho_1(i_n)*((xr-cr)&#39;*chi_matrix{i_n}*(br-cr)-h-vartheta); end else lambda_1 = reshape(pagemtimes(xr-cr,&quot;transpose&quot;,pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;),&quot;none&quot;)-h-vartheta, [], 1).*rho_1 + lambda_1_in; end end function [chi_matrix, Taf_1, Taf_2, FNr, omega_alpha_1] = Generate_data(N, M, flag_Sparse, threshhold) % FNr FN = dftmtx(N); Fshift = zeros(N); Fshift(1:N/2,N/2+1:end) = eye(N/2); Fshift(N/2+1:end,1:N/2) = eye(N/2); FN = Fshift*FN; FNr = complex2real(FN); % omega_alpha_1 omega_alpha_1 = ones((N+1)*N/2,1); if flag_Sparse chi_matrix = cell(N,1); for i_temp = 1:N matrix_temp = zeros(N,N); matrix_temp(i_temp,i_temp) = 1; chi_matrix{i_temp} = sparse(complex2real(matrix_temp)); end % 循环谱计算矩阵 20240410 Modified % 考虑到循环谱计算矩阵是对称的，在这里我们可以仅仅计算接近一半的数值，由N^2 -&gt; (N+1)*N/2，减小接近一半的计算量与存储空间 temp_m = -M/2+1:M/2; Taf_1 = cell((N+1)*N/2,1); Taf_2 = cell((N+1)*N/2,1); i_temp = 0; for temp_1 = 1:N for temp_2 = temp_1:N i_temp = i_temp + 1; temp_B = max(1-temp_1, 1-temp_2); temp_A = min (N-temp_1, N-temp_2); temp_n = temp_m((temp_m&lt;=temp_A) &amp; (temp_m&gt;=temp_B)); if isempty(temp_n) temp_taf = zeros(N,N); else temp_p = temp_1 + temp_n; temp_q = temp_2 + temp_n; temp_taf = zeros(N,N); temp_taf(temp_p(1):temp_p(end),temp_q(1):temp_q(end)) = eye(length(temp_q)); end temp_taf_1 = [real(temp_taf),-imag(temp_taf);imag(temp_taf),real(temp_taf)]; temp_taf_2 = [imag(temp_taf),-real(temp_taf);real(temp_taf),imag(temp_taf)]; Taf_1{i_temp} = sparse(temp_taf_1); Taf_2{i_temp} = sparse(temp_taf_2); if abs(temp_1-temp_2) &lt; threshhold omega_alpha_1(i_temp) = 0.01; else omega_alpha_1(i_temp) = 10; end end end else chi_matrix = zeros(2*N,2*N,N); % 相似性约束矩阵 for i_temp = 1:N matrix_temp = zeros(N,N); matrix_temp(i_temp,i_temp) = 1; chi_matrix(:,:,i_temp) = complex2real(matrix_temp); end Taf_1 = zeros(2*N,2*N,(N+1)*N/2); Taf_2 = zeros(2*N,2*N,(N+1)*N/2); temp_m = -M/2+1:M/2; i_temp = 0; for temp_1 = 1:N for temp_2 = temp_1:N i_temp = i_temp + 1; temp_B = max(1-temp_1, 1-temp_2); temp_A = min (N-temp_1, N-temp_2); temp_n = temp_m((temp_m&lt;=temp_A) &amp; (temp_m&gt;=temp_B)); if isempty(temp_n) temp_taf = zeros(N,N); else temp_p = temp_1 + temp_n; temp_q = temp_2 + temp_n; temp_taf = zeros(N,N); temp_taf(temp_p(1):temp_p(end),temp_q(1):temp_q(end)) = eye(length(temp_q)); end temp_taf_1 = [real(temp_taf),-imag(temp_taf);imag(temp_taf),real(temp_taf)]; temp_taf_2 = [imag(temp_taf),-real(temp_taf);real(temp_taf),imag(temp_taf)]; Taf_1(:,:,i_temp) = sparse(temp_taf_1); Taf_2(:,:,i_temp) = sparse(temp_taf_2); if abs(temp_1-temp_2) &lt; threshhold omega_alpha_1(i_temp) = 0.01; else omega_alpha_1(i_temp) = 10; end end end end end function TarFunCValue = Caculate_TarFunCValue(xr,Taf_1,Taf_2,flag_Sparse,omega_alpha_1) TarFunCValue = 0; if flag_Sparse for iter_i = 1:length(omega_alpha_1) TarFunCValue = TarFunCValue + omega_alpha_1(iter_i)*(xr&#39;*Taf_1{iter_i}*xr + xr&#39;*Taf_2{iter_i}*xr); end else TarFunCValue = TarFunCValue + sum(bsxfun(@times,pagemtimes(pagemtimes(xr,&quot;transpose&quot;,Taf_1,&quot;none&quot;),&quot;none&quot;,xr,&quot;none&quot;),reshape(omega_alpha_1, 1, 1, [])),3); TarFunCValue = TarFunCValue + sum(bsxfun(@times,pagemtimes(pagemtimes(xr,&quot;transpose&quot;,Taf_2,&quot;none&quot;),&quot;none&quot;,xr,&quot;none&quot;),reshape(omega_alpha_1, 1, 1, [])),3); end end 3. 总结分析 1","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Xinyu Huang","url":"https://github.com/huang-cumt/"},"dateModified":"2024-03-15T14:50:16+08:00","datePublished":"2024-03-15T14:50:16+08:00","description":"论文地址：LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 期刊/会议：IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY 发表时间：2023 0. 模型构建 针对于相位编码信号$\\boldsymbol{x}=[x_1,x_2,\\cdots,x_N]\\in \\mathbb{C}^{N}$，考虑加权循环频率谱旁瓣（weighted cyclic frequency sidelobe ，WCFS）考虑可设计目标函数为： [f(\\boldsymbol{x}) = \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} {\\left {\\left( \\boldsymbol{F}N\\boldsymbol{x} \\right)}^H \\varGamma{\\alpha,f} {\\left( \\boldsymbol{F}_N\\boldsymbol{x} \\right)} \\right }^2] 其中$\\varGamma_{\\alpha,f}$为$N$循环谱计算矩阵。 $\\boldsymbol{F_{N}}$为阶傅里叶变换矩阵。 除了低截获性能外，还需考虑信号的探测性能，目前文献中针对于此类探测性能常使用相似性约束以获得和参考信号相近的旁瓣，相似度度量有最大值范数以及2-范数两种，在这里采用最大值范数度量，数学描述如下： [{\\Vert \\boldsymbol{x}-\\boldsymbol{c} \\Vert}_{\\infty} \\leq \\vartheta] 其中$\\boldsymbol{c}$即为预设的参考信号，$\\vartheta$为预设相似度门限，通常需要依据经验设定，该数值越大，信号的自由度越高，相应的程序迭代次数以及运行时间越小，但是目标函数度量值将会变差。 考虑复矩阵/向量的实数表示为 [\\boldsymbol{x}_r=[\\Re(\\boldsymbol{x})^T~~\\Im(\\boldsymbol{x})^T]^T] [\\boldsymbol{c}_r=[\\Re(\\boldsymbol{c})^T~~\\Im(\\boldsymbol{c})^T]^T] [\\boldsymbol{F}_{N,r} = \\left[\\begin{matrix} \\Re (\\boldsymbol{F}_N) &amp; -\\Im (\\boldsymbol{F}_N) \\Im (\\boldsymbol{F}_N) &amp; \\Re (\\boldsymbol{F}_N) \\end{matrix} \\right]] 相似性度量可以等价表示为： [{\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)}^H \\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)} \\leq \\vartheta] 其中 [\\chi_n (i,j) = \\left{\\begin{aligned} &amp;1 \\quad i=j=n,n\\in \\left{1,2,\\cdots,N\\right} &amp;0 \\quad otherwise \\end{aligned} \\right.] [\\chi_{n,r}=\\left[ \\begin{matrix} \\Re (\\chi_{n}) &amp; -\\Im (\\chi_{n}) \\Im (\\chi_{n}) &amp; \\Re (\\chi_{n}) \\end{matrix} \\right]] 即对于任意$n\\in { 1,2,\\cdots,N }$均有$x_{r,n}-c_{r,n} &lt; \\vartheta$成立。 相应的，目标函数可写为 [f(\\boldsymbol{x}r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right]] 其中有： [\\varGamma_{\\alpha,f}^1 = \\left[\\begin{matrix} \\Re (\\varGamma_{\\alpha,f}) &amp; -\\Im (\\varGamma_{\\alpha,f}) \\Im (\\varGamma_{\\alpha,f}) &amp; \\Re (\\varGamma_{\\alpha,f}) \\end{matrix} \\right],\\varGamma_{\\alpha,f}^2 = \\left[\\begin{matrix} \\Im (\\varGamma_{\\alpha,f}) &amp; -\\Re(\\varGamma_{\\alpha,f}) \\Re (\\varGamma_{\\alpha,f}) &amp; \\Im (\\varGamma_{\\alpha,f}) \\end{matrix} \\right]] 在这里，由于本来$\\boldsymbol{x}$的实数表示应该为 [\\begin{bmatrix} \\Re{\\left(\\boldsymbol{x}\\right)} &amp; -\\Im{\\left(\\boldsymbol{x}\\right)} \\Im{\\left(\\boldsymbol{x}\\right)} &amp; \\Re{\\left(\\boldsymbol{x}\\right)} \\end{bmatrix}] 为便于处理，令 [\\boldsymbol{x}_r=\\begin{bmatrix} \\Re{\\left(\\boldsymbol{x}\\right)} \\Im{\\left(\\boldsymbol{x}\\right)} \\end{bmatrix}] 因此有 [{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)}] 同时考虑到式$f \\left( \\boldsymbol{x}_r \\right)$中虽然作为一个二次规划问题，但是其中间矩阵并不为正定导致难以处理。因此在这里可以引入一个辅助变量并令$\\boldsymbol{x}_r-\\boldsymbol{b}_r=\\boldsymbol{0}$，因此 总结来说，对于该模型约束主要分为三个方面： 相似性度量 恒模约束 辅助变量约束 此时有目标函数和约束条件为： [\\begin{aligned}\\min_{\\boldsymbol{b}r,\\boldsymbol{x}_r,h} &amp;\\quad f(\\boldsymbol{x}_r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right] s.t.&amp;\\quad \\begin{array}{l} {\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right)}^H \\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}- \\vartheta-h=0 \\quad n\\in [1,2,\\cdots,N] {\\boldsymbol{x}_r}^T{\\boldsymbol{x}_r}=1 \\boldsymbol{x}_r-\\boldsymbol{b}_r=\\boldsymbol{0} h \\leq 0 \\end{array} \\end{aligned}] 定义目标函数为： [\\varrho \\left( \\boldsymbol{b}r,\\boldsymbol{x}_r \\right)= f(\\boldsymbol{x}_r) = \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}_r \\right)}^T \\varGamma{\\alpha,f}^1 {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 + {\\left|{\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\left( \\boldsymbol{F}_{N,r}\\boldsymbol{x}_r \\right)} \\right|}^2 \\right]] 因此，我们可以写出拉格朗日函数为： [\\begin{array}{ll} \\mathcal{L} \\left( \\boldsymbol{x}r,\\boldsymbol{b}_r,\\boldsymbol{\\lambda}_0,\\left{ \\lambda_n \\right} _{n=1}^{N},h \\right) =&amp; \\varrho (\\boldsymbol{b}_r,\\boldsymbol{x}_r)+{\\boldsymbol{\\lambda }_0^T}\\left( \\boldsymbol{x}_r-\\boldsymbol{b}_r \\right) +\\frac{\\rho _0}{2}\\Vert\\boldsymbol{x}_r-\\boldsymbol{b}_r\\Vert^2 &amp; +\\sum{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h \\right) &amp; +\\sum{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h\\Vert^2 \\end{array}] 注意，这里所写的是增广拉格朗日函数。 其中，$\\boldsymbol{\\lambda}0\\in \\mathbb{R}^{N\\times 1},{\\lambda}{n}\\in \\mathbb{R},n=1,2,\\cdots,N$为拉格朗日乘子参数；$\\rho_0,\\rho_1,\\cdots,\\rho_{n+1},\\cdots,\\rho_{N+1}$为罚函数参数项，用于控制算法收敛的进度。 1. 算法详解 采用ADMM算法求解。 Step 1：求解$\\boldsymbol{x}_r^{k+1}$ 确定$\\boldsymbol{b}r^{k},\\boldsymbol{\\lambda}_0^{k},\\left{\\lambda_n^k \\right}{n=1}^N,h^k$。此时仅仅只有$\\boldsymbol{x}_r$变量，此时拉格朗日函数如下： [\\mathcal{L}_1\\left( \\boldsymbol{x}_r\\right)=\\boldsymbol{x}_r^T \\boldsymbol{A}\\boldsymbol{x}_r+\\boldsymbol{B}^T\\boldsymbol{x}_r+\\boldsymbol{C}] 其中$\\boldsymbol{C}$为常数项，因此可以舍弃，故有： [\\begin{array}{ll} \\min\\limits_{\\boldsymbol{x}_r} &amp;\\mathcal{L}_1\\left( \\boldsymbol{x}_r\\right)=\\boldsymbol{x}_r^T \\boldsymbol{A}\\boldsymbol{x}_r+\\boldsymbol{B}^T\\boldsymbol{x}_r s.t. &amp; \\boldsymbol{x}_r^T\\boldsymbol{x}_r=1 \\end{array}] 其中有： [\\begin{array}{l} \\boldsymbol{A}=&amp; \\sum_{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ \\boldsymbol{F}{N,r}^T \\varGamma{\\alpha,f}^{1,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{b}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^1 {\\boldsymbol{F}{N,r}} \\right. &amp;+ \\left. \\boldsymbol{F}{N,r}^T \\varGamma_{\\alpha,f}^{2,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{b}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{b}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\boldsymbol{F}{N,r}}\\right] &amp;+ \\sum\\limits{n=1}^{N}\\frac{\\rho_n}{2}{\\chi_{n,r}\\left(\\boldsymbol{b}r- \\boldsymbol{c}_r\\right) \\left(\\boldsymbol{b}_r- \\boldsymbol{c}_r\\right)^T\\chi{n,r}^T}+\\frac{\\rho_0} {2}\\boldsymbol{I} \\end{array}] [\\begin{array}{l} \\boldsymbol{B}^T= &amp; \\boldsymbol{\\lambda}0^T-\\rho_0\\boldsymbol{b}_r^T+\\sum\\limits{n=1}^{N} \\lambda_n {\\left( \\boldsymbol{b}r-\\boldsymbol{c}_r \\right)}^T \\chi{n,r}^T-\\sum\\limits_{n=1}^N{\\rho_n \\boldsymbol{c}r^T \\chi{n,r}\\left( \\boldsymbol{b}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}^T} &amp; -\\sum\\limits_{n=1}^N{\\rho_n (\\vartheta+h) (\\boldsymbol{b}r-\\boldsymbol{c}_r)}^T\\chi{n,r}^T \\end{array}] [\\begin{array}{l} \\boldsymbol{C}=&amp; \\frac{\\rho 0}{2}\\boldsymbol{b}{r}^{T}\\boldsymbol{b}r-\\boldsymbol{\\lambda }{0}^{T}\\boldsymbol{b}r-\\sum{n=1}^N{\\lambda n\\left( \\boldsymbol{c}{r}^{T}\\chi {n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) +\\vartheta +h \\right)} &amp; +\\sum{n=1}^N{\\frac{\\rho n}{2}\\left[ \\left( \\vartheta +h \\right) ^2+\\boldsymbol{c}{r}^{T}\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) \\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}^{T}\\boldsymbol{c}_r \\right]} \\end{array}] 显然,，其中$\\boldsymbol{A}$为一个对称矩阵。此时可以写出该问题的KKT条件为： [\\begin{array}{l} &amp; {\\left( 2\\boldsymbol{A}+2\\boldsymbol{I} \\right)} \\boldsymbol{x}_r^+\\boldsymbol{B}=0 &amp; {\\left( \\boldsymbol{x}_r^{} \\right)}^T\\boldsymbol{x}_r^{*}=1 \\end{array}] 注意：在这里$\\boldsymbol{B}^T\\boldsymbol{x}$为标量，其对于$\\boldsymbol{x}$求导并不等于$\\boldsymbol{B}^T$，而是$\\boldsymbol{B}$。 因此可以求得$\\boldsymbol{x}^{*}_r =- \\left( 2\\boldsymbol{A}+2\\boldsymbol{I} \\right)^{\\dagger}\\boldsymbol{B}$。 其中${\\left( \\cdot \\right)}^{\\dagger}$为矩阵的伪逆。这里并不一定为恒模的，应该如何处理？ 若$\\boldsymbol{A}$为正定矩阵，则其是一个QCQP(Quadratic Constraint Quadratic Programming)问题，但是在这里其为不定矩阵。 Step 2： 求解$\\boldsymbol{b}_r^{k+1}$ 此时目标问题为一个无约束二次规划问题。与Step 1 中类似，有： [\\mathcal{L}_2 \\left( \\boldsymbol{b}_r \\right) = \\boldsymbol{b}_r^T \\boldsymbol{A}_2 \\boldsymbol{b}_r + \\boldsymbol{B}_2^T\\boldsymbol{b}_r+ \\boldsymbol{C}_2] 其中有： [\\begin{array}{l} \\boldsymbol{A}2=&amp; \\sum{\\alpha}\\sum_{f}{\\omega_{\\alpha}} \\left[ \\boldsymbol{F}{N,r}^T \\varGamma{\\alpha,f}^{1,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{x}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^1 {\\boldsymbol{F}{N,r}} \\right. + \\left. \\boldsymbol{F}{N,r}^T \\varGamma_{\\alpha,f}^{2,T} \\left( \\boldsymbol{F}{N,r} \\boldsymbol{x}_r \\right) {\\left( \\boldsymbol{F}{N,r}\\boldsymbol{x}r \\right)}^T \\varGamma{\\alpha,f}^2 {\\boldsymbol{F}{N,r}}\\right] &amp;+ \\sum\\limits{n=1}^{N}\\frac{\\rho_n}{2}{\\chi_{n,r}^T \\left(\\boldsymbol{x}r- \\boldsymbol{c}_r\\right) \\left(\\boldsymbol{x}_r- \\boldsymbol{c}_r\\right)^T\\chi{n,r}}+\\frac{\\rho_0} {2}\\boldsymbol{I} \\end{array}] [\\boldsymbol{B}2^T= -\\boldsymbol{\\lambda}_0^T-\\rho_0\\boldsymbol{x}_r^T+\\sum\\limits{n=1}^{N}{\\lambda}n {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T \\chi{n,r}-\\sum\\limits_{n=1}^N{\\rho_n \\boldsymbol{c}r^T \\chi{n,r}\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}^T}] [\\begin{array}{l} \\boldsymbol{C}2= &amp; \\boldsymbol{x}_r^T\\boldsymbol{x}_r -\\boldsymbol{u}^T\\boldsymbol{x}_r - \\sum\\limits{n=1}^{N}{v_n{\\left( {\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}\\boldsymbol{c}r+\\vartheta + h\\right)}}+ \\sum\\limits{n=1}^{N}{\\frac{\\rho_n}{2}}{\\left( \\vartheta+h \\right)}^2 &amp;+\\sum\\limits_{n=1}^{N}{\\frac{\\rho_n}{2}\\left( {\\left( \\vartheta + h \\right)}^2 + \\boldsymbol{c}r^T \\chi{n,r}^T\\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right){\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)}^T\\chi{n,r}\\boldsymbol{c}_r\\right)} \\end{array}] 对于无约束二次规划问题，对于$\\boldsymbol{A}_2$的不同情况处理方式也不同。 当$\\boldsymbol{A}_2 \\succeq 0$时，该问题为严格凸问题。 当$\\boldsymbol{A}_2 \\succ 0$时，该问题为凸问题。 当$\\boldsymbol{A}_2 \\prec 0$或为不定矩阵时，该问题为非凸问题。 在这里$$矩阵 Step 3：求解$h^{k+1}$ 我们注意到此时$\\mathcal{L} \\left( \\boldsymbol{x}_r,\\boldsymbol{b}_r,\\boldsymbol{u},\\lbrace v_n \\rbrace _{n=1}^{N},h \\right)$中仅仅只有最后两项与$h$有关。 [\\begin{array}{ll} \\mathcal{L} \\left( \\boldsymbol{x}r,\\boldsymbol{b}_r,\\boldsymbol{\\lambda}_0,\\left{ \\lambda_n \\right} _{n=1}^{N},h \\right) =&amp; \\varrho (\\boldsymbol{b}_r,\\boldsymbol{x}_r)+{\\boldsymbol{\\lambda }_0^T}\\left( \\boldsymbol{x}_r-\\boldsymbol{b}_r \\right) +\\frac{\\rho _0}{2}\\Vert\\boldsymbol{x}_r-\\boldsymbol{b}_r\\Vert^2 &amp; +\\sum{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h \\right) &amp; +\\sum{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r-\\boldsymbol{c}_r \\right) -\\vartheta -h\\Vert^2 \\end{array}] 当固定除$h$的其它变量时，该式对于$h$而言即为一个二次表达式。有 [\\begin{array}{ll} \\min\\limits_h &amp; \\mathcal{L} \\left( h \\right) = \\varrho h^2 +\\varpi h+c \\s.t. &amp; h \\leq0 \\end{array}] 其中有 [\\varrho = \\sum\\limits_{n=1}^{N}\\frac{\\rho_n}{2}] [\\varpi = -\\sum\\limits_{n=1}^{N} \\left[ \\rho_n \\left( \\left( \\boldsymbol{x}r-\\boldsymbol{c}_r \\right)^T\\chi{n,r} {\\left( \\boldsymbol{x}_r-\\boldsymbol{c}_r \\right)^T} -\\vartheta\\right) + \\lambda_n \\right]] [\\begin{array}{ll} c=&amp; \\varrho \\left( \\boldsymbol{b}r^{k+1},\\boldsymbol{x}_r^{k+1} \\right) +\\boldsymbol{\\lambda}_0^{k+1}\\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1} \\right) +\\frac{\\rho_0}{2}\\Vert \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1} \\Vert &amp;+\\sum\\limits{n=1}^N{\\lambda {n}}\\left( \\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta\\right) &amp;+\\sum\\limits{n=1}^N{\\frac{\\rho _{n}}{2}}\\Vert\\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta\\Vert^2 \\end{array}] 为了处理这里的不等式约束，我们可以添加对数障碍函数进行处理，即$\\gamma \\left( h \\right) = -r \\ln \\left( -h \\right) $，这里$r$是我们所设定的系数项，且其应该接近于0。 因此我们有： [\\mathcal{L} \\left( h,r \\right)=\\varrho h^2+\\varpi h + c+\\gamma \\left( h \\right)] 令$\\frac {\\partial{\\mathcal{L} \\left( h,r \\right)}}{\\partial h}=0$，可以得到： [2\\varrho h^2 +\\varpi h +r =0] 显然我们可以解得: [h=\\frac{-\\varpi \\pm\\sqrt{\\varpi^2-8\\varrho r} }{4\\varrho}] 考虑到$r \\rightarrow 0$，保留满足$h\\leq 0$的解有： [h=\\frac{-\\varpi -\\sqrt{\\varpi^2-8\\varrho r} }{4\\varrho}] Step 4：求解$\\boldsymbol{\\lambda}0,{\\lbrace \\lambda_n \\rbrace}{n=1}^N$ 最后考虑求解拉格朗日系数。该等式对于拉格朗日系数为一次方程，我们仅需要对其进行求导即可。有： [\\frac{\\partial{\\mathcal{L}\\left(\\boldsymbol{\\lambda}_0\\right)}} {\\partial \\boldsymbol{\\lambda}_0}= \\boldsymbol{x}_r^{k+1}-\\boldsymbol{b}_r^{k+1}] [\\frac{\\partial{\\mathcal{L}\\left({\\lambda}_n\\right)}} {\\partial {\\lambda}_n}=\\left( \\left( \\boldsymbol{x}_r^{k+1}-\\boldsymbol{c}_r \\right) ^T\\chi _{n,r}\\left( \\boldsymbol{b}_r^{k+1}-\\boldsymbol{c}_r \\right) -\\vartheta-h^{k+1}\\right)] 2. 仿真复现 使用MATLAB对于该论文算法进行复现，其中完整代码可见该仓库 2.1 所碰见的问题 在计算过程中发现$\\boldsymbol{c}_r$与$\\boldsymbol{x}_r$并不满足我们所设定的约束条件；其次是$\\boldsymbol{x}_r-\\boldsymbol{b}_r=0$的约束事实上也并没有被满足。这显然取决于两个拉格朗日系数项并没有满足所需条件。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 % Example: % :param : % :return : % detailed description: %------------------------------------------------------------------------------ % Created by: Xinyu Huang. % On: 16/04/2024. % Copyright (C) 2024 Xinyu Huang (learning_huang@163.com). % All Rights Reserved. % Unauthorized copying of this file, via any medium is strictly prohibited. % Proprietary and confidential. %------------------------------------------------------------------------------ clc;clear;close all; % % Parameter Setting flag_PlotAndExport = 1; flag_Sparse = 0; flag_PrintLog = 1; num_Mator = 1; maxnum = 20; % 最大迭代次数 threshhold = 20; % % Data IntializationS N = 64; M = 4; x = exp(1j*2*pi*rand(N,1))/sqrt(N); xr = [real(x);imag(x)]; br = xr; fs = 5e6; T = N/fs; fc = 1e5; temp_B = 2e5; c = generator_LFM(fs,fc,temp_B,T)/sqrt(N); cr = [real(c);imag(c)]; [chi_matrix, Taf_1, Taf_2, FNr, omega_alpha_1] = Generate_data(N, M, flag_Sparse, threshhold); % % ADMM参数初始化 h = -0.1; % 相似度约束辅助变量 lambda_0 = 1*ones(2*N,1); lambda_1 = 1*ones(N,1); rho_0 = 1; rho_1 = 10*ones(N,1); % 罚函数项系数 t = 8; % 障碍函数系数 vartheta = 0.01/sqrt(N); % 参考信号相关度阈值 % % Data Record % % The initial parameter Caculation s_xr_init = RadarSignal(xr(1:N)); s_cr = RadarSignal(cr(1:N)); Tar_out = zeros(maxnum,1); if flag_PrintLog fid = fopen(&#39;./output_files/WCS_sparse.log&#39;,&#39;w+&#39;); fprintf(fid,&#39;The initial xr.\\n&#39;); PrintToLog(fid, s_xr_init); end % % ADMM forwaitbar = forWaitbar(maxnum); for i_maxnum = 1:maxnum % % Step 1 , Solving the x_r. xr = Update_xr(N, FNr, xr, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse); % % Step 2 , Solving the b_r br = Update_br(N, FNr, xr, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse); % Step 3 , Solving the h h = Update_h(xr, br, cr, rho_1, lambda_1, vartheta, t, chi_matrix, flag_Sparse); % Step 4 , Solving the u, v_n [lambda_0, lambda_1] = Update_lambda(xr, br, cr, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, chi_matrix, flag_Sparse); forwaitbar.show_bar; Tar_out(i_maxnum) = Caculate_TarFunCValue(xr,Taf_1,Taf_2,flag_Sparse,omega_alpha_1); end if flag_PlotAndExport figure; plot(Tar_out); exportgraphics(gcf, &#39;./output_files/out_tar_value_iters.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); figure; Analysis_Sidelobe(xr(1:N),xr(1:N),&#39;bool_draw&#39;,1);hold on; Analysis_Sidelobe(cr(1:N),cr(1:N),&#39;bool_draw&#39;,1);hold off; legend(&#39;xr&#39;,&#39;cr&#39;); exportgraphics(gcf, &#39;./output_files/out_sidelobe.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;) figure; plot(xr(1:N));hold on; plot(cr(1:N));hold off; legend(&#39;xr&#39;,&#39;cr&#39;); exportgraphics(gcf, &#39;./output_files/xr_and_cr.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); Analysis_CS_DFSM(fs,xr(1:N),fs/N,M,&#39;bool_draw&#39;,1); exportgraphics(gcf, &#39;./output_files/xr_CS.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); Analysis_CS_DFSM(fs,cr(1:N),fs/N,M,&#39;bool_draw&#39;,1); exportgraphics(gcf, &#39;./output_files/cr_CS.pdf&#39;,&#39;ContentType&#39;, &#39;vector&#39;); end % % The post-parameter after optimization and signal c s_xr_post = RadarSignal(xr(1:N)); if flag_PrintLog fprintf(fid,&#39;The xr after optimization.\\n&#39;); PrintToLog(fid, s_xr_post); fprintf(fid,&#39;The cr.\\n&#39;); PrintToLog(fid, s_cr); fclose(fid); end % The Qudratic Target Function function [y,grady] = quadobj(x,Q,f,c) y = 1/2*x&#39;*Q*x + f&#39;*x + c; if nargout &gt; 1 grady = Q*x + f; end end % The Qudratic Constraint Function function [y,yeq,grady,gradyeq] = quadconstr(x,H,k,d) jj = length(H); % jj is the number of equality constraints yeq = zeros(1,jj); for i = 1:jj yeq(i) = 1/2*x&#39;*H{i}*x + k{i}&#39;*x + d{i}; end y = []; if nargout &gt; 2 gradyeq = zeros(length(x),jj); for i = 1:jj gradyeq(:,i) = H{i}*x + k{i}; end end grady = []; end % The Hessian Function function hess = quadhess(lambda,Q,H) hess = Q; jj = length(H); % jj is the number of equality constraints for i = 1:jj hess = hess + lambda.eqnonlin(i)*H{i}; end end % Print The signal information to the log function [] = PrintToLog(fid, s_signal) fprintf(fid,&#39;The signal parameter.\\n&#39;); fprintf(fid,[&#39;PAPR: %.2f.\\n&#39;, ... &#39;PSL: %.2f dB.\\n&#39;,... &#39;ISL: %.2f dB.\\n&#39;,... &#39;PSLR: %.2f dB.\\n&#39;,... &#39;ISLR: %.2f dB.\\n&#39;... ],s_signal.PAPR,s_signal.PSL,s_signal.ISL,s_signal.PSLR,s_signal.ISLR); % &#39;Target Function Value: %.2d\\n&#39; end % The Definition of update parametetr function xr = Update_xr(N, FNr, xr_in, br, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse) if flag_Sparse A1_1 = 0; A1_2 = 0; for i_temp = 1:(N+1)*N/2 A1_1_1 = FNr&#39;*(Taf_1{i_temp})&#39;*(FNr*br); A1_1_2 = FNr&#39;*(Taf_2{i_temp})&#39;*(FNr*br); A1_1 = A1_1 + omega_alpha_1(i_temp)*(A1_1_1*A1_1_1&#39;+A1_1_2*A1_1_2&#39;)/((N+1)*N*10/2); end for i_temp = 1:N A1_temp_3= (chi_matrix{i_temp})&#39;*(br-cr); A1_2 = A1_2 + rho_1(i_temp)*(A1_temp_3*A1_temp_3&#39;); end A1_3 = rho_0/2*eye(2*N,2*N); A1 = A1_1 + A1_2 + A1_3; BT1_1 = lambda_0&#39;; % Caculate the matrix B_1^T BT1_2 = -rho_0*br&#39;; BT1_3 = 0; BT1_4 = 0; BT1_5 = 0; for i_temp = 1:N BT1_3 = BT1_3 + lambda_1(i_temp)*(br-cr)&#39;*(chi_matrix{i_temp}&#39;); BT1_4_temp1 = (br-cr)&#39;*(chi_matrix{i_temp})&#39;; BT1_4 = BT1_4 + rho_1(i_temp)*cr&#39;*(BT1_4_temp1*BT1_4_temp1&#39;); BT1_5 = -(vartheta+h)*rho_1(i_temp)*(br-cr)&#39;*(chi_matrix{i_temp}); end BT1 = BT1_1 + BT1_2 + BT1_3 + BT1_4 + BT1_5; else A1_temp1 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_1,&quot;transpose&quot;),FNr*br); % 子项1.1 A1_temp1 = pagemtimes(A1_temp1,&quot;none&quot;,A1_temp1,&quot;transpose&quot;); A1_11 = sum(bsxfun(@times, A1_temp1, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A1_temp2 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_2,&quot;transpose&quot;),FNr*br); % 子项1.2 A1_temp2 = pagemtimes(A1_temp2,&quot;none&quot;,A1_temp2,&quot;transpose&quot;); A1_12 = sum(bsxfun(@times, A1_temp2, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A1_temp3 = pagemtimes(chi_matrix,&quot;transpose&quot;,br-cr,&quot;none&quot;); A1_temp3 = pagemtimes(A1_temp3,&quot;none&quot;,A1_temp3,&quot;transpose&quot;); A1_2 = sum(bsxfun(@times, A1_temp3, reshape(rho_1, 1, 1, [])),3); A1_3 = rho_0/2*eye(2*N,2*N); A1 = A1_11 + A1_12 + A1_2 + A1_3; % Caculate the matrix B_1^T BT1_1 = lambda_0&#39;; BT1_2 = -rho_0*br&#39;; BT1_3_temp1 = pagemtimes(br-cr,&quot;transpose&quot;,chi_matrix,&quot;transpose&quot;); BT1_3 = sum(bsxfun(@times, BT1_3_temp1, reshape(lambda_1, 1, 1, [])), 3); BT1_4_temp1 = pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;); BT1_4_temp1 = pagemtimes(cr,&quot;transpose&quot;,pagemtimes(BT1_4_temp1,&quot;none&quot;,BT1_4_temp1,&quot;transpose&quot;),&quot;none&quot;); BT1_4 = -sum(bsxfun(@times, BT1_4_temp1, reshape(rho_1, 1, 1, [])), 3); BT1_5_temp1 = pagemtimes(br-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT1_5 = -(vartheta+h)*sum(bsxfun(@times, BT1_5_temp1, reshape(rho_1, 1, 1, [])), 3); BT1 = BT1_1 + BT1_2 + BT1_3 + BT1_4 + BT1_5; end temp_H = cell(1);temp_k= cell(1);temp_d= cell(1); temp_H{1} = eye(2*N)*2; temp_k{1} = zeros(2*N,1); temp_d{1} = -1; options = optimoptions(@fmincon,&#39;Algorithm&#39;,&#39;interior-point&#39;,... &#39;SpecifyObjectiveGradient&#39;,true,&#39;SpecifyConstraintGradient&#39;,true,... &#39;HessianFcn&#39;,@(x,lambda)quadhess(lambda,A1/2,temp_H),&#39;Display&#39;,&#39;off&#39;); [xr,~,~,~] = fmincon(@(x) quadobj(x,A1/2,BT1&#39;,0), xr_in,[],[],[],[],[],[],... @(x) quadconstr(x,temp_H,temp_k,temp_d),options); end function br = Update_br(N, FNr, xr, br_in, cr, omega_alpha_1, rho_0, rho_1, lambda_0, lambda_1, h, vartheta, Taf_1, Taf_2, chi_matrix, flag_Sparse) if flag_Sparse A2_1 = 0; A2_2 = 0; for i_temp = 1:(N+1)*N/2 A2_temp1 = FNr&#39;*(Taf_1{i_temp})&#39;*(FNr*xr); A2_temp2 = FNr&#39;*(Taf_2{i_temp})&#39;*(FNr*xr); A2_1 = A2_1 + omega_alpha_1(i_temp)*(A2_temp1*A2_temp1&#39;+A2_temp2*A2_temp2&#39;/((N+1)*N*10/2)); end for i_temp = 1:N A2_temp3 = (chi_matrix{i_temp})&#39;*(xr-cr); A2_2 = A2_2 + rho_1(i_temp)*(A2_temp3*A2_temp3&#39;); end A2_3 = rho_0/2*eye(2*N,2*N); A2 = A2_1 + A2_2 + A2_3; BT2_1 = -lambda_0&#39;; BT2_2 = rho_0*xr&#39;; BT2_3 = 0; BT2_4 = 0; BT2_5 = 0; for i_temp = 1:N BT2_3 = BT2_3 + lambda_1(i_temp)*(xr-cr)&#39;*chi_matrix{i_temp}; BT2_4_temp1 = chi_matrix{i_temp}*(xr-cr); BT2_4 = -rho_1(i_temp)*cr&#39;*(BT2_4_temp1*BT2_4_temp1&#39;); BT2_5 = -(vartheta+h)*rho_1(i_temp)*(xr-cr)&#39;*(chi_matrix{i_temp}); end BT2 = BT2_1 + BT2_2 + BT2_3 + BT2_4 + BT2_5; else A2_temp1 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_1,&quot;transpose&quot;),FNr*xr); % 子项1.1 A2_temp1 = pagemtimes(A2_temp1,&quot;none&quot;,A2_temp1,&quot;transpose&quot;); A2_11 = sum(bsxfun(@times, A2_temp1, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A2_temp2 = pagemtimes(pagemtimes(FNr,&quot;transpose&quot;,Taf_2,&quot;transpose&quot;),FNr*xr); % 子项1.2 A2_temp2 = pagemtimes(A2_temp2,&quot;none&quot;,A2_temp2,&quot;transpose&quot;); A2_12 = sum(bsxfun(@times, A2_temp2, reshape(omega_alpha_1, 1, 1, [])),3); % 加权求和 A2_1 = A2_11 + A2_12; A2_temp3 = pagemtimes(chi_matrix,&quot;transpose&quot;,xr-cr,&quot;none&quot;); A2_temp3 = pagemtimes(A2_temp3,&quot;none&quot;,A2_temp3,&quot;transpose&quot;); A2_2 = sum(bsxfun(@times, A2_temp3, reshape(rho_1, 1, 1, [])),3); A2_3 = rho_0/2*eye(2*N,2*N); A2 = A2_1 + A2_2 + A2_3; BT2_1 = -lambda_0&#39;; BT2_2 = rho_0*xr&#39;; BT2_3_temp1 = pagemtimes(xr-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT2_3 = sum(bsxfun(@times,BT2_3_temp1,reshape(lambda_1,1,1,[])),3); BT2_4_temp1 = pagemtimes(chi_matrix,&quot;none&quot;,xr-cr,&quot;none&quot;); BT2_4_temp1 = pagemtimes(cr,&quot;transpose&quot;,pagemtimes(BT2_4_temp1,&quot;none&quot;,BT2_4_temp1,&quot;transpose&quot;),&quot;none&quot;); BT2_4 = -sum(bsxfun(@times, BT2_4_temp1, reshape(rho_1, 1, 1, [])), 3); BT2_5_temp1 = pagemtimes(xr-cr,&quot;transpose&quot;,chi_matrix,&quot;none&quot;); BT2_5 = -(vartheta+h)*sum(bsxfun(@times, BT2_5_temp1, reshape(rho_1, 1, 1, [])), 3); BT2 = BT2_1 + BT2_2 + BT2_3 + BT2_4 + BT2_5; end temp_H = cell(1);temp_k= cell(1);temp_d= cell(1); temp_H{1} = eye(2*N)*2; temp_k{1} = zeros(2*N,1); temp_d{1} = -1; options = optimoptions(@fmincon,&#39;Algorithm&#39;,&#39;interior-point&#39;,... &#39;SpecifyObjectiveGradient&#39;,true,&#39;SpecifyConstraintGradient&#39;,true,... &#39;HessianFcn&#39;,@(x,lambda)quadhess(lambda,A2/2,temp_H),&#39;Display&#39;,&#39;off&#39;); [br,~,~,~] = fmincon(@(x) quadobj(x,A2/2,BT2&#39;,0), br_in,[],[],[],[],[],[],... @(x) quadconstr(x,temp_H,temp_k,temp_d),options); end function h = Update_h(xr, br, cr, rho_1, lambda_1, vartheta, t, chi_matrix, flag_Sparse) A3 = sum(rho_1)/2; BT3_1 = -sum(lambda_1); if flag_Sparse BT3_2 = 0; for i_temp = 1:N BT3_2 = -rho_1(i_temp)*(xr-cr)&#39;*chi_matrix{i_temp}*(br-cr); end else BT3_2_temp = pagemtimes(xr-cr,&quot;transpose&quot;,pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;),&quot;none&quot;); BT3_2 = sum(bsxfun(@times, BT3_2_temp, reshape(-rho_1, 1, 1, [])), 3); end BT3_3 = vartheta*sum(rho_1); BT3 = BT3_1 + BT3_2 + BT3_3; h = (-BT3-sqrt(BT3^2+8*A3/t))/(4*A3); end function [lambda_0, lambda_1] = Update_lambda(xr, br, cr, rho_0, rho_1, lambda_0_in, lambda_1_in, h, vartheta, chi_matrix, flag_Sparse) lambda_0 = lambda_0_in + rho_0*(xr-br); lambda_1 = zeros(size(lambda_1_in)); if flag_Sparse for i_n = 1:N lambda_1(i_n) = lambda_1_in(i_n) + rho_1(i_n)*((xr-cr)&#39;*chi_matrix{i_n}*(br-cr)-h-vartheta); end else lambda_1 = reshape(pagemtimes(xr-cr,&quot;transpose&quot;,pagemtimes(chi_matrix,&quot;none&quot;,br-cr,&quot;none&quot;),&quot;none&quot;)-h-vartheta, [], 1).*rho_1 + lambda_1_in; end end function [chi_matrix, Taf_1, Taf_2, FNr, omega_alpha_1] = Generate_data(N, M, flag_Sparse, threshhold) % FNr FN = dftmtx(N); Fshift = zeros(N); Fshift(1:N/2,N/2+1:end) = eye(N/2); Fshift(N/2+1:end,1:N/2) = eye(N/2); FN = Fshift*FN; FNr = complex2real(FN); % omega_alpha_1 omega_alpha_1 = ones((N+1)*N/2,1); if flag_Sparse chi_matrix = cell(N,1); for i_temp = 1:N matrix_temp = zeros(N,N); matrix_temp(i_temp,i_temp) = 1; chi_matrix{i_temp} = sparse(complex2real(matrix_temp)); end % 循环谱计算矩阵 20240410 Modified % 考虑到循环谱计算矩阵是对称的，在这里我们可以仅仅计算接近一半的数值，由N^2 -&gt; (N+1)*N/2，减小接近一半的计算量与存储空间 temp_m = -M/2+1:M/2; Taf_1 = cell((N+1)*N/2,1); Taf_2 = cell((N+1)*N/2,1); i_temp = 0; for temp_1 = 1:N for temp_2 = temp_1:N i_temp = i_temp + 1; temp_B = max(1-temp_1, 1-temp_2); temp_A = min (N-temp_1, N-temp_2); temp_n = temp_m((temp_m&lt;=temp_A) &amp; (temp_m&gt;=temp_B)); if isempty(temp_n) temp_taf = zeros(N,N); else temp_p = temp_1 + temp_n; temp_q = temp_2 + temp_n; temp_taf = zeros(N,N); temp_taf(temp_p(1):temp_p(end),temp_q(1):temp_q(end)) = eye(length(temp_q)); end temp_taf_1 = [real(temp_taf),-imag(temp_taf);imag(temp_taf),real(temp_taf)]; temp_taf_2 = [imag(temp_taf),-real(temp_taf);real(temp_taf),imag(temp_taf)]; Taf_1{i_temp} = sparse(temp_taf_1); Taf_2{i_temp} = sparse(temp_taf_2); if abs(temp_1-temp_2) &lt; threshhold omega_alpha_1(i_temp) = 0.01; else omega_alpha_1(i_temp) = 10; end end end else chi_matrix = zeros(2*N,2*N,N); % 相似性约束矩阵 for i_temp = 1:N matrix_temp = zeros(N,N); matrix_temp(i_temp,i_temp) = 1; chi_matrix(:,:,i_temp) = complex2real(matrix_temp); end Taf_1 = zeros(2*N,2*N,(N+1)*N/2); Taf_2 = zeros(2*N,2*N,(N+1)*N/2); temp_m = -M/2+1:M/2; i_temp = 0; for temp_1 = 1:N for temp_2 = temp_1:N i_temp = i_temp + 1; temp_B = max(1-temp_1, 1-temp_2); temp_A = min (N-temp_1, N-temp_2); temp_n = temp_m((temp_m&lt;=temp_A) &amp; (temp_m&gt;=temp_B)); if isempty(temp_n) temp_taf = zeros(N,N); else temp_p = temp_1 + temp_n; temp_q = temp_2 + temp_n; temp_taf = zeros(N,N); temp_taf(temp_p(1):temp_p(end),temp_q(1):temp_q(end)) = eye(length(temp_q)); end temp_taf_1 = [real(temp_taf),-imag(temp_taf);imag(temp_taf),real(temp_taf)]; temp_taf_2 = [imag(temp_taf),-real(temp_taf);real(temp_taf),imag(temp_taf)]; Taf_1(:,:,i_temp) = sparse(temp_taf_1); Taf_2(:,:,i_temp) = sparse(temp_taf_2); if abs(temp_1-temp_2) &lt; threshhold omega_alpha_1(i_temp) = 0.01; else omega_alpha_1(i_temp) = 10; end end end end end function TarFunCValue = Caculate_TarFunCValue(xr,Taf_1,Taf_2,flag_Sparse,omega_alpha_1) TarFunCValue = 0; if flag_Sparse for iter_i = 1:length(omega_alpha_1) TarFunCValue = TarFunCValue + omega_alpha_1(iter_i)*(xr&#39;*Taf_1{iter_i}*xr + xr&#39;*Taf_2{iter_i}*xr); end else TarFunCValue = TarFunCValue + sum(bsxfun(@times,pagemtimes(pagemtimes(xr,&quot;transpose&quot;,Taf_1,&quot;none&quot;),&quot;none&quot;,xr,&quot;none&quot;),reshape(omega_alpha_1, 1, 1, [])),3); TarFunCValue = TarFunCValue + sum(bsxfun(@times,pagemtimes(pagemtimes(xr,&quot;transpose&quot;,Taf_2,&quot;none&quot;),&quot;none&quot;,xr,&quot;none&quot;),reshape(omega_alpha_1, 1, 1, [])),3); end end 3. 总结分析 1","headline":"LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读","mainEntityOfPage":{"@type":"WebPage","@id":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"},"url":"https://huang-cumt.github.io/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB01/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -71,40 +103,52 @@
 <meta name="theme-color" content="#ffffff">
 
 
+  <!-- Resource Hints -->
   
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" >
+      
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" >
+      
     
-      <link rel="preconnect" href="https://fonts.googleapis.com" >
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
-    
-      <link rel="preconnect" href="https://cdn.jsdelivr.net" >
-      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
-    
-      <link rel="preconnect" href="https://cdnjs.cloudflare.com" >
-      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" >
+      
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+      
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+      
     
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
   
 
   <!-- GA -->
   
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-
+  <!-- Theme style -->
   <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
 
+  <!-- Web Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+  <!-- 3rd-party Dependencies -->
+
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.27.20/dist/tocbot.min.css">
   
 
   
@@ -112,8 +156,8 @@
   
 
   
-    <!-- Manific Popup -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- JavaScript -->
@@ -140,54 +184,34 @@
     }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
+      let self = this;this.sysDarkPrefers.addEventListener('change', () => {
         if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
           self.clearMode();
         }
-
         self.notify();
       });
-    } /* constructor() */
+
+      if (!this.hasMode) {
+        return;
+      }
+
+      if (this.isDarkMode) {
+        this.setDark();
+      } else {
+        this.setLight();
+      }
+    }
 
     get sysDarkPrefers() {
       return window.matchMedia('(prefers-color-scheme: dark)');
     }
 
-    get isSysDarkPrefer() {
+    get isPreferDark() {
       return this.sysDarkPrefers.matches;
     }
 
     get isDarkMode() {
       return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
     }
 
     get hasMode() {
@@ -196,14 +220,11 @@
 
     get mode() {
       return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
+    }get modeStatus() {
+      if (this.hasMode) {
+        return this.mode;
       } else {
-        return ModeToggle.LIGHT_MODE;
+        return this.isPreferDark ? ModeToggle.DARK_MODE : ModeToggle.LIGHT_MODE;
       }
     }
 
@@ -220,10 +241,7 @@
     clearMode() {
       document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
+    }notify() {
       window.postMessage(
         {
           direction: ModeToggle.ID,
@@ -235,21 +253,9 @@
 
     flipMode() {
       if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
+        this.clearMode();
       } else {
-        if (this.isSysDarkPrefer) {
+        if (this.isPreferDark) {
           this.setLight();
         } else {
           this.setDark();
@@ -257,8 +263,8 @@
       }
 
       this.notify();
-    } /* flipMode() */
-  } /* ModeToggle */
+    }
+  }
 
   const modeToggle = new ModeToggle();
 </script>
@@ -340,7 +346,7 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
-      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
       </button>
 
@@ -466,7 +472,7 @@
       <i class="fas fa-search fa-fw"></i>
     </button>
 
-    <search class="align-items-center ms-3 ms-lg-0">
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
       <i class="fas fa-search fa-fw"></i>
       <input
         class="form-control"
@@ -674,6 +680,7 @@
 <article class="px-1">
   <header>
     <h1 data-toc-skip>LPI Radar Waveform Design With Desired Cyclic Spectrum and Pulse Compression Properties 论文阅读</h1>
+    
 
     <div class="post-meta text-muted">
       <!-- published date -->
@@ -701,29 +708,6 @@
       </span>
 
       <!-- lastmod date -->
-      
-        <span>
-          Updated
-          <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1716279619"
-  data-df="ll"
-  
-    data-bs-toggle="tooltip" data-bs-placement="bottom"
-  
->
-  May 21, 2024
-</time>
-
-        </span>
       
 
       
@@ -2043,28 +2027,14 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/Git/">Git指令学习</a>
+          <a href="/posts/HPC%E5%AD%A6%E4%B9%A0/">Hpc学习</a>
         </li>
       
         
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/WaveformDesign/">Waveformdesign</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/MATLAB/">MATLAB使用心得汇总</a>
+          <a href="/posts/Ubuntu%E7%BD%91%E5%8D%A1Debug/">Ubuntu网卡debug</a>
         </li>
       
         
@@ -2072,6 +2042,20 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC/">公式推导</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC2/">公式推导2</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</a>
         </li>
       
     </ul>
@@ -2135,11 +2119,6 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -2388,69 +2367,6 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2482,22 +2398,19 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -2514,8 +2427,8 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
 
 
-  <section id="toc-wrapper" class="ps-0 pe-4">
-    <h2 class="panel-heading ps-3 pt-2 mb-2">Contents</h2>
+  <section id="toc-wrapper" class="d-none ps-0 pe-4">
+    <h2 class="panel-heading ps-3 mb-2">Contents</h2>
     <nav id="toc"></nav>
   </section>
 
@@ -2538,6 +2451,7 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
 
 <!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
 
 
 
@@ -2595,50 +2509,6 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
       
         <article class="col">
-          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" class="post-preview card h-100">
-            <div class="card-body">
-              <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1687326997"
-  data-df="ll"
-  
->
-  Jun 21, 2023
-</time>
-
-              <h4 class="pt-0 my-2">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</h4>
-              <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
-
-期刊/会议：IEEE TRANSACTIONS ON Signal Processing
-
-发表时间：2017
-
-1. 问题建模
-
-在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目...
-                </p>
-              </div>
-            </div>
-          </a>
-        </article>
-      
-        <article class="col">
           <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-PFPA%E9%9B%B7%E8%BE%BE/" class="post-preview card h-100">
             <div class="card-body">
               <!--
@@ -2660,14 +2530,7 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
               <h4 class="pt-0 my-2">Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar 论文阅读</h4>
               <div class="text-muted">
-                <p>
-                  
-
-
-
-
-
-                  论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
+                <p>论文地址: Distant Sidelobe Suppression for Multi-Timeslot Wide-Gap Frequency-Hopping RFPA Radar
 
 期刊/会议: IEEE Transactions on Aerospace and Electronic Systems
 
@@ -2675,8 +2538,43 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
 0. 前言
 
-随机频率与脉冲重复间隔捷变(Random fr...
-                </p>
+随机频率与脉冲重复间隔捷变(Random fr...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBPSL/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1687326997"
+  data-df="ll"
+  
+>
+  Jun 21, 2023
+</time>
+
+              <h4 class="pt-0 my-2">A Coordinate Descent Framework to Design Low PSL ISL Sequences 论文阅读</h4>
+              <div class="text-muted">
+                <p>论文地址：A Coordinate Descent Framework to Design Low PSL ISL Sequences
+
+期刊/会议：IEEE TRANSACTIONS ON Signal Processing
+
+发表时间：2017
+
+1. 问题建模
+
+在雷达系统的脉冲压缩过程中，通常希望具有低的峰值旁瓣电平（Peak Sidelobe Level, PSL）避免弱目标被强目...</p>
               </div>
             </div>
           </a>
@@ -2718,7 +2616,7 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
             
               
-              <!--  The comments switcher -->
+              <!-- The comments switcher -->
 
 
             
@@ -2748,7 +2646,14 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     
   </p>
 
-  <p>Using the <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
+  <p>Using the <a
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="v7.0.1"
+        href="https://github.com/cotes2020/jekyll-theme-chirpy"
+        target="_blank"
+        rel="noopener"
+      >Chirpy</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>.
   </p>
 </footer>
 
@@ -2757,7 +2662,7 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
         <!-- The Search results -->
 
-<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
   <div class="col-11 content">
     <div id="search-hints">
       <!-- The trending tags list -->
@@ -2816,11 +2721,6 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -3069,69 +2969,6 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
     
     
     
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3163,22 +3000,19 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
         <a class="post-tag btn btn-outline-primary" href="/tags/git/">Git</a>
       
         
+        <a class="post-tag btn btn-outline-primary" href="/tags/hpc/">HPC</a>
+      
+        
         <a class="post-tag btn btn-outline-primary" href="/tags/jekyll/">Jekyll</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/maa/">MAA</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/math/">Math</a>
-      
-        
         <a class="post-tag btn btn-outline-primary" href="/tags/matlab/">MATLAB</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/ssh/">ssh</a>
-      
-        
-        <a class="post-tag btn btn-outline-primary" href="/tags/waveformdesign/">WaveformDesign</a>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
@@ -3328,52 +3162,20 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
   
 
-  
-    
-
-    
-
-  
-
-  
-    
-
-    
-
-  
 
 
-
-  <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3.7.1/dist/jquery.min.js,npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js,npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.10/dayjs.min.js,npm/dayjs@1.11.10/locale/en.min.js,npm/dayjs@1.11.10/plugin/relativeTime.min.js,npm/dayjs@1.11.10/plugin/localizedFormat.min.js,npm/tocbot@4.25.0/dist/tocbot.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.11/dayjs.min.js,npm/dayjs@1.11.11/locale/en.min.js,npm/dayjs@1.11.11/plugin/relativeTime.min.js,npm/dayjs@1.11.11/plugin/localizedFormat.min.js,npm/tocbot@4.27.20/dist/tocbot.min.js"></script>
 
 
 
 
 
 
-<script defer src="/assets/js/dist/post.min.js"></script>
+<script src="/assets/js/dist/post.min.js"></script>
 
 
   <!-- MathJax -->
-  <script>
-    /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
-    MathJax = {
-      tex: {
-        /* start/end delimiter pairs for in-line math */
-        inlineMath: [
-          ['$', '$'],
-          ['\\(', '\\)']
-        ],
-        /* start/end delimiter pairs for display math */
-        displayMath: [
-          ['$$', '$$'],
-          ['\\[', '\\]']
-        ],
-        /* equation numbering */
-        tags: 'ams'
-      }
-    };
-  </script>
+  <script src="/assets/js/data/mathjax.js"></script>
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 
@@ -3392,9 +3194,7 @@ c=&amp; \varrho \left( \boldsymbol{b}_r^{k+1},\boldsymbol{x}_r^{k+1} \right)
 
 
 
-<script>
-  /* Note: dependent library will be loaded in `js-selector.html` */
-  SimpleJekyllSearch({
+<script>SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
     json: '/assets/js/data/search.json',
